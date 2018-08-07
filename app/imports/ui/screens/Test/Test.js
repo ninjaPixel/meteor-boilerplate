@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
 
 const Test = (props) => {
-  const { classes } = props;
+  const { classes, name } = props;
   return (
     <div className={classes.root}>
-      <Typography variant="title" >Test page</Typography>
+      <Typography variant="heading1" >Hello, {name}!</Typography>
     </div>
   );
 };
@@ -14,6 +14,7 @@ const Test = (props) => {
 
 Test.propTypes = {
   classes: PropTypes.object.isRequired,
+  name: PropTypes.string,
 };
 
 Test.defaultProps = {
