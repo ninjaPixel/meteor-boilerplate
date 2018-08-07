@@ -1,0 +1,3 @@
+{
+  "plugins": [["direct-import", { "modules": ["@material-ui/core", "@material-ui/icons"] }]]
+}
