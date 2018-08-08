@@ -9,12 +9,13 @@ const Test = (props) => {
   const { classes, name } = props;
   const lodash = _.get({}, 'x', true);
   console.log('lodash: ', lodash);
-  const x = _.cloneDeep({ arse: 1 });
+  const x = _.cloneDeep({ hello: 'world!' });
   const time = new moment();
   return (
     <div className={classes.root}>
       <Typography variant="display1" >Hello, {name}!</Typography>
-      <Typography>This component is loaded dynamically, which means that the moment library that it uses is not in the initial client bundle ✌️</Typography>
+      <Typography>This component depends upon the material-ui, moment, and lodash libraries.</Typography>
+      <Typography>These libraries are loaded dynamically, which means that they are kept out of the initial client bundle️, which reduces the bundle size significantly.</Typography>
       <Typography>Current date (calculated by moment.js): {time.toString()}</Typography>
     </div>
   );
