@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
+    "production": "meteor run --production",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
     "viz": "meteor --production --extra-packages bundle-visualizer"
@@ -27,5 +28,13 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.116",
+    "@types/mocha": "^5.2.5",
+    "@types/react": "^16.4.8",
+    "babel-plugin-direct-import": "^0.6.0-beta.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "chai": "^4.1.2"
   }
 }

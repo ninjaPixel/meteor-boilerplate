@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,7 +12,7 @@ import Test from '../../screens/Test/Deferred.js';
 import PropTypes from 'prop-types';
 
 
-const HomeScreen = (props) => (
+const HomeScreen = props => (
   <div>
     <header>
       <h1>The App</h1>
@@ -36,18 +36,15 @@ HomeScreen.defaultProps = {
 };
 
 
-
-
 export default class App extends Component {
-
-
   render() {
+
     return (
       <Router>
         <div className="App">
           <Switch>
-            <Route path="/" exact render={routeProps => (<HomeScreen {...routeProps} />)}/>
-            {/*<Route path="/test" exact render={routeProps => (<Test {...routeProps} name="Meteor developer" />)}/>*/}
+            <Route path="/" exact render={routeProps => (<HomeScreen {...routeProps} />)} />
+            <Route path="/test" exact render={routeProps => (<Test {...routeProps} name="Meteor developer" />)} />
           </Switch>
 
 
