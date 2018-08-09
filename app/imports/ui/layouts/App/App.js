@@ -4,12 +4,14 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import Test from '../../screens/Test/Deferred.js';
+// import Test from '../../screens/Test/Deferred.js';
+// import Test from '../../screens/Test/Test.js';
 
 // App component - represents the whole app
 
 
 import PropTypes from 'prop-types';
+import DeferredComponent from "../../components/DeferredComponent/DeferredComponent";
 
 
 const HomeScreen = props => (
@@ -44,7 +46,8 @@ export default class App extends Component {
         <div className="App">
           <Switch>
             <Route path="/" exact render={routeProps => (<HomeScreen {...routeProps} />)} />
-            <Route path="/test" exact render={routeProps => (<Test {...routeProps} name="Meteor developer" />)} />
+            {/*<Route path="/test" exact render={routeProps => (<Test {...routeProps} name="Meteor developer" />)} />*/}
+            <Route path="/test" exact render={routeProps => (<DeferredComponent importFunction={() => import('/imports/ui/screens/Test/Test.js')} {...routeProps} name="Meteor developer" />)} />
           </Switch>
 
 
