@@ -29,14 +29,6 @@ const HomeScreen = props => (
     </p></div>
 );
 
-HomeScreen.propTypes = {
-  loading: PropTypes.bool,
-};
-
-HomeScreen.defaultProps = {
-  loading: false,
-};
-
 
 export default class App extends Component {
   render() {
