@@ -4,14 +4,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-// import Test from '../../screens/Test/Deferred.js';
-// import Test from '../../screens/Test/Test.js';
+import DeferredComponent from '@ninjapixel/meteor-deferred-component';
 
-// App component - represents the whole app
-
-
-import PropTypes from 'prop-types';
-import DeferredComponent from "../../components/DeferredComponent/DeferredComponent";
 
 
 const HomeScreen = props => (
