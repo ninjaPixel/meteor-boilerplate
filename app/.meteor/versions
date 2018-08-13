@@ -49,6 +49,7 @@ npm-mongo@3.0.11
 ordered-dict@1.1.0
 promise@0.11.1
 random@1.1.0
+react-meteor-data@0.2.16
 reactive-var@1.0.11
 reload@1.2.0
 retry@1.1.0
@@ -60,6 +61,7 @@ standard-minifier-css@1.4.1
 standard-minifier-js@2.3.4
 static-html@1.2.2
 templating-tools@1.1.2
+tmeasday:check-npm-versions@0.3.2
 tracker@1.2.0
 underscore@1.0.10
 url@1.2.0
