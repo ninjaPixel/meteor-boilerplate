@@ -34,6 +34,7 @@ Test.defaultProps = {
 const style = theme => ({
   root: {
     padding: theme.spacing.unit * 10,
+    height:150,
     backgroundColor: 'yellow',
   },
 });

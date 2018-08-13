@@ -5,35 +5,35 @@ import PropTypes from 'prop-types';
 class DeferredComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { Component: false, loading: true };
+    this.state = { Component: null, loading: true };
   }
+
   componentDidMount() {
-    this.loadComponent().then(() => { console.log('Component loaded ✌️'); });
+    this.loadComponent();
   }
-  async loadComponent() {
-    console.log('this.props.importFunction: ', this.props.importFunction);
-    const Component = await this.props.importFunction();
-    console.log('Component: ', Component);
-    this.setState({ loading: false, Component: Component.default });
+
+  loadComponent() {
+    this.props.importFunction().then((Component) => {
+      this.setState({ loading: false, Component: Component.default });
+    });
   }
 
   render() {
     const props = this.props;
     const { loading, Component } = this.state;
     if (loading) {
-      return (
-        <div className="dynamic">
-        Hello, World! Just loading this component
-        </div>
-      );
+      // const Loading = this.props.loadingComponent;// || null;
+      // return <Loading/>;
+      return this.props.loadingComponent;// || null;
     }
     return <Component {...props} />;
   }
 }
 
+
 DeferredComponent.propTypes = {
   importFunction: PropTypes.func.isRequired,
+  loadingComponent: PropTypes.element,
 };
-
 
 export default DeferredComponent;
