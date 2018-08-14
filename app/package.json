@@ -2,16 +2,16 @@
   "name": "crowd-sharing-web-app",
   "private": true,
   "scripts": {
-    "start": "meteor run",
-    "production": "meteor run --production",
+    "start": "meteor run --settings settings-development.json",
+    "production": "meteor run --production --settings settings-development.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "viz": "meteor --production --extra-packages bundle-visualizer"
+    "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.51",
     "@material-ui/core": "^1.4.2",
-    "@material-ui/icons": "^2.0.0",
+    "@material-ui/icons": "^2.0.2",
     "@ninjapixel/meteor-deferred-component": "0.0.5",
     "classnames": "^2.2.6",
     "lodash": "^4.17.10",

@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import _ from 'lodash';
 import React, { Fragment } from 'react';
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, AppBar, Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
@@ -13,20 +13,18 @@ import Loading from '../../components/Loading/Loading';
 // import GlobalSnackbar from '../../components/GlobalSnackbar/GlobalSnackbar';
 // import security from '../../../modules/security';
 import styles from './styles';
-// import snacks from '../../../modules/client/snacks';
-// import hideNavigation from '../../../api/State/client/hideNavigation';
+import reactiveState from '../../../api/State/client/reactiveState';
 
 class TitleBarAndNavDrawer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       mobileOpen: false,
-      screenTitle: props.screenTitle,
+      // screenTitle: props.screenTitle,
     };
     this.handleDrawerToggle = () => {
       this.setState({ mobileOpen: !this.state.mobileOpen });
     };
-    this.onTitleChange = this.onTitleChange.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -47,9 +45,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
     }
   }
 
-  onTitleChange(newTitle) {
-    this.setState({ screenTitle: newTitle });
-  }
+
 
 
   renderDrawer() {
@@ -79,14 +75,14 @@ class TitleBarAndNavDrawer extends React.PureComponent {
   }
 
   renderNavigationBar() {
-    const { classes, hideNavigation } = this.props;
+    const { classes, screenTitle, hideNavigation } = this.props;
 
     if (hideNavigation === true) {
       return (
         <AppBar className={classes.appBarHiddenNavigation}>
           <Toolbar data-e2e="navigation-toolbar">
             <Typography variant="title" color="inherit" noWrap>
-              {this.state.screenTitle}
+              {screenTitle}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -105,7 +101,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              {this.state.screenTitle}
+              {screenTitle}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -179,33 +175,10 @@ TitleBarAndNavDrawer.defaultProps = ({
   loading: false,
 });
 
-const StyledTitleBarAndNavDrawer = withStyles(styles)(TitleBarAndNavDrawer);
-
-//
-// const ThemeWrapper = (props) => {
-//   const { theme, ...rest } = props;
-//   return (
-//     <MuiThemeProvider theme={theme} >
-//       <StyledTitleBarAndNavDrawer {...rest} />
-//     </MuiThemeProvider>);
-// };
-//
-// ThemeWrapper.propTypes = {
-//   theme: PropTypes.object.isRequired,
-// };
-//
-//
-// const arrayOfShopIds = function (organisation) {
-//   let shopIds = organisation.shops.map(shop => shop.id);
-//   if (shopIds.length === 1 && shopIds[0] === undefined) {
-//     shopIds = [];
-//   }
-//   return shopIds;
-// };
-
+const StyledTitleBarAndNavDrawer = withRouter(withStyles(styles)(TitleBarAndNavDrawer));
 
 export default withTracker((props) => {
-  const screenTitle = 'TODO: screen title';
+  const screenTitle = reactiveState.screenTitle.get();
   return {
     screenTitle,
     // hideNavigation: hideNavigation.get(),

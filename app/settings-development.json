@@ -1,0 +1,14 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "MONGO_URL": "",
+      "NODE_ENV": "development"
+    }
+  },
+  "public": {
+    "mode": "dev"
+  },
+  "private": {
+    "allow_database_reset": true
+  }
+}

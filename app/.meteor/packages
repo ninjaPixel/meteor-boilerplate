@@ -18,3 +18,4 @@ shell-server@0.3.1            # Server-side component of the `meteor shell` comm
 
 static-html
 react-meteor-data
+alanning:roles

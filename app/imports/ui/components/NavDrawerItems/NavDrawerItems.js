@@ -1,16 +1,14 @@
-// import { Roles } from 'meteor/alanning:roles';
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import { withStyles, Badge, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Code, Storage, AddShoppingCart, People, Business, AccountCircle, Lock, ExitToApp, Settings, DateRange, AccountBox, Gavel, HelpOutline } from '@material-ui/icons';
+import { Home, ImportantDevices, Lock, ExitToApp, AccountBox, Gavel } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import routes from '../../../modules/routes';
 
 
-function NavLink(props) {
+function _NavLink(props) {
   const navLink = (
-    <Link to={props.to} onClick={() => props.onNavClick()} className="Link--no-decoration" >
+    <Link to={props.to} onClick={() => props.onNavClick()} className={props.classes.noDecoration} >
       <ListItem button data-e2e={props.dataE2E}>
         <ListItemIcon>
           {props.icon}
@@ -28,6 +26,16 @@ function NavLink(props) {
   }
   return navLink;
 }
+
+const navLinkStyles = theme => ({
+  noDecoration: {
+    textDecoration: 'none',
+    width: 'fit-content',
+  },
+});
+
+const NavLink = withStyles(navLinkStyles)(_NavLink);
+
 function ExternalNavLink(props) {
   return (
     <Link target="_blank" to={props.to} className="Link--no-decoration">
@@ -44,9 +52,13 @@ function ExternalNavLink(props) {
 NavLink.propTypes = {
   to: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  onNavClick: PropTypes.func.isRequired,
+  onNavClick: PropTypes.func, // .isRequired,
   icon: PropTypes.element.isRequired,
   dataE2E: PropTypes.string,
+};
+
+NavLink.defaultProps = {
+  onNavClick: () => {},
 };
 
 const renderLoginLink = props => <NavLink to={'/login'} dataE2E="nav-login" text={'Login'} onNavClick={props.onNavClick} icon={<Lock />} />;
@@ -60,7 +72,8 @@ const renderClientLinks = props => [
 
 const NavDrawerItems = (props) => {
   const links = [
-    { to: '/page1', text: 'Page 1', onNavClick: props.onNavClick, icon: <AddShoppingCart />, dataE2E: 'nav-page-1' },
+    { to: routes.home, text: 'Home', onNavClick: props.onNavClick, icon: <Home />, dataE2E: 'nav-page-home' },
+    { to: routes.page1, text: 'Page 1', onNavClick: props.onNavClick, icon: <ImportantDevices />, dataE2E: 'nav-page-1' },
   ];
 
   const { classes } = props;
