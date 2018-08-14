@@ -5,10 +5,10 @@ import moment from 'moment';
 import _ from 'lodash';
 
 
-const Test = (props) => {
+const Page1 = (props) => {
   const { classes, name } = props;
   const lodash = _.get({}, 'x', true);
-  console.log('lodash: ', lodash);
+  console.log('lodash loaded: ', lodash);
   const x = _.cloneDeep({ hello: 'world!' });
   const time = new moment();
   return (
@@ -22,12 +22,12 @@ const Test = (props) => {
 };
 
 
-Test.propTypes = {
+Page1.propTypes = {
   classes: PropTypes.object.isRequired,
   name: PropTypes.string,
 };
 
-Test.defaultProps = {
+Page1.defaultProps = {
   name: 'World',
 };
 
@@ -39,4 +39,4 @@ const style = theme => ({
   },
 });
 
-export default withStyles(style)(Test);
+export default withStyles(style)(Page1);

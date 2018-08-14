@@ -17,6 +17,7 @@
     "lodash": "^4.17.10",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.22.2",
+    "nodemailer": "^4.6.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-error-boundary": "^1.2.3",

@@ -10,7 +10,7 @@ import Loading from '../Loading/Loading';
 import LinkButton from '../LinkButton/LinkButton';
 import snacks from '../../../modules/client/snacks';
 import routes from '../../../modules/routes';
-import userTools from '../../../modules/user';
+import userTools from '../../../modules/userTools';
 import loginFormStyles from '../../styles/LoginForm';
 
 const styles = theme => ({
@@ -59,23 +59,6 @@ class LoginForm extends React.PureComponent {
     this.minPasswordLength = 5;
   }
 
-  handleLoginRequest() {
-    this.setState({ authenticationErrorMessage: '', loggingIn: true });
-
-    const { email, password } = this.state;
-    Meteor.loginWithPassword(email, password, (error, success) => {
-      this.setState({ loggingIn: false });
-      if (error) {
-        this.setState({ authenticationErrorMessage: error.reason });
-      } else {
-        /*
-        execute a login callback.
-        for example, if the user just accepted a staff invitation, assign this now.
-        */
-        this.props.loginCallback();
-      }
-    });
-  }
 
   handleCompleteRegistrationSubmit(event) {
     event.preventDefault();
@@ -188,6 +171,24 @@ class LoginForm extends React.PureComponent {
         }
       });
     }
+  }
+
+  handleLoginRequest() {
+    this.setState({ authenticationErrorMessage: '', loggingIn: true });
+
+    const { email, password } = this.state;
+    Meteor.loginWithPassword(email, password, (error, success) => {
+      this.setState({ loggingIn: false });
+      if (error) {
+        this.setState({ authenticationErrorMessage: error.reason });
+      } else {
+        /*
+        execute a login callback.
+        for example, if the user just accepted a staff invitation, assign this now.
+        */
+        this.props.loginCallback();
+      }
+    });
   }
 
   renderLoginRegisterForm() {

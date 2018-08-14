@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import _ from 'lodash';
-import baseDomain from './domain/baseDomain';
-import staffTools from './staff';
 
 const name = (user) => {
   const profileName = _.get(user, 'profile.name', false);

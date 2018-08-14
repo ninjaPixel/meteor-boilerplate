@@ -29,7 +29,8 @@ export default class App extends Component {
           <TitleBarAndNavDrawer>
             <Switch>
               <AppRoute path="/" exact component={HomeScreen} title="Hello, World!" />
-              <AppRoute path="/page1" title="Page 1 - Dynamically Loaded 😎" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/Test/Test.js')} name="Meteor developer" />
+              <AppRoute path="/page1" title="Page 1 - Dynamically Loaded 😎" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/Page1/Page1.js')} name="Meteor developer" />
+              <AppRoute path="/page2" title="Page 2 - Dynamically Loaded 😎" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/Page2/Page2.js')} />
             </Switch>
           </TitleBarAndNavDrawer>
         </div>

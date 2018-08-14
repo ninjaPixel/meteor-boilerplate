@@ -4,22 +4,18 @@ import { check } from 'meteor/check';
 import _ from 'lodash';
 import rateLimit from '../../../modules/rateLimit';
 import sendEmail from '../../../modules/server/email/send';
-import organisationTools from '../../../modules/organisation';
-import domainSpecificLanguage from '../../../modules/domain/domainSpecificLanguage';
 import routes from '../../../modules/routes';
 import security from '../../../modules/security';
 
-const _sendPasswordResetEmail = function ({ org, email, firstName, token, windowLocationOrigin }) {
-  const title = `Password reset [${org.name}]`;
+const _sendPasswordResetEmail = function ({ email, firstName, token, windowLocationOrigin }) {
+  const title = `Password reset for ${Meteor.settings.public.appName}`;
   sendEmail({
-    domain: org.domain,
     to: email,
-    from: `${org.name} <${dsl.email.noReply}>`,
+    from: Meteor.settings.public.email.noReply,
     subject: title,
     template: 'resetPassword',
     css: 'common',
     templateVars: {
-      dsl,
       firstName,
       title,
       appUrl: windowLocationOrigin,
@@ -45,9 +41,8 @@ Meteor.methods({
     }
     return user._id;
   },
-  'utility.sendPasswordResetEmail': function sendPasswordResetEmail({ email, organisationId }) {
+  'utility.sendPasswordResetEmail': function sendPasswordResetEmail({ email }) {
     check(email, String);
-    check(organisationId, String);
 
     const user = Accounts.findUserByEmail(email);
     if (_.isEmpty(user)) {
@@ -55,8 +50,7 @@ Meteor.methods({
     }
     const { token } = Accounts.generateResetToken(user._id, email);
     console.log(`generateResetToken for ${email}. Token: ${token}`);
-    const org = organisationTools.find({ _id: organisationId });
-    _sendPasswordResetEmail({ org, email, firstName: user.profile.name.first, token });
+    _sendPasswordResetEmail({ email, firstName: user.profile.name.first, token });
     return true;
   },
   'utility.updateNotificationPreference': function ({ userId, notificationName, notify }) {

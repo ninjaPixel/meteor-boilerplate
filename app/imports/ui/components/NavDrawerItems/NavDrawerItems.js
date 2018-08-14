@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Badge, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Home, ImportantDevices, Lock, ExitToApp, AccountBox, Gavel } from '@material-ui/icons';
+import { Home, ImportantDevices, Lock, ExitToApp, AccountBox, Gavel, ShortText } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import routes from '../../../modules/routes';
 
@@ -74,6 +74,7 @@ const NavDrawerItems = (props) => {
   const links = [
     { to: routes.home, text: 'Home', onNavClick: props.onNavClick, icon: <Home />, dataE2E: 'nav-page-home' },
     { to: routes.page1, text: 'Page 1', onNavClick: props.onNavClick, icon: <ImportantDevices />, dataE2E: 'nav-page-1' },
+    { to: routes.page2, text: 'Page 2', onNavClick: props.onNavClick, icon: <ShortText />, dataE2E: 'nav-page-2' },
   ];
 
   const { classes } = props;

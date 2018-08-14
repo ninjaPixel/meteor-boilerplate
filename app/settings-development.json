@@ -6,9 +6,13 @@
     }
   },
   "public": {
-    "mode": "dev"
+    "mode": "dev",
+    "appName": "Meteor Boilerplate"
   },
   "private": {
-    "allow_database_reset": true
+    "allow_database_reset": true,
+    "email": {
+      "noReply": "noreply@test.com"
+    }
   }
 }
