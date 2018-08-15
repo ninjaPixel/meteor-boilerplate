@@ -2,34 +2,35 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
 import _ from 'lodash';
-import rateLimit from '../../../modules/rateLimit';
+import rateLimit from '../../../modules/server/rateLimit';
 import sendEmail from '../../../modules/server/email/send';
 import routes from '../../../modules/routes';
 import security from '../../../modules/security';
 
 const _sendPasswordResetEmail = function ({ email, firstName, token, windowLocationOrigin }) {
-  const title = `Password reset for ${Meteor.settings.public.appName}`;
-  sendEmail({
-    to: email,
-    from: Meteor.settings.public.email.noReply,
-    subject: title,
-    template: 'resetPassword',
-    css: 'common',
-    templateVars: {
-      firstName,
-      title,
-      appUrl: windowLocationOrigin,
-      resetUrl: `${windowLocationOrigin}${routes.resetPassword(org._id, token)}`,
-    },
-  }).catch((error) => {
-    console.warn(`Could not sent password reset email to ${email}`, error);
-  }).finally(() => {
-  });
+  // const title = `Password reset for ${Meteor.settings.public.appName}`;
+  // sendEmail({
+  //   to: email,
+  //   from: Meteor.settings.public.email.noReply,
+  //   subject: title,
+  //   template: 'resetPassword',
+  //   css: 'common',
+  //   templateVars: {
+  //     firstName,
+  //     title,
+  //     appUrl: windowLocationOrigin,
+  //     resetUrl: `${windowLocationOrigin}${routes.resetPassword(org._id, token)}`,
+  //   },
+  // }).catch((error) => {
+  //   console.warn(`Could not sent password reset email to ${email}`, error);
+  // }).finally(() => {
+  // });
 };
 
 Meteor.methods({
   'utility.checkIfEmailAddressExists': function checkIfEmailAddressExists(email) {
     check(email, String);
+    console.log('check for email: ', email);
     const user = Accounts.findUserByEmail(email);
     return !_.isEmpty(user);
   },
