@@ -7,7 +7,7 @@ class Page2 extends React.PureComponent {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Typography variant="title">Hipster Ipsum</Typography>
+        <Typography variant="title" gutterBottom>Hipster Ipsum</Typography>
         <Typography>
           Lorem ipsum dolor amet banjo mixtape gastropub fanny pack jean shorts ennui hashtag enamel pin selvage chambray. Post-ironic williamsburg venmo portland kogi food truck tilde locavore DIY lyft blue bottle cred four dollar toast af. Pabst knausgaard viral chicharrones, 8-bit selfies blog green juice bitters hashtag. Meggings chillwave pork belly bushwick. Stumptown godard lomo vexillologist, pitchfork humblebrag small batch biodiesel post-ironic shoreditch taxidermy sriracha austin meh.
         </Typography>
