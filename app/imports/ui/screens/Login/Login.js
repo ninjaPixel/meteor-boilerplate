@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Typography } from '@material-ui/core';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
 const Login = (props) => {
@@ -9,7 +9,9 @@ const Login = (props) => {
     return <LoginForm />;
   }
   return (
-    <div className={classes.root} />
+    <div className={classes.root}>
+      <Typography variant="headline">You're all logged-in 👌</Typography>
+    </div>
   );
 };
 

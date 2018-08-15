@@ -53,7 +53,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
 
     const drawer = (
       <div className={classes.drawer}>
-        <div className={classes.drawerHeader}/>
+        <div className={classes.drawerHeader} />
         <NavDrawerItems onNavClick={this.handleDrawerToggle} user={user} />
       </div>
     );

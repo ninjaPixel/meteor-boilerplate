@@ -30,7 +30,6 @@ const _sendPasswordResetEmail = function ({ email, firstName, token, windowLocat
 Meteor.methods({
   'utility.checkIfEmailAddressExists': function checkIfEmailAddressExists(email) {
     check(email, String);
-    console.log('check for email: ', email);
     const user = Accounts.findUserByEmail(email);
     return !_.isEmpty(user);
   },
