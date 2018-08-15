@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
 
 class Page2 extends React.PureComponent {
-
   render() {
     const { classes } = this.props;
     return (

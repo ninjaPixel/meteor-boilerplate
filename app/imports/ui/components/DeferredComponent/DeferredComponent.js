@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 class DeferredComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +10,7 @@ class DeferredComponent extends React.Component {
   componentDidMount() {
     this.loadComponent();
   }
+
 
   loadComponent() {
     this.props.importFunction().then((Component) => {
@@ -22,9 +22,7 @@ class DeferredComponent extends React.Component {
     const props = this.props;
     const { loading, Component } = this.state;
     if (loading) {
-      // const Loading = this.props.loadingComponent;// || null;
-      // return <Loading/>;
-      return this.props.loadingComponent;// || null;
+      return this.props.loadingComponent || null;
     }
     return <Component {...props} />;
   }
