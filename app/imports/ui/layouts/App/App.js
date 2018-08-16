@@ -9,6 +9,7 @@ import TitleBarAndNavDrawer from '../TitleBarAndNavDrawer/TitleBarAndNavDrawer';
 import AppRoute from '../../components/AppRoute/AppRoute';
 import LoadingComponent from '../../components/Loading/Loading';
 
+import './App.scss';
 
 const HomeScreen = props => (
   <div>

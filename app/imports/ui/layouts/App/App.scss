@@ -1,0 +1,19 @@
+// prevent overscroll of page - ios safari in particular was leading to annoying white bars at bottom of screen after an aggresive scroll
+// see https://stackoverflow.com/questions/12046315/prevent-overscrolling-of-web-page
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+}
+
+.App {
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+}
