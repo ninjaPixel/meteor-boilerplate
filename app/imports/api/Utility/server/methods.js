@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { check } from 'meteor/check';
 import _ from 'lodash';
-import rateLimit from '../../../modules/server/rateLimit';
+import rateLimit from '../../../modules/rateLimit';
 import sendEmail from '../../../modules/server/email/send';
 import routes from '../../../modules/routes';
 import security from '../../../modules/security';

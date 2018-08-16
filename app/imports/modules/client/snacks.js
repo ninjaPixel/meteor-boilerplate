@@ -3,8 +3,8 @@ import reactiveState from '../../api/State/client/reactiveState';
 
 const set = ({ message }) => {
   if (!_.isUndefined(message)) {
-    reactiveState.message.set(message);
-    reactiveState.time.set((new Date()).getTime());
+    reactiveState.snack.message.set(message);
+    reactiveState.snack.time.set((new Date()).getTime());
   }
 };
 

@@ -1,2 +1,2 @@
-// import '../both/api';
+import '../both/api';
 import './app';
