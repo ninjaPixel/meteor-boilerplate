@@ -8,23 +8,24 @@ import routes from '../../../modules/routes';
 import security from '../../../modules/security';
 
 const _sendPasswordResetEmail = function ({ email, firstName, token, windowLocationOrigin }) {
-  // const title = `Password reset for ${Meteor.settings.public.appName}`;
-  // sendEmail({
-  //   to: email,
-  //   from: Meteor.settings.public.email.noReply,
-  //   subject: title,
-  //   template: 'resetPassword',
-  //   css: 'common',
-  //   templateVars: {
-  //     firstName,
-  //     title,
-  //     appUrl: windowLocationOrigin,
-  //     resetUrl: `${windowLocationOrigin}${routes.resetPassword(org._id, token)}`,
-  //   },
-  // }).catch((error) => {
-  //   console.warn(`Could not sent password reset email to ${email}`, error);
-  // }).finally(() => {
-  // });
+  const title = `Password reset for ${Meteor.settings.public.appName}`;
+  sendEmail({
+    to: email,
+    from: Meteor.settings.private.email.noReply,
+    subject: title,
+    template: 'resetPassword',
+    css: 'common',
+    templateVars: {
+      firstName,
+      title,
+      appUrl: windowLocationOrigin,
+      appName: Meteor.settings.public.appName,
+      resetUrl: `${windowLocationOrigin}${routes.resetPassword(token)}`,
+    },
+  }).catch((error) => {
+    console.warn(`Could not sent password reset email to ${email}`, error);
+  }).finally(() => {
+  });
 };
 
 Meteor.methods({
@@ -41,8 +42,9 @@ Meteor.methods({
     }
     return user._id;
   },
-  'utility.sendPasswordResetEmail': function sendPasswordResetEmail({ email }) {
+  'utility.sendPasswordResetEmail': function sendPasswordResetEmail({ email, windowLocationOrigin }) {
     check(email, String);
+    check(windowLocationOrigin, String);
 
     const user = Accounts.findUserByEmail(email);
     if (_.isEmpty(user)) {
@@ -50,7 +52,7 @@ Meteor.methods({
     }
     const { token } = Accounts.generateResetToken(user._id, email);
     console.log(`generateResetToken for ${email}. Token: ${token}`);
-    _sendPasswordResetEmail({ email, firstName: user.profile.name.first, token });
+    _sendPasswordResetEmail({ email, firstName: user.profile.name.first, token, windowLocationOrigin, userId:user._id });
     return true;
   },
   'utility.updateNotificationPreference': function ({ userId, notificationName, notify }) {

@@ -4,7 +4,7 @@ const page1 = '/page1';
 const page2 = '/page2';
 const home = '/';
 const login = '/login';
-
+const resetPassword = token => `/reset-password/${token}`;
 export default {
   account,
   legal,
@@ -12,4 +12,5 @@ export default {
   page2,
   home,
   login,
+  resetPassword,
 };

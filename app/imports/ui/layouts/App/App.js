@@ -35,6 +35,7 @@ class App extends Component {
       <AppRoute key="/logout" path="/logout" title="Logout" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/Logout/Logout.js')} {...props} />,
       <AppRoute key="/legal" path="/legal" title="Legal" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/Legal/Legal.js')} {...props} />,
       <AppRoute key="/account" path="/account/:userId" title="Account" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/Account/Account.js')} {...props} />,
+      <AppRoute key="/reset-password" path="/reset-password/:token" title="Reset password" exact component={DeferredComponent} loadingComponent={<LoadingComponent />} importFunction={() => import('/imports/ui/screens/ResetPassword/ResetPassword.js')} {...props} />,
     ];
   }
 

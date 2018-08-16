@@ -123,24 +123,9 @@ class LoginForm extends React.PureComponent {
     }
   }
 
-
-  validPassword() {
-    return this.state.password.length >= this.minPasswordLength;
-  }
-
-  disableLoginButton() {
-    return !(this.state.existingEmail && this.state.password) || this.state.loggingIn;
-  }
-
-
-  disableRegisterButton() {
-    return this.state.existingEmail || !(this.validPassword());
-  }
-
-
   sendPasswordReset() {
     const { email } = this.state;
-    Meteor.call('utility.sendPasswordResetEmail', { email }, (error, success) => {
+    Meteor.call('utility.sendPasswordResetEmail', { email, windowLocationOrigin: window.location.origin }, (error, success) => {
       if (error) {
         snacks.set({ message: `Unable to send password reset email. ${error.reason}` });
       }
