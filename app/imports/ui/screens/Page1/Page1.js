@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
+import purple from '@material-ui/core/colors/purple';
 import moment from 'moment';
 import _ from 'lodash';
 
@@ -35,7 +36,7 @@ const style = theme => ({
   root: {
     padding: theme.spacing.unit * 10,
     height: '100%',
-    backgroundColor: 'yellow',
+    backgroundColor: purple[500],
   },
 });
 

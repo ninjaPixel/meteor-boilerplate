@@ -4,21 +4,24 @@ import { Roles } from 'meteor/alanning:roles';
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 import DeferredComponent from '../../components/DeferredComponent/DeferredComponent';
 import TitleBarAndNavDrawer from '../TitleBarAndNavDrawer/TitleBarAndNavDrawer';
 import AppRoute from '../../components/AppRoute/AppRoute';
 import LoadingComponent from '../../components/Loading/Loading';
+import Theme from '../../styles/Theme';
 
 import './App.scss';
 
 const HomeScreen = props => (
   <div>
     <header>
-      <h1>Home screen</h1>
+      <Typography variant="display2" gutterBottom>Home screen</Typography>
     </header>
-    <p>
+    <Typography>
       Some text...
-    </p></div>
+    </Typography></div>
 );
 
 
@@ -45,9 +48,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <CssBaseline />
-          <TitleBarAndNavDrawer user={user}>
-            <Switch>{this.paths()}</Switch>
-          </TitleBarAndNavDrawer>
+          <MuiThemeProvider theme={Theme}>
+            <TitleBarAndNavDrawer user={user}>
+              <Switch>{this.paths()}</Switch>
+            </TitleBarAndNavDrawer>
+          </MuiThemeProvider>
         </div>
       </Router>
     );

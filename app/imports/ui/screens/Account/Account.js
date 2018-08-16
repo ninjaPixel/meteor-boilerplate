@@ -204,7 +204,7 @@ class Account extends React.PureComponent {
 
     return (
       <div className={classes.root} >
-        <div className={classes.insetContent}>
+        <div>
           <Typography variant="display1" className={classes.section1}>My details</Typography>
 
           {this.renderProfileForm()}

@@ -1,12 +1,4 @@
 body {
-    padding: 10px;
-    font-family: sans-serif;
-    background-color: lightsteelblue;
-}
-
-.loading {
-    background-color: mediumspringgreen;
-    height: 150px;
-    /*width: 100%;*/
-    padding:80px;
+    font-family: monospace;
+    background-color: #303030;
 }
