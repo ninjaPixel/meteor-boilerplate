@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { Fragment } from 'react';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, AppBar, Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import NavDrawerItems from '../../components/NavDrawerItems/NavDrawerItems';
 import Loading from '../../components/Loading/Loading';
-// import GlobalSnackbar from '../../components/GlobalSnackbar/GlobalSnackbar';
+import GlobalSnackbar from '../../components/GlobalSnackbar/GlobalSnackbar';
 // import security from '../../../modules/security';
 import styles from './styles';
 import reactiveState from '../../../api/State/client/reactiveState';
@@ -44,8 +44,6 @@ class TitleBarAndNavDrawer extends React.PureComponent {
       // snacks.clear();
     }
   }
-
-
 
 
   renderDrawer() {
@@ -154,7 +152,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
             </ErrorBoundary>
           </main>
         </div>
-        {/* <GlobalSnackbar /> */}
+        <GlobalSnackbar />
       </div>
     );
   }
@@ -165,6 +163,7 @@ TitleBarAndNavDrawer.propTypes = {
   screenTitle: PropTypes.string,
   user: PropTypes.object,
   loading: PropTypes.bool,
+  hideNavigation: PropTypes.bool,
   location: PropTypes.object.isRequired,
   children: PropTypes.element.isRequired,
 };
@@ -173,6 +172,7 @@ TitleBarAndNavDrawer.defaultProps = ({
   screenTitle: '',
   user: null,
   loading: false,
+  hideNavigation: false,
 });
 
 const StyledTitleBarAndNavDrawer = withRouter(withStyles(styles)(TitleBarAndNavDrawer));
