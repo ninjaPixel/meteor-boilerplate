@@ -7,12 +7,14 @@
   },
   "public": {
     "mode": "dev",
-    "appName": "Meteor Boilerplate"
+    "appName": "Meteor Boilerplate",
+    "appUrl": "http://localhost:3000"
   },
   "private": {
     "allow_database_reset": true,
     "email": {
-      "noReply": "noreply@test.com"
+      "noReply": "noreply@test.com",
+      "smtp": "Checkout Post Mark or Mailgun for a SMTP service"
     }
   }
 }
