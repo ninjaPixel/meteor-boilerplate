@@ -4,7 +4,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { withStyles, Grid, Button, TextField, Typography, FormControlLabel, Checkbox } from '@material-ui/core';
 import Loading from '../Loading/Loading';
 import LinkButton from '../LinkButton/LinkButton';
@@ -12,6 +12,8 @@ import snacks from '../../../modules/client/snacks';
 import routes from '../../../modules/routes';
 import userTools from '../../../modules/userTools';
 import loginFormStyles from '../../styles/LoginForm';
+import Legal from '../Legal/Legal';
+import ModalCard from '../ModalCard/ModalCard';
 
 const styles = theme => ({
   root: {
@@ -46,6 +48,7 @@ class LoginForm extends React.PureComponent {
       authenticationErrorMessage: '',
       loggingIn: false,
       termsAccepted: false,
+      showLegalModal: false,
     };
     this.handleChange('email')({ target: { value: props.email } });
 
@@ -56,6 +59,7 @@ class LoginForm extends React.PureComponent {
     this.handleLoginRequest = this.handleLoginRequest.bind(this);
     this.sendPasswordReset = this.sendPasswordReset.bind(this);
     this.onEmailBlur = this.onEmailBlur.bind(this);
+    this.toggleLegalModal = this.toggleLegalModal.bind(this);
     this.minPasswordLength = 5;
   }
 
@@ -248,9 +252,13 @@ class LoginForm extends React.PureComponent {
     return null;
   }
 
+  toggleLegalModal(){
+    this.setState({showLegalModal:!this.state.showLegalModal});
+  }
+
   renderProfileForm() {
     const { classes, disableAutoFocus } = this.props;
-    const { first, last, phone, termsAccepted } = this.state;
+    const { first, last, phone, termsAccepted, showLegalModal } = this.state;
     return (
       <form className={classes.form} onSubmit={this.handleCompleteRegistrationSubmit}>
         <TextField
@@ -287,9 +295,10 @@ class LoginForm extends React.PureComponent {
             }
             label="I accept the terms & conditions and the privacy policy"
           />
-          <Typography variant="caption" >Read the <a data-e2e="login-form-tos-link" className={classes.link} target="_blank" href={routes.legal}>terms & conditions, and our privacy policy here</a>.</Typography>
+          <Typography variant="caption" >Read the <a data-e2e="login-form-tos-link" className={classes.link} onClick={this.toggleLegalModal}>terms & conditions, and our privacy policy here</a>.</Typography>
         </div>
         <Button data-e2e="login-form-submit-button" type="submit" variant="raised" color="secondary" className={classes.button} disabled={!termsAccepted} >Complete registration</Button>
+        <ModalCard show={showLegalModal} hideCancelButton onClose={this.toggleLegalModal} onRequestOk={this.toggleLegalModal}><Legal /></ModalCard>
       </form>
     );
   }
