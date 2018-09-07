@@ -175,12 +175,12 @@ TitleBarAndNavDrawer.defaultProps = ({
   hideNavigation: false,
 });
 
-const StyledTitleBarAndNavDrawer = withRouter(withStyles(styles)(TitleBarAndNavDrawer));
+const StyledTitleBarAndNavDrawer = withStyles(styles)(TitleBarAndNavDrawer);
 
-export default withTracker((props) => {
+export default withRouter(withTracker((props) => {
   const screenTitle = reactiveState.screenTitle.get();
   return {
     screenTitle,
     // hideNavigation: hideNavigation.get(),
   };
-})(StyledTitleBarAndNavDrawer);
+})(StyledTitleBarAndNavDrawer));
