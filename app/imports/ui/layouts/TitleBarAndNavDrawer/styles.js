@@ -48,6 +48,7 @@ const styles = theme => ({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+    height: '100vh',
   },
   drawerHeader: {
     ...theme.mixins.toolbar,
