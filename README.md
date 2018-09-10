@@ -5,14 +5,14 @@ The UI is handled by Material Design and the performance is achieved
 by selective tree-shaking and judicious use of dynamic imports, to
 keep the client bundle as small as reasonably possible.
 
+**>>> [View Demo](https://meteor.ninjapixel.io) <<<**
+
+
 * Front end: [React](https://reactjs.org/) ✌️
 * UI: [MUI](https://material-ui.com/) (Material Design) 🎨
 * Bundle size: [<250kB gZipped](https://www.ninjapixel.io/meteor-bundle-size.html) 🐭
 * Styling: [JSS](http://cssinjs.org/) 💅
 * Security: Users, roles and groups 🔐
-
-
-## [View Demo](https://meteor.ninjapixel.io)
 
 
 For some background information on the performance enhancements in this app, check out [this blog post](https://www.ninjapixel.io/meteor-bundle-size.html).
