@@ -12,6 +12,8 @@ keep the client bundle as small as reasonably possible.
 * Security: Users, roles and groups 🔐
 
 
+## [View Demo](https://meteor.ninjapixel.io)
+
 
 For some background information on the performance enhancements in this app, check out [this blog post](https://www.ninjapixel.io/meteor-bundle-size.html).
 
