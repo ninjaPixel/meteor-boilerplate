@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
+import rootStyles from '../../styles/root';
 
 class Page2 extends React.PureComponent {
   render() {
@@ -37,7 +38,7 @@ class Page2 extends React.PureComponent {
         <Typography variant="body1" gutterBottom>
         Body 1: Lorem ipsum dolor amet banjo mixtape gastropub fanny pack jean shorts ennui hashtag enamel pin selvage chambray. Post-ironic williamsburg venmo portland kogi food truck tilde locavore DIY lyft blue bottle cred four dollar toast af. Pabst knausgaard viral chicharrones, 8-bit selfies blog green juice bitters hashtag. Meggings chillwave pork belly bushwick. Stumptown godard lomo vexillologist, pitchfork humblebrag small batch biodiesel post-ironic shoreditch taxidermy sriracha austin meh.
         </Typography>
-        <br/>
+        <br />
         <Typography variant="caption" gutterBottom >
         Caption
         </Typography>
@@ -58,9 +59,8 @@ Page2.defaultProps = {
 };
 
 const style = theme => ({
-  root: {
-    width: '100%',
-  },
+  ...rootStyles.default(theme),
+
 });
 
 export default withStyles(style)(Page2);

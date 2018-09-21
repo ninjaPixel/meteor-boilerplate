@@ -1,22 +1,20 @@
 const drawerWidth = 240;
+const appBarHeightXS = 56;
+const appBarHeight = 64;
+
 
 const styles = theme => ({
-  root: {
-    width: '100%',
-    height: '100%',
-    marginTop: 0,
-    paddingTop: 0,
-    top: 0,
-    left: 0,
-    position: 'absolute',
-    zIndex: 1,
-    overflow: 'hidden',
-  },
+
   appFrame: {
+    minHeight: '100vh',
+    minWidth: '100vw',
+    maxWidth: '100vw',
     position: 'absolute',
     display: 'flex',
-    width: '100%',
-    height: '100%',
+  },
+  mainContent: {
+    display: 'flex',
+    alignItems: 'center',
   },
   fourOhFour: {
     display: 'flex',
@@ -30,10 +28,16 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 3,
   },
   appBar: {
+    height: appBarHeightXS,
+    [theme.breakpoints.up('sm')]: {
+      height: appBarHeight,
+    },
     position: 'fixed',
     marginLeft: drawerWidth,
+    width: '100%',
     [theme.breakpoints.up('md')]: {
       width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: 0,
     },
   },
   appBarHiddenNavigation: {
@@ -45,13 +49,15 @@ const styles = theme => ({
     },
   },
   drawer: {
+    position: 'fixed',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
     height: '100vh',
+    width: drawerWidth,
   },
   drawerHeader: {
-    ...theme.mixins.toolbar,
+    // ...theme.mixins.toolbar,
     // padding: 15,
     display: 'flex',
     flexDirection: 'column',
@@ -60,7 +66,6 @@ const styles = theme => ({
   },
   drawerHeaderImage: {
     width: '100%',
-    // maxHeight: 133,
   },
   drawerHeaderImageUplodaBtn: {
     position: 'absolute',
@@ -71,34 +76,23 @@ const styles = theme => ({
     opacity: 0.5,
   },
   drawerPaper: {
-    width: 250,
+    width: drawerWidth,
+    maxWidth: '100vw',
     border: 'none',
     [theme.breakpoints.up('md')]: {
       width: drawerWidth,
       position: 'relative',
     },
   },
-  content: {
-    overflowY: 'auto',
-    overflowX: 'hidden',
+
+
+  contentContainerGrid: {
     backgroundColor: theme.palette.background.default,
-    width: '100%',
-    padding: theme.spacing.unit * 1,
-    paddingBottom: 0,
-    marginTop: 56,
+    marginTop: appBarHeightXS,
     [theme.breakpoints.up('sm')]: {
-      marginTop: 64,
-      padding: theme.spacing.unit * 3,
-      paddingBottom: 0,
+      marginTop: appBarHeight,
     },
   },
-  contentContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100%',
-    backgroundColor: theme.palette.background.default,
-    marginBottom: 64,
-  },
+
 });
 export default styles;

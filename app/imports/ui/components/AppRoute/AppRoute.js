@@ -8,6 +8,7 @@ import LinkButton from '../../components/LinkButton/LinkButton';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import reactiveState from '../../../api/State/client/reactiveState';
 import routes from '../../../modules/routes';
+import TitleBarAndNavDrawer from '../../layouts/TitleBarAndNavDrawer/TitleBarAndNavDrawer';
 
 class AppRoute extends React.PureComponent {
   componentDidMount() {
@@ -23,7 +24,7 @@ class AppRoute extends React.PureComponent {
   }
 
   render() {
-    const { classes, authenticationRoles, authenticationGroup, component, path, exact, loginRequired, title, ...rest } = this.props;
+    const { classes, authenticationRoles, authenticationGroup, component, path, exact, loginRequired, title, distractionFree, loading, user, ...rest } = this.props;
     if (title) {
       reactiveState.screenTitle.set(title);
     }
@@ -49,10 +50,10 @@ class AppRoute extends React.PureComponent {
       <Route
         path={path}
         exact={exact}
-        render={routeProps =>
-          [
-            React.createElement(component, { ...routeProps, ...rest, key: 'app-route-component' }),
-          ]
+        render={routeProps => (
+          <TitleBarAndNavDrawer user={user} loading={loading} distractionFree={distractionFree} {...routeProps}>
+            {React.createElement(component, { ...routeProps, ...rest, user, key: 'app-route-component' })}
+          </TitleBarAndNavDrawer>)
         }
       />
     );
@@ -70,6 +71,8 @@ AppRoute.propTypes = {
   authenticationRoles: PropTypes.array,
   authenticationGroup: PropTypes.string,
   loginRequired: PropTypes.bool,
+  distractionFree: PropTypes.bool,
+  loading: PropTypes.bool,
 };
 
 AppRoute.defaultProps = {
@@ -78,6 +81,8 @@ AppRoute.defaultProps = {
   authenticationRoles: [],
   authenticationGroup: null,
   loginRequired: false,
+  distractionFree: false,
+  loading: false,
 };
 
 const styles = {
