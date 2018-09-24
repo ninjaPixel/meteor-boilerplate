@@ -76,6 +76,7 @@ const styles = theme => ({
     opacity: 0.5,
   },
   drawerPaper: {
+    zIndex: 'auto',
     width: drawerWidth,
     maxWidth: '100vw',
     border: 'none',
