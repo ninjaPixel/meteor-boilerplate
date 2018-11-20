@@ -42,7 +42,7 @@ class ResetPassword extends React.PureComponent {
     const { classes } = this.props;
     const { password, success } = this.state;
     if (success) {
-      return (<Typography variant="headline">Your password has been updated 🔓</Typography>);
+      return (<Typography variant="h5">Your password has been updated 🔓</Typography>);
     }
     return (
       <form onSubmit={this.handleSubmit} className={classes.form}>
@@ -55,7 +55,7 @@ class ResetPassword extends React.PureComponent {
           margin="normal"
           className={classes.input}
         />
-        <Button type="submit" variant="raised" color="primary">Reset password</Button>
+        <Button type="submit" variant="contained" color="primary">Reset password</Button>
       </form>
     );
   }

@@ -25,7 +25,8 @@ const style = theme => ({
   },
   link: {
     cursor: 'pointer',
-    color: 'inherit',
+    // color: 'inherit',
+    color: theme.palette.secondary.main,
   },
 });
 

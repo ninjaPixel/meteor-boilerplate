@@ -7,9 +7,9 @@ import ReactErrorBoundary from 'react-error-boundary';
 
 const ErrorFallback = ({ componentStack, error, classes }) => (
   <div className={classes.root}>
-    <Typography variant="title">We ran into an error:</Typography>
+    <Typography variant="h6">We ran into an error:</Typography>
     <Typography>{error.toString()}</Typography>
-    <Typography variant="title">Component stack</Typography>
+    <Typography variant="h6">Component stack</Typography>
     <Typography>{componentStack.toString()}</Typography>
   </div>
 );

@@ -14,7 +14,7 @@ const Page1 = (props) => {
   const time = new moment();
   return (
     <div className={classes.root}>
-      <Typography variant="display1" >Hello, {name}!</Typography>
+      <Typography variant="h1" >Hello, {name}!</Typography>
       <Typography>This component depends upon the material-ui, moment, and lodash libraries.</Typography>
       <Typography>These libraries are loaded dynamically, which means that they are kept out of the initial client bundle️, which reduces the bundle size significantly.</Typography>
       <Typography>Current date (calculated by moment.js): {time.toString()}</Typography>

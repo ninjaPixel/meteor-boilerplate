@@ -44,7 +44,6 @@ class TitleBarAndNavDrawer extends React.PureComponent {
     }
   }
 
-
   renderDrawer() {
     const { classes, user } = this.props;
 
@@ -65,14 +64,21 @@ class TitleBarAndNavDrawer extends React.PureComponent {
       <div className={classes.root}>
         <div className={classes.appFrame}>
           <div className={classes.fourOhFour}>
-            <img className={classes.fourOhFourImage} src="https://media.giphy.com/media/Ra4J7WCjmcnXW/giphy.gif" alt="404" />
-            <Typography variant="headline">We don't recognise this company.</Typography>
-            <Typography variant="headline">Check the URL, this looks like a typo.</Typography>
-          </div></div></div>);
+            <img
+              className={classes.fourOhFourImage}
+              src="https://media.giphy.com/media/Ra4J7WCjmcnXW/giphy.gif"
+              alt="404"
+            />
+            <Typography variant="h5">We don't recognise this company.</Typography>
+            <Typography variant="h5">Check the URL, this looks like a typo.</Typography>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   renderCloseIcon() {
-    const {distractionFree, history } = this.props;
+    const { distractionFree, history } = this.props;
     if (!distractionFree) {
       return null;
     }
@@ -80,7 +86,9 @@ class TitleBarAndNavDrawer extends React.PureComponent {
       <IconButton
         color="inherit"
         aria-label="go back"
-        onClick={() => { history.goBack(); }}
+        onClick={() => {
+          history.goBack();
+        }}
       >
         <CloseIcon />
       </IconButton>
@@ -95,12 +103,11 @@ class TitleBarAndNavDrawer extends React.PureComponent {
         <AppBar className={classes.appBarHiddenNavigation}>
           <Toolbar data-e2e="navigation-toolbar">
             {this.renderCloseIcon()}
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               {screenTitle}
             </Typography>
           </Toolbar>
           {loading ? <Loading linear /> : null}
-
         </AppBar>
       );
     }
@@ -116,12 +123,11 @@ class TitleBarAndNavDrawer extends React.PureComponent {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               {screenTitle}
             </Typography>
           </Toolbar>
           {loading ? <Loading linear /> : null}
-
         </AppBar>
 
         <Hidden mdUp>
@@ -137,7 +143,6 @@ class TitleBarAndNavDrawer extends React.PureComponent {
             }}
           >
             {this.renderDrawer()}
-
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
@@ -158,20 +163,23 @@ class TitleBarAndNavDrawer extends React.PureComponent {
   render() {
     const { classes } = this.props;
     return (
-
       <div className={classes.appFrame}>
         {this.renderNavigationBar()}
-        <Grid container className={classes.contentContainerGrid} ref={(elem) => { this.contentContainer = elem; }}>
+        <Grid
+          container
+          className={classes.contentContainerGrid}
+          ref={elem => {
+            this.contentContainer = elem;
+          }}
+        >
           <ErrorBoundary>
-            <Grid item xs={12} className={classes.mainContent} data-e2e="main-content" >
+            <Grid item xs={12} className={classes.mainContent} data-e2e="main-content">
               {this.props.children}
             </Grid>
           </ErrorBoundary>
         </Grid>
         <GlobalSnackbar />
-
       </div>
-
     );
   }
 }
@@ -188,18 +196,18 @@ TitleBarAndNavDrawer.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-TitleBarAndNavDrawer.defaultProps = ({
+TitleBarAndNavDrawer.defaultProps = {
   screenTitle: '',
   user: null,
   loading: false,
   hideNavigation: false,
   distractionFree: false,
-});
+};
 
 const StyledTitleBarAndNavDrawer = withStyles(styles)(TitleBarAndNavDrawer);
 // const StyledTitleBarAndNavDrawer = withRouter(withStyles(styles)(TitleBarAndNavDrawer));
 
-export default withTracker((props) => {
+export default withTracker(props => {
   const screenTitle = reactiveState.screenTitle.get();
   return {
     screenTitle,

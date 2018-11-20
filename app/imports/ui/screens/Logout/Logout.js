@@ -30,9 +30,9 @@ class Logout extends React.PureComponent {
     }
 
     return (<div>
-      <Typography variant="headline" align="center">You're now logged out.</Typography>
+      <Typography variant="h5" align="center">You're now logged out.</Typography>
       {/*<br />*/}
-      <Typography variant="headline" align="center">Stay safe out there <span role="img" aria-label="wave">👋</span>️</Typography>
+      <Typography variant="h5" align="center">Stay safe out there <span role="img" aria-label="wave">👋</span>️</Typography>
     </div>);
   }
 }

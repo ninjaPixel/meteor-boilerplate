@@ -18,13 +18,25 @@ class AppRoute extends React.PureComponent {
     }
   }
 
-
   componentWillUnmount() {
     reactiveState.screenTitle.set('');
   }
 
   render() {
-    const { classes, authenticationRoles, authenticationGroup, component, path, exact, loginRequired, title, distractionFree, loading, user, ...rest } = this.props;
+    const {
+      classes,
+      authenticationRoles,
+      authenticationGroup,
+      component,
+      path,
+      exact,
+      loginRequired,
+      title,
+      distractionFree,
+      loading,
+      user,
+      ...rest
+    } = this.props;
     if (title) {
       reactiveState.screenTitle.set(title);
     }
@@ -33,17 +45,22 @@ class AppRoute extends React.PureComponent {
         <div className={classes.authRoot}>
           <Typography gutterBottom>You need to login to view this page.</Typography>
           <LoginForm user={this.props.user} />
-        </div>);
+        </div>
+      );
     }
 
-
-    if (!_.isEmpty(authenticationRoles) && (_.isEmpty(this.props.user) || !Roles.userIsInRole(this.props.user._id, authenticationRoles, authenticationGroup))) {
+    if (
+      !_.isEmpty(authenticationRoles) &&
+      (_.isEmpty(this.props.user) || !Roles.userIsInRole(this.props.user._id, authenticationRoles, authenticationGroup))
+    ) {
       return (
         <div className={classes.authRoot}>
           <Typography gutterBottom>You do not have permission to view this page.</Typography>
-          {_.isEmpty(this.props.user) &&
-          <LinkButton to={routes.login} text="Login" variant="raised" color="primary" />}
-        </div>);
+          {_.isEmpty(this.props.user) && (
+            <LinkButton to={routes.login} text="Login" variant="contained" color="primary" />
+          )}
+        </div>
+      );
     }
 
     return (
@@ -53,13 +70,12 @@ class AppRoute extends React.PureComponent {
         render={routeProps => (
           <TitleBarAndNavDrawer user={user} loading={loading} distractionFree={distractionFree} {...routeProps}>
             {React.createElement(component, { ...routeProps, ...rest, user, key: 'app-route-component' })}
-          </TitleBarAndNavDrawer>)
-        }
+          </TitleBarAndNavDrawer>
+        )}
       />
     );
   }
 }
-
 
 AppRoute.propTypes = {
   classes: PropTypes.object.isRequired,

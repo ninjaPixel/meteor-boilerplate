@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 const Legal = (props) => {
   return (
     <div>
-      <Typography variant="display1" gutterBottom>Boring legal stuff</Typography>
+      <Typography variant="h1" gutterBottom>Boring legal stuff</Typography>
       <Typography>
         Lorem ipsum dolor amet iceland hoodie polaroid cardigan pitchfork. Leggings elit dolore consectetur intelligentsia air plant typewriter unicorn hella irony deserunt artisan. Kitsch sint forage proident ramps cardigan blue bottle dolore. Et sed franzen irony wayfarers celiac meditation pitchfork. Sriracha semiotics direct trade polaroid cupidatat brooklyn synth sunt. Quinoa non nostrud tofu ut live-edge 8-bit pitchfork knausgaard. Snackwave twee waistcoat gluten-free.
       </Typography>
