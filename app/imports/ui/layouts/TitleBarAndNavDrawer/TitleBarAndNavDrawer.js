@@ -66,8 +66,8 @@ class TitleBarAndNavDrawer extends React.PureComponent {
         <div className={classes.appFrame}>
           <div className={classes.fourOhFour}>
             <img className={classes.fourOhFourImage} src="https://media.giphy.com/media/Ra4J7WCjmcnXW/giphy.gif" alt="404" />
-            <Typography variant="headline">We don't recognise this company.</Typography>
-            <Typography variant="headline">Check the URL, this looks like a typo.</Typography>
+            <Typography variant="h5">We don't recognise this company.</Typography>
+            <Typography variant="h5">Check the URL, this looks like a typo.</Typography>
           </div></div></div>);
   }
 
@@ -95,7 +95,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
         <AppBar className={classes.appBarHiddenNavigation}>
           <Toolbar data-e2e="navigation-toolbar">
             {this.renderCloseIcon()}
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               {screenTitle}
             </Typography>
           </Toolbar>
@@ -116,7 +116,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               {screenTitle}
             </Typography>
           </Toolbar>

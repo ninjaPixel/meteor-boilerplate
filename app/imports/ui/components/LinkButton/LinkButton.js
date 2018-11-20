@@ -80,7 +80,7 @@ LinkButton.propTypes = {
 
 LinkButton.defaultProps = {
   linkClassName: null,
-  variant: 'raised',
+  variant: 'contained',
   color: 'secondary',
   disabled: false,
   icon: null,

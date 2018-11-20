@@ -11,7 +11,6 @@ import snacks from '../../../modules/client/snacks';
 import userTools from '../../../modules/userTools';
 import security from '../../../modules/security';
 
-
 class Account extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -57,7 +56,7 @@ class Account extends React.PureComponent {
 
   updateNotificationPreference(preference, notify) {
     const userId = this.props.user._id;
-    Meteor.call('utility.updateNotificationPreference', { userId, notificationName: preference, notify }, (error) => {
+    Meteor.call('utility.updateNotificationPreference', { userId, notificationName: preference, notify }, error => {
       if (error) {
         snacks.handleMethodError(error);
       } else {
@@ -71,7 +70,7 @@ class Account extends React.PureComponent {
     const { first, last, phone } = this.state;
     const userId = this.props.user._id;
     console.log('userId, first, last, phone: ', userId, first, last, phone);
-    Meteor.call('utility.updateUserProfile', { userId, first, last, phone }, (error) => {
+    Meteor.call('utility.updateUserProfile', { userId, first, last, phone }, error => {
       if (error) {
         snacks.handleMethodError(error);
       } else {
@@ -84,7 +83,7 @@ class Account extends React.PureComponent {
     event.preventDefault();
     const { oldPassword, newPassword } = this.state;
 
-    Accounts.changePassword(oldPassword, newPassword, (error) => {
+    Accounts.changePassword(oldPassword, newPassword, error => {
       if (error) {
         snacks.handleMethodError(error);
       } else {
@@ -98,7 +97,7 @@ class Account extends React.PureComponent {
   }
 
   handleChange(name) {
-    return (event) => {
+    return event => {
       const value = event.target.value;
       this.setState({
         [name]: value,
@@ -111,20 +110,13 @@ class Account extends React.PureComponent {
     };
   }
 
-
   renderProfileForm() {
     const { classes, user } = this.props;
     const { first, last, phone, profileChanged } = this.state;
     const email = userTools.email(user);
     return (
       <form className={classes.accountForm} onSubmit={this.handleUpdateProfile}>
-        <TextField
-          label="Email"
-          value={email}
-          margin="normal"
-          className={classes.input}
-          disabled
-        />
+        <TextField label="Email" value={email} margin="normal" className={classes.input} disabled />
         <TextField
           label="First name"
           required
@@ -152,7 +144,15 @@ class Account extends React.PureComponent {
           className={classes.input}
           autoComplete="tel"
         />
-        <Button type="submit" variant="raised" color="secondary" className={classes.button} disabled={!profileChanged}>Save</Button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          disabled={!profileChanged}
+        >
+          Save
+        </Button>
       </form>
     );
   }
@@ -183,11 +183,18 @@ class Account extends React.PureComponent {
           className={classes.input}
           type="password"
         />
-        <Button type="submit" variant="raised" color="secondary" className={classes.button} disabled={!(oldPassword && newPassword)}>Update password</Button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          disabled={!(oldPassword && newPassword)}
+        >
+          Update password
+        </Button>
       </form>
     );
   }
-
 
   render() {
     const { classes, user, match } = this.props;
@@ -197,28 +204,30 @@ class Account extends React.PureComponent {
     if (match.params.userId !== user._id && !security.user.isSuperAdmin(user._id)) {
       return (
         <div>
-          <Typography variant="title">You are not authorised to view this page.</Typography>
-        </div>);
+          <Typography variant="h6">You are not authorised to view this page.</Typography>
+        </div>
+      );
     }
 
-
     return (
-      <div className={classes.root} >
+      <div className={classes.root}>
         <div>
-          <Typography variant="display1" className={classes.section1}>My details</Typography>
+          <Typography variant="h1" className={classes.section1}>
+            My details
+          </Typography>
 
           {this.renderProfileForm()}
           <div className={classes.spacer} />
-          <Typography variant="display1" className={classes.section1}>Password</Typography>
+          <Typography variant="h1" className={classes.section1}>
+            Password
+          </Typography>
 
           {this.renderPasswordForm()}
         </div>
-
       </div>
     );
   }
 }
-
 
 Account.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -252,8 +261,7 @@ const style = theme => ({
   },
 });
 
-
-export default withTracker((props) => {
+export default withTracker(props => {
   // Do all your reactive data access in this method.
   // Note that this subscription will get cleaned up when your component is unmounted
   const userId = props.match.params.userId;

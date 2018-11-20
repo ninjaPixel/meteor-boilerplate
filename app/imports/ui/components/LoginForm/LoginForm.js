@@ -63,7 +63,6 @@ class LoginForm extends React.PureComponent {
     this.minPasswordLength = 5;
   }
 
-
   handleCompleteRegistrationSubmit(event) {
     event.preventDefault();
     this.setState({ loading: true });
@@ -80,7 +79,7 @@ class LoginForm extends React.PureComponent {
       },
     };
 
-    Accounts.createUser(user, (error) => {
+    Accounts.createUser(user, error => {
       this.setState({ loading: false });
       if (error) {
         console.log(error);
@@ -91,9 +90,8 @@ class LoginForm extends React.PureComponent {
     });
   }
 
-
   handleChange(name) {
-    return (event) => {
+    return event => {
       const value = event.target.value;
       this.setState({
         [name]: value,
@@ -129,14 +127,18 @@ class LoginForm extends React.PureComponent {
 
   sendPasswordReset() {
     const { email } = this.state;
-    Meteor.call('utility.sendPasswordResetEmail', { email, windowLocationOrigin: window.location.origin }, (error, success) => {
-      if (error) {
-        snacks.set({ message: `Unable to send password reset email. ${error.reason}` });
-      }
-      if (success) {
-        snacks.set({ message: `Password reset sent to ${email}` });
-      }
-    });
+    Meteor.call(
+      'utility.sendPasswordResetEmail',
+      { email, windowLocationOrigin: window.location.origin },
+      (error, success) => {
+        if (error) {
+          snacks.set({ message: `Unable to send password reset email. ${error.reason}` });
+        }
+        if (success) {
+          snacks.set({ message: `Password reset sent to ${email}` });
+        }
+      },
+    );
   }
 
   onSubmitLoginForm(event) {
@@ -190,7 +192,6 @@ class LoginForm extends React.PureComponent {
       buttonText = registerButtonText;
     }
 
-
     return (
       <form onSubmit={this.onSubmitLoginForm} className={classes.form}>
         <TextField
@@ -217,13 +218,17 @@ class LoginForm extends React.PureComponent {
           margin="normal"
           className={classes.input}
         />
-        <div className={classes.inputCaptionContainer}>
-          {this.renderPasswordHelperText()}
-        </div>
-        <Button data-e2e="login-form-submit-button" variant="raised" color="secondary" type="submit" className={classes.button} disabled={loggingIn}>
+        <div className={classes.inputCaptionContainer}>{this.renderPasswordHelperText()}</div>
+        <Button
+          data-e2e="login-form-submit-button"
+          variant="contained"
+          color="secondary"
+          type="submit"
+          className={classes.button}
+          disabled={loggingIn}
+        >
           {buttonText}
         </Button>
-
       </form>
     );
   }
@@ -231,29 +236,39 @@ class LoginForm extends React.PureComponent {
   renderPasswordHelperText() {
     const { classes } = this.props;
     const { authenticationErrorMessage, password, existingEmail } = this.state;
-    const resetLink = <a className={classes.link}><Typography variant="caption" color="primary" onClick={this.sendPasswordReset}>Forgot password? Click to reset.</Typography></a>;
+    const resetLink = (
+      <a className={classes.link}>
+        <Typography variant="caption" color="primary" onClick={this.sendPasswordReset}>
+          Forgot password? Click to reset.
+        </Typography>
+      </a>
+    );
     if (authenticationErrorMessage) {
-      return (<div>
-        {resetLink}
-        <Typography
-          type="caption"
-          color="error"
-        >{authenticationErrorMessage}</Typography>
-
-      </div>);
+      return (
+        <div>
+          {resetLink}
+          <Typography variant="caption" color="error">
+            {authenticationErrorMessage}
+          </Typography>
+        </div>
+      );
     }
     const needMoreCharactersInPassword = password.length && password.length < this.minPasswordLength;
 
     if (!existingEmail && needMoreCharactersInPassword) {
-      return (<Typography variant="caption">{`Please use at least ${this.minPasswordLength} characters in your password.`}</Typography>);
+      return (
+        <Typography variant="caption">{`Please use at least ${
+          this.minPasswordLength
+        } characters in your password.`}</Typography>
+      );
     } else if (existingEmail) {
-      return (resetLink);
+      return resetLink;
     }
     return null;
   }
 
-  toggleLegalModal(){
-    this.setState({showLegalModal:!this.state.showLegalModal});
+  toggleLegalModal() {
+    this.setState({ showLegalModal: !this.state.showLegalModal });
   }
 
   renderProfileForm() {
@@ -295,10 +310,32 @@ class LoginForm extends React.PureComponent {
             }
             label="I accept the terms & conditions and the privacy policy"
           />
-          <Typography variant="caption" >Read the <a data-e2e="login-form-tos-link" className={classes.link} onClick={this.toggleLegalModal}>terms & conditions, and our privacy policy here</a>.</Typography>
+          <Typography variant="caption">
+            Read the{' '}
+            <a data-e2e="login-form-tos-link" className={classes.link} onClick={this.toggleLegalModal}>
+              terms & conditions, and our privacy policy here
+            </a>
+            .
+          </Typography>
         </div>
-        <Button data-e2e="login-form-submit-button" type="submit" variant="raised" color="secondary" className={classes.button} disabled={!termsAccepted} >Complete registration</Button>
-        <ModalCard show={showLegalModal} hideCancelButton onClose={this.toggleLegalModal} onRequestOk={this.toggleLegalModal}><Legal /></ModalCard>
+        <Button
+          data-e2e="login-form-submit-button"
+          type="submit"
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          disabled={!termsAccepted}
+        >
+          Complete registration
+        </Button>
+        <ModalCard
+          show={showLegalModal}
+          hideCancelButton
+          onClose={this.toggleLegalModal}
+          onRequestOk={this.toggleLegalModal}
+        >
+          <Legal />
+        </ModalCard>
       </form>
     );
   }
@@ -311,21 +348,29 @@ class LoginForm extends React.PureComponent {
         return <Loading />;
       }
       if (errorMessage) {
-        return <Typography color="error" variant="body2">{errorMessage}</Typography>;
+        return (
+          <Typography color="error" variant="body1">
+            {errorMessage}
+          </Typography>
+        );
       }
       if (user && user._id) {
-        return (<Grid container spacing={16}>
-          <Grid item xs={12}>
-            <Typography variant="title" align="center" gutterBottom>Hey, {user.profile.name.first}! You're all logged in!</Typography>
-            {location.pathname.includes('/login') ? null : <Loading linear text="Loading page..." />}
+        return (
+          <Grid container spacing={16}>
+            <Grid item xs={12}>
+              <Typography variant="h6" align="center" gutterBottom>
+                Hey, {user.profile.name.first}! You're all logged in!
+              </Typography>
+              {location.pathname.includes('/login') ? null : <Loading linear text="Loading page..." />}
+            </Grid>
+            <Grid item xs={12} align="center">
+              <Typography>Default screen.</Typography>
+            </Grid>
           </Grid>
-          <Grid item xs={12} align="center">
-            <Typography>Default screen.</Typography>
-          </Grid>
-        </Grid>);
+        );
       }
       if (newAccountCreated) {
-        return <Typography variant="title" >We've created your account. Welcome on board! 🚢</Typography>;
+        return <Typography variant="h6">We've created your account. Welcome on board! 🚢</Typography>;
       }
       if (showProfileFields) {
         return this.renderProfileForm();
@@ -333,14 +378,9 @@ class LoginForm extends React.PureComponent {
       return this.renderLoginRegisterForm();
     };
 
-
-    return (
-      <div className={classes.root}>
-        {child()}
-      </div>);
+    return <div className={classes.root}>{child()}</div>;
   }
 }
-
 
 LoginForm.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -363,6 +403,5 @@ LoginForm.defaultProps = {
   registerButtonText: 'Register',
   location: PropTypes.object.isRequired,
 };
-
 
 export default withStyles(styles)(withRouter(LoginForm));
