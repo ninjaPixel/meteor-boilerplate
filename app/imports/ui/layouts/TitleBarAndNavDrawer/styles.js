@@ -2,9 +2,7 @@ const drawerWidth = 240;
 const appBarHeightXS = 56;
 const appBarHeight = 64;
 
-
 const styles = theme => ({
-
   appFrame: {
     minHeight: '100vh',
     minWidth: '100vw',
@@ -40,9 +38,7 @@ const styles = theme => ({
       marginLeft: 0,
     },
   },
-  appBarHiddenNavigation: {
-
-  },
+  appBarHiddenNavigation: {},
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none',
@@ -55,6 +51,7 @@ const styles = theme => ({
     flexDirection: 'column',
     height: '100vh',
     width: drawerWidth,
+    border: `1px solid ${theme.palette.divider}`,
   },
   drawerHeader: {
     // ...theme.mixins.toolbar,
@@ -86,7 +83,6 @@ const styles = theme => ({
     },
   },
 
-
   contentContainerGrid: {
     backgroundColor: theme.palette.background.default,
     marginTop: appBarHeightXS,
@@ -94,6 +90,5 @@ const styles = theme => ({
       marginTop: appBarHeight,
     },
   },
-
 });
 export default styles;
