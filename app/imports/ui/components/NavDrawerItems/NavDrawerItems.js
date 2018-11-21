@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Badge, Divider, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { withStyles, Badge, Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
 import { Home, ImportantDevices, Lock, ExitToApp, AccountBox, Gavel, ShortText } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import routes from '../../../modules/routes';
@@ -10,7 +10,14 @@ function _NavLink(props) {
     <Link to={props.to} onClick={() => props.onNavClick()} className={props.classes.noDecoration}>
       <ListItem button data-e2e={props.dataE2E}>
         <ListItemIcon>{props.icon}</ListItemIcon>
-        <ListItemText primary={props.text} />
+
+        <ListItemText
+          primary={
+            <Typography variant="caption" noWrap>
+              {props.text}
+            </Typography>
+          }
+        />
       </ListItem>
     </Link>
   );
