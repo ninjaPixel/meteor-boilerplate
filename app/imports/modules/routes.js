@@ -60,6 +60,7 @@ export default {
     title: 'Legal',
     importFunction: (): Promise => import('/imports/ui/screens/Legal/Legal.js'),
     exact: true,
+    fullScreen: true,
     path: '/legal',
   }),
   account: createRoute({
@@ -77,16 +78,16 @@ export default {
     path: '/reset-password/:token',
     getPath: (token: string): string => `/reset-password/${token}`,
   }),
-  page1: createRoute({
-    title: 'Page 1',
+  dynamicLoading: createRoute({
+    title: 'Dynamic imports',
     importFunction: (): Promise => import('/imports/ui/screens/Page1/Page1.js'),
     exact: true,
-    path: '/page1',
+    path: '/dynamicLoading',
   }),
-  page2: createRoute({
-    title: 'Page 2',
+  typography: createRoute({
+    title: 'Typography',
     importFunction: (): Promise => import('/imports/ui/screens/Page2/Page2.js'),
     exact: true,
-    path: '/page2',
+    path: '/typography',
   }),
 };

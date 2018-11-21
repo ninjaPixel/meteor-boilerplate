@@ -56,7 +56,7 @@ const App = (props) => {
      */
     return [
       ...appRoutes,
-      <AppRoute key="/" path="/" exact title="CRWD" component={HomeScreen} {...props} />,
+      <AppRoute key="/" path="/" exact title="Meteor Boilerplate" component={HomeScreen} {...props} />,
       <AppRoute
         key="404"
         title="404"

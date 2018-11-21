@@ -78,15 +78,15 @@ const NavDrawerItems = (props) => {
   const links = [
     { to: '/', text: 'Home', onNavClick: props.onNavClick, icon: <Home />, dataE2E: 'nav-page-home' },
     {
-      to: routes.page1.getPath(),
-      text: 'Page 1',
+      to: routes.dynamicLoading.getPath(),
+      text: routes.dynamicLoading.title,
       onNavClick: props.onNavClick,
       icon: <ImportantDevices />,
       dataE2E: 'nav-page-1',
     },
     {
-      to: routes.page2.getPath(),
-      text: 'Page 2',
+      to: routes.typography.getPath(),
+      text: routes.typography.title,
       onNavClick: props.onNavClick,
       icon: <ShortText />,
       dataE2E: 'nav-page-2',

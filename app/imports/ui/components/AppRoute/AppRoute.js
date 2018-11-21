@@ -32,7 +32,7 @@ class AppRoute extends React.PureComponent {
       exact,
       loginRequired,
       title,
-      distractionFree,
+      fullScreen,
       loading,
       user,
       ...rest
@@ -68,7 +68,7 @@ class AppRoute extends React.PureComponent {
         path={path}
         exact={exact}
         render={(routeProps) => (
-          <TitleBarAndNavDrawer user={user} loading={loading} distractionFree={distractionFree} {...routeProps}>
+          <TitleBarAndNavDrawer user={user} loading={loading} fullScreen={fullScreen} {...routeProps}>
             {React.createElement(component, { ...routeProps, ...rest, user, key: 'app-route-component' })}
           </TitleBarAndNavDrawer>
         )}
@@ -87,7 +87,7 @@ AppRoute.propTypes = {
   authenticationRoles: PropTypes.array,
   authenticationGroup: PropTypes.string,
   loginRequired: PropTypes.bool,
-  distractionFree: PropTypes.bool,
+  fullScreen: PropTypes.bool,
   loading: PropTypes.bool,
 };
 
@@ -97,7 +97,7 @@ AppRoute.defaultProps = {
   authenticationRoles: [],
   authenticationGroup: null,
   loginRequired: false,
-  distractionFree: false,
+  fullScreen: false,
   loading: false,
 };
 
