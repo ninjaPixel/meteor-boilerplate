@@ -1,21 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import _ from 'lodash';
 import { Accounts } from 'meteor/accounts-base';
-import { Roles } from 'meteor/alanning:roles';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { withStyles, Grid, Button, TextField, Typography, FormControlLabel, Checkbox } from '@material-ui/core';
 import Loading from '../Loading/Loading';
-import LinkButton from '../LinkButton/LinkButton';
 import snacks from '../../../modules/client/snacks';
-import routes from '../../../modules/routes';
-import userTools from '../../../modules/userTools';
 import loginFormStyles from '../../styles/LoginForm';
 import Legal from '../Legal/Legal';
 import ModalCard from '../ModalCard/ModalCard';
+import { linkStyle } from '../../styles/common';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -28,6 +25,7 @@ const styles = theme => ({
     alignSelf: 'flex-start',
   },
   ...loginFormStyles(theme),
+  link: linkStyle(theme),
 });
 
 class LoginForm extends React.PureComponent {
@@ -79,7 +77,7 @@ class LoginForm extends React.PureComponent {
       },
     };
 
-    Accounts.createUser(user, error => {
+    Accounts.createUser(user, (error) => {
       this.setState({ loading: false });
       if (error) {
         console.log(error);
@@ -91,7 +89,7 @@ class LoginForm extends React.PureComponent {
   }
 
   handleChange(name) {
-    return event => {
+    return (event) => {
       const value = event.target.value;
       this.setState({
         [name]: value,

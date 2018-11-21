@@ -32,7 +32,7 @@ class AppRoute extends React.PureComponent {
       exact,
       loginRequired,
       title,
-      distractionFree,
+      fullScreen,
       loading,
       user,
       ...rest
@@ -57,7 +57,7 @@ class AppRoute extends React.PureComponent {
         <div className={classes.authRoot}>
           <Typography gutterBottom>You do not have permission to view this page.</Typography>
           {_.isEmpty(this.props.user) && (
-            <LinkButton to={routes.login} text="Login" variant="contained" color="primary" />
+            <LinkButton to={routes.login.getPath()} text="Login" variant="contained" color="primary" />
           )}
         </div>
       );
@@ -67,8 +67,8 @@ class AppRoute extends React.PureComponent {
       <Route
         path={path}
         exact={exact}
-        render={routeProps => (
-          <TitleBarAndNavDrawer user={user} loading={loading} distractionFree={distractionFree} {...routeProps}>
+        render={(routeProps) => (
+          <TitleBarAndNavDrawer user={user} loading={loading} fullScreen={fullScreen} {...routeProps}>
             {React.createElement(component, { ...routeProps, ...rest, user, key: 'app-route-component' })}
           </TitleBarAndNavDrawer>
         )}
@@ -87,7 +87,7 @@ AppRoute.propTypes = {
   authenticationRoles: PropTypes.array,
   authenticationGroup: PropTypes.string,
   loginRequired: PropTypes.bool,
-  distractionFree: PropTypes.bool,
+  fullScreen: PropTypes.bool,
   loading: PropTypes.bool,
 };
 
@@ -97,7 +97,7 @@ AppRoute.defaultProps = {
   authenticationRoles: [],
   authenticationGroup: null,
   loginRequired: false,
-  distractionFree: false,
+  fullScreen: false,
   loading: false,
 };
 

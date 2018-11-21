@@ -9,11 +9,12 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { withStyles, Typography } from '@material-ui/core';
 import DeferredComponent from '../../components/DeferredComponent/DeferredComponent';
 import AppRoute from '../../components/AppRoute/AppRoute';
-import LoadingComponent from '../../components/Loading/Loading';
+import Loader from '../../components/Loading/Loading';
 import Theme from '../../styles/Theme';
-import rootStyles from '../../styles/root';
+import { defaultRootStyle } from '../../styles/root';
+import routes from '../../../modules/routes';
 
-const _HomeScreen = props => (
+const _HomeScreen = (props) => (
   <div className={props.classes.root}>
     <header>
       <Typography variant="h2" gutterBottom>
@@ -23,90 +24,51 @@ const _HomeScreen = props => (
     <Typography>Some text...</Typography>
   </div>
 );
-const styles = theme => ({
-  ...rootStyles.default(theme),
+const styles = (theme) => ({
+  root: defaultRootStyle(theme),
 });
 
 const HomeScreen = withStyles(styles)(_HomeScreen);
 
-const App = props => {
-  const paths = () =>
-    // having a key on each route ensures that the DeferredComponent updates between route changes, between deferred components.
-    [
-      <AppRoute key="/" path="/" exact title="Hello, World!" component={HomeScreen} {...props} />,
+const App = (props) => {
+  const paths = () => {
+    const appRoutes = Object.keys(routes).map((key) => {
+      const { path, exact, title, loginRequired, importFunction, fullScreen } = routes[key];
+      return (
+        <AppRoute
+          key={path}
+          path={path}
+          exact={exact}
+          title={title}
+          loginRequired={loginRequired}
+          fullScreen={fullScreen}
+          component={DeferredComponent}
+          loadingComponent={<Loader />}
+          importFunction={importFunction}
+          {...props}
+        />
+      );
+    });
+
+    /*
+    having a key on each route ensures that the DeferredComponent updates between route changes,
+    between deferred components.
+     */
+    return [
+      ...appRoutes,
+      <AppRoute key="/" path="/" exact title="Meteor Boilerplate" component={HomeScreen} {...props} />,
       <AppRoute
-        key="/page1"
-        path="/page1"
-        title="Page 1 - Dynamically Loaded 😎"
-        exact
+        key="404"
+        title="404"
+        path="/"
         component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/Page1/Page1.js')}
-        name="Meteor developer"
-        {...props}
-      />,
-      <AppRoute
-        key="/page2"
-        path="/page2"
-        title="Page 2 - Dynamically Loaded 🚀"
-        exact
-        component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/Page2/Page2.js')}
-        {...props}
-      />,
-      <AppRoute
-        key="/login"
-        path="/login"
-        title="Login"
-        exact
-        component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/Login/Login.js')}
-        {...props}
-      />,
-      <AppRoute
-        key="/logout"
-        path="/logout"
-        title="Logout"
-        exact
-        component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/Logout/Logout.js')}
-        {...props}
-      />,
-      <AppRoute
-        key="/legal"
-        distractionFree
-        path="/legal"
-        title="Legal"
-        exact
-        component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/Legal/Legal.js')}
-        {...props}
-      />,
-      <AppRoute
-        key="/account"
-        path="/account/:userId"
-        title="Account"
-        exact
-        component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/Account/Account.js')}
-        {...props}
-      />,
-      <AppRoute
-        key="/reset-password"
-        path="/reset-password/:token"
-        title="Reset password"
-        exact
-        component={DeferredComponent}
-        loadingComponent={<LoadingComponent />}
-        importFunction={() => import('/imports/ui/screens/ResetPassword/ResetPassword.js')}
+        loadingComponent={<Loader />}
+        importFunction={() => import('/imports/ui/screens/FourOhFour/FourOhFour.js')}
         {...props}
       />,
     ];
+  };
+
   return (
     <Fragment>
       <CssBaseline />

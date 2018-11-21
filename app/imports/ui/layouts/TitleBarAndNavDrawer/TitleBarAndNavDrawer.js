@@ -78,8 +78,8 @@ class TitleBarAndNavDrawer extends React.PureComponent {
   }
 
   renderCloseIcon() {
-    const { distractionFree, history } = this.props;
-    if (!distractionFree) {
+    const { fullScreen, history } = this.props;
+    if (!fullScreen) {
       return null;
     }
     return (
@@ -96,9 +96,9 @@ class TitleBarAndNavDrawer extends React.PureComponent {
   }
 
   renderNavigationBar() {
-    const { classes, screenTitle, hideNavigation, loading, distractionFree } = this.props;
+    const { classes, screenTitle, hideNavigation, loading, fullScreen } = this.props;
 
-    if (hideNavigation === true || distractionFree === true) {
+    if (hideNavigation === true || fullScreen === true) {
       return (
         <AppBar className={classes.appBarHiddenNavigation}>
           <Toolbar data-e2e="navigation-toolbar">
@@ -168,7 +168,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
         <Grid
           container
           className={classes.contentContainerGrid}
-          ref={elem => {
+          ref={(elem) => {
             this.contentContainer = elem;
           }}
         >
@@ -192,7 +192,7 @@ TitleBarAndNavDrawer.propTypes = {
   hideNavigation: PropTypes.bool,
   location: PropTypes.object.isRequired,
   children: PropTypes.element.isRequired,
-  distractionFree: PropTypes.bool,
+  fullScreen: PropTypes.bool,
   history: PropTypes.object.isRequired,
 };
 
@@ -201,13 +201,13 @@ TitleBarAndNavDrawer.defaultProps = {
   user: null,
   loading: false,
   hideNavigation: false,
-  distractionFree: false,
+  fullScreen: false,
 };
 
 const StyledTitleBarAndNavDrawer = withStyles(styles)(TitleBarAndNavDrawer);
 // const StyledTitleBarAndNavDrawer = withRouter(withStyles(styles)(TitleBarAndNavDrawer));
 
-export default withTracker(props => {
+export default withTracker((props) => {
   const screenTitle = reactiveState.screenTitle.get();
   return {
     screenTitle,

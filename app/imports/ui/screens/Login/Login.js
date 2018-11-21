@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
 import LoginForm from '../../components/LoginForm/LoginForm';
 
-const Login = props => {
+const Login = (props) => {
   const { classes, user } = props;
   if (!user) {
     return <LoginForm />;
@@ -24,7 +24,7 @@ Login.defaultProps = {
   user: null,
 };
 
-const style = theme => ({
+const style = (theme) => ({
   root: {},
 });
 
