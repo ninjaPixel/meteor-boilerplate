@@ -94,7 +94,7 @@
       "flowtype/define-flow-type": 1,
       "flowtype/delimiter-dangle": [
         2,
-        "never"
+        "always"
       ],
       "flowtype/generic-spacing": [
         2,

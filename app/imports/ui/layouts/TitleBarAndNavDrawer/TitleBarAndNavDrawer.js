@@ -168,7 +168,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
         <Grid
           container
           className={classes.contentContainerGrid}
-          ref={elem => {
+          ref={(elem) => {
             this.contentContainer = elem;
           }}
         >
@@ -207,7 +207,7 @@ TitleBarAndNavDrawer.defaultProps = {
 const StyledTitleBarAndNavDrawer = withStyles(styles)(TitleBarAndNavDrawer);
 // const StyledTitleBarAndNavDrawer = withRouter(withStyles(styles)(TitleBarAndNavDrawer));
 
-export default withTracker(props => {
+export default withTracker((props) => {
   const screenTitle = reactiveState.screenTitle.get();
   return {
     screenTitle,

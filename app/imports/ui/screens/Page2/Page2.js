@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
 import rootStyles from '../../styles/root';
+import { defaultRootStyle } from '../../styles/root';
 
 class Page2 extends React.PureComponent {
   render() {
@@ -71,7 +72,7 @@ Page2.defaultProps = {
 };
 
 const style = theme => ({
-  ...rootStyles.default(theme),
+  root: defaultRootStyle(theme),
 });
 
 export default withStyles(style)(Page2);

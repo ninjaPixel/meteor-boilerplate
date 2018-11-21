@@ -7,7 +7,7 @@ import sendEmail from '../../../modules/server/email/send';
 import routes from '../../../modules/routes';
 import security from '../../../modules/security';
 
-const _sendPasswordResetEmail = function ({ email, firstName, token, windowLocationOrigin }) {
+const _sendPasswordResetEmail = function({ email, firstName, token, windowLocationOrigin }) {
   const title = `Password reset for ${Meteor.settings.public.appName}`;
   sendEmail({
     to: email,
@@ -20,12 +20,13 @@ const _sendPasswordResetEmail = function ({ email, firstName, token, windowLocat
       title,
       appUrl: windowLocationOrigin,
       appName: Meteor.settings.public.appName,
-      resetUrl: `${windowLocationOrigin}${routes.resetPassword(token)}`,
+      resetUrl: `${windowLocationOrigin}${routes.resetPassword.getPath(token)}`,
     },
-  }).catch((error) => {
-    console.warn(`Could not sent password reset email to ${email}`, error);
-  }).finally(() => {
-  });
+  })
+    .catch((error) => {
+      console.warn(`Could not sent password reset email to ${email}`, error);
+    })
+    .finally(() => {});
 };
 
 Meteor.methods({
@@ -48,19 +49,35 @@ Meteor.methods({
 
     const user = Accounts.findUserByEmail(email);
     if (_.isEmpty(user)) {
-      throw new Meteor.Error('utility.sendPasswordResetEmail.emailDoesNotExist', `Cannot find an account associated with the email ${email}`);
+      throw new Meteor.Error(
+        'utility.sendPasswordResetEmail.emailDoesNotExist',
+        `Cannot find an account associated with the email ${email}`,
+      );
     }
     const { token } = Accounts.generateResetToken(user._id, email);
     console.log(`generateResetToken for ${email}. Token: ${token}`);
-    _sendPasswordResetEmail({ email, firstName: user.profile.name.first, token, windowLocationOrigin, userId:user._id });
+    _sendPasswordResetEmail({
+      email,
+      firstName: user.profile.name.first,
+      token,
+      windowLocationOrigin,
+      userId: user._id,
+    });
     return true;
   },
-  'utility.updateNotificationPreference': function ({ userId, notificationName, notify }) {
+  'utility.updateNotificationPreference': function({ userId, notificationName, notify }) {
     check(userId, String);
     check(notificationName, String);
     check(notify, Boolean);
 
-    if (security.user.userCanEditThisUserProfile({ userId: Meteor.userId(), targetUserId: userId, errorCode: 'utility.updateUserProfile.auth', errorMessage: 'You are not allowed to update this user\'s profile.' })) {
+    if (
+      security.user.userCanEditThisUserProfile({
+        userId: Meteor.userId(),
+        targetUserId: userId,
+        errorCode: 'utility.updateUserProfile.auth',
+        errorMessage: "You are not allowed to update this user's profile.",
+      })
+    ) {
       const field = `profile.notificationPreferences.${notificationName}`;
       return Meteor.users.update(userId, {
         $set: {

@@ -15,7 +15,7 @@ import loginFormStyles from '../../styles/LoginForm';
 import Legal from '../Legal/Legal';
 import ModalCard from '../ModalCard/ModalCard';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -79,7 +79,7 @@ class LoginForm extends React.PureComponent {
       },
     };
 
-    Accounts.createUser(user, error => {
+    Accounts.createUser(user, (error) => {
       this.setState({ loading: false });
       if (error) {
         console.log(error);
@@ -91,7 +91,7 @@ class LoginForm extends React.PureComponent {
   }
 
   handleChange(name) {
-    return event => {
+    return (event) => {
       const value = event.target.value;
       this.setState({
         [name]: value,

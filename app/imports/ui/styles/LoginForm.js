@@ -23,11 +23,6 @@ const style = theme => ({
   caption: {
     marginTop: 24,
   },
-  link: {
-    cursor: 'pointer',
-    // color: 'inherit',
-    color: theme.palette.secondary.main,
-  },
 });
 
 export default style;
