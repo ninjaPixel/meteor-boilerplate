@@ -215,15 +215,9 @@ class Account extends React.PureComponent {
     return (
       <div className={classes.root}>
         <div>
-          <Typography variant="h4" className={classes.section1}>
-            My details
-          </Typography>
-          <ResponsivePaper>{this.renderProfileForm()}</ResponsivePaper>
+          <ResponsivePaper title="My details">{this.renderProfileForm()}</ResponsivePaper>
           <div className={classes.spacer} />
-          <Typography variant="h4" className={classes.section1}>
-            Password
-          </Typography>
-          <ResponsivePaper>{this.renderPasswordForm()}</ResponsivePaper>
+          <ResponsivePaper title="Password">{this.renderPasswordForm()}</ResponsivePaper>
         </div>
       </div>
     );

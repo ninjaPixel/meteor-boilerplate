@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Paper } from '@material-ui/core';
+import { withStyles, Paper, Typography } from '@material-ui/core';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
-import { paperStyle } from '../../styles/common';
+import { paperStyle, responsivePaperTitleStyle } from '../../styles/common';
 const propTypes = {
   classes: PropTypes.object.isRequired,
+  width: PropTypes.number.isRequired,
+  children: PropTypes.element.isRequired,
+  title: PropTypes.string,
 };
 
 const defaultProps = {};
 
 const ResponsivePaper = (props) => {
-  const { classes, width, children, paperClassName } = props;
+  const { classes, width, children, paperClassName, title } = props;
   if (isWidthUp('sm', width)) {
-    return <Paper className={paperClassName || classes.paper}>{children}</Paper>;
+    return (
+      <Fragment>
+        <Typography className={classes.title} variant="h4">
+          {title}
+        </Typography>
+        <Paper className={paperClassName || classes.paper}>{children}</Paper>
+      </Fragment>
+    );
   }
   return children;
 };
@@ -23,6 +33,7 @@ ResponsivePaper.defaultProps = defaultProps;
 
 const style = (theme) => ({
   paper: paperStyle(theme),
+  title: responsivePaperTitleStyle(theme),
 });
 
 export default withStyles(style)(withWidth()(ResponsivePaper));
