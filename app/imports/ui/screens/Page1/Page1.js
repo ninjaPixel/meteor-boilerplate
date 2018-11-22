@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { linkStyle } from '../../styles/common';
 import { defaultRootStyle } from '../../styles/root';
 
-const Page1 = props => {
+const Page1 = (props) => {
   const { classes, name } = props;
   const lodash = _.get({}, 'x', true);
   console.log('lodash loaded: ', lodash);
@@ -42,7 +42,7 @@ Page1.defaultProps = {
   name: 'World',
 };
 
-const style = theme => ({
+const style = (theme) => ({
   root: defaultRootStyle(theme),
   link: linkStyle(theme),
 });

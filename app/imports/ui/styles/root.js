@@ -1,4 +1,4 @@
-export const defaultRootStyle = theme => ({
+export const defaultRootStyle = (theme) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
@@ -7,7 +7,13 @@ export const defaultRootStyle = theme => ({
   padding: theme.spacing.unit * 2,
 });
 
-export const middleOfScreenStyle = theme => ({
+export const topCenterStyle = (theme) => ({
+  ...defaultRootStyle(theme),
+  alignItems: 'center',
+  width: '100%',
+});
+
+export const middleOfScreenStyle = (theme) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
