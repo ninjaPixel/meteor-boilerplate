@@ -10,6 +10,9 @@ import LoginFormStyles from '../../styles/LoginForm';
 import snacks from '../../../modules/client/snacks';
 import userTools from '../../../modules/userTools';
 import security from '../../../modules/security';
+import ResponsivePaper from '../../components/ResponsivePaper/ResponsivePaper';
+import { topCenterStyle } from '../../styles/root';
+import { buttonStyle } from '../../styles/common';
 
 class Account extends React.PureComponent {
   constructor(props) {
@@ -56,7 +59,7 @@ class Account extends React.PureComponent {
 
   updateNotificationPreference(preference, notify) {
     const userId = this.props.user._id;
-    Meteor.call('utility.updateNotificationPreference', { userId, notificationName: preference, notify }, error => {
+    Meteor.call('utility.updateNotificationPreference', { userId, notificationName: preference, notify }, (error) => {
       if (error) {
         snacks.handleMethodError(error);
       } else {
@@ -70,7 +73,7 @@ class Account extends React.PureComponent {
     const { first, last, phone } = this.state;
     const userId = this.props.user._id;
     console.log('userId, first, last, phone: ', userId, first, last, phone);
-    Meteor.call('utility.updateUserProfile', { userId, first, last, phone }, error => {
+    Meteor.call('utility.updateUserProfile', { userId, first, last, phone }, (error) => {
       if (error) {
         snacks.handleMethodError(error);
       } else {
@@ -83,7 +86,7 @@ class Account extends React.PureComponent {
     event.preventDefault();
     const { oldPassword, newPassword } = this.state;
 
-    Accounts.changePassword(oldPassword, newPassword, error => {
+    Accounts.changePassword(oldPassword, newPassword, (error) => {
       if (error) {
         snacks.handleMethodError(error);
       } else {
@@ -97,7 +100,7 @@ class Account extends React.PureComponent {
   }
 
   handleChange(name) {
-    return event => {
+    return (event) => {
       const value = event.target.value;
       this.setState({
         [name]: value,
@@ -212,17 +215,9 @@ class Account extends React.PureComponent {
     return (
       <div className={classes.root}>
         <div>
-          <Typography variant="h1" className={classes.section1}>
-            My details
-          </Typography>
-
-          {this.renderProfileForm()}
+          <ResponsivePaper title="My details">{this.renderProfileForm()}</ResponsivePaper>
           <div className={classes.spacer} />
-          <Typography variant="h1" className={classes.section1}>
-            Password
-          </Typography>
-
-          {this.renderPasswordForm()}
+          <ResponsivePaper title="Password">{this.renderPasswordForm()}</ResponsivePaper>
         </div>
       </div>
     );
@@ -239,18 +234,16 @@ Account.defaultProps = {
   user: null,
 };
 
-const style = theme => ({
-  ...AdminStyle(theme),
-  ...LoginFormStyles(theme),
+const style = (theme) => ({
+  // ...AdminStyle(theme),
+  // ...LoginFormStyles(theme),
   spacer: {
     height: 1,
     marginTop: theme.spacing.unit * 5,
   },
   accountForm: {
-    // width: '90%',
-    maxWidth: 350,
-    minWidth: 250,
-    // minHeight: theme.spacing.unit*8,
+    // width: 400,
+    maxWidth: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -259,9 +252,11 @@ const style = theme => ({
   btn: {
     marginTop: theme.spacing.unit * 2,
   },
+  root: topCenterStyle(theme),
+  button: buttonStyle(theme),
 });
 
-export default withTracker(props => {
+export default withTracker((props) => {
   // Do all your reactive data access in this method.
   // Note that this subscription will get cleaned up when your component is unmounted
   const userId = props.match.params.userId;

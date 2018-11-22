@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, Typography } from '@material-ui/core';
 import LoginForm from '../../components/LoginForm/LoginForm';
+import { middleOfScreenStyle } from '../../styles/root';
 
 const Login = (props) => {
   const { classes, user } = props;
@@ -25,7 +26,7 @@ Login.defaultProps = {
 };
 
 const style = (theme) => ({
-  root: {},
+  root: middleOfScreenStyle(theme),
 });
 
 export default withStyles(style)(Login);

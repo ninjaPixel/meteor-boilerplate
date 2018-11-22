@@ -10,7 +10,8 @@ import snacks from '../../../modules/client/snacks';
 import loginFormStyles from '../../styles/LoginForm';
 import Legal from '../Legal/Legal';
 import ModalCard from '../ModalCard/ModalCard';
-import { linkStyle } from '../../styles/common';
+import { buttonStyle, linkStyle, paperStyle } from '../../styles/common';
+import ResponsivePaper from '../../components/ResponsivePaper/ResponsivePaper';
 
 const styles = (theme) => ({
   root: {
@@ -26,6 +27,8 @@ const styles = (theme) => ({
   },
   ...loginFormStyles(theme),
   link: linkStyle(theme),
+  paper: paperStyle(theme),
+  button: buttonStyle(theme),
 });
 
 class LoginForm extends React.PureComponent {
@@ -371,9 +374,9 @@ class LoginForm extends React.PureComponent {
         return <Typography variant="h6">We've created your account. Welcome on board! 🚢</Typography>;
       }
       if (showProfileFields) {
-        return this.renderProfileForm();
+        return <ResponsivePaper className={classes.paper}>{this.renderProfileForm()}</ResponsivePaper>;
       }
-      return this.renderLoginRegisterForm();
+      return <ResponsivePaper className={classes.paper}>{this.renderLoginRegisterForm()}</ResponsivePaper>;
     };
 
     return <div className={classes.root}>{child()}</div>;

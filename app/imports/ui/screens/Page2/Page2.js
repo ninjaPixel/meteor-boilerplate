@@ -71,7 +71,7 @@ Page2.defaultProps = {
   user: null,
 };
 
-const style = theme => ({
+const style = (theme) => ({
   root: defaultRootStyle(theme),
 });
 
