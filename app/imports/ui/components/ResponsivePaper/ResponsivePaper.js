@@ -5,7 +5,7 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { paperStyle, responsivePaperTitleStyle } from '../../styles/common';
 const propTypes = {
   classes: PropTypes.object.isRequired,
-  width: PropTypes.number.isRequired,
+  width: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
   title: PropTypes.string,
 };
@@ -24,7 +24,14 @@ const ResponsivePaper = (props) => {
       </Fragment>
     );
   }
-  return children;
+  return (
+    <Fragment>
+      <Typography className={classes.title} variant="h4">
+        {title}
+      </Typography>
+      {children}
+    </Fragment>
+  );
 };
 
 ResponsivePaper.propTypes = propTypes;
