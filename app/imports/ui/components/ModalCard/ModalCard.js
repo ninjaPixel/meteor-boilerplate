@@ -113,7 +113,7 @@ ModalCard.propTypes = propTypes;
 
 ModalCard.defaultProps = defaultProps;
 
-const style = theme => ({
+const style = (theme) => ({
   root: {
     display: 'flex',
   },

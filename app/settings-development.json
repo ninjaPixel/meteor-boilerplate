@@ -1,14 +1,10 @@
 {
-  "galaxy.meteor.com": {
-    "env": {
-      "MONGO_URL": "",
-      "NODE_ENV": "development"
-    }
-  },
   "public": {
     "mode": "dev",
     "appName": "Meteor Boilerplate",
-    "appUrl": "http://localhost:3000"
+    "appUrl": "http://localhost:3000",
+    "google_tag_manager": "",
+    "google_analytics_id": ""
   },
   "private": {
     "allow_database_reset": true,
