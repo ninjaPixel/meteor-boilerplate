@@ -9,6 +9,7 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import reactiveState from '../../../api/State/client/reactiveState';
 import routes from '../../../modules/routes';
 import TitleBarAndNavDrawer from '../../layouts/TitleBarAndNavDrawer/TitleBarAndNavDrawer';
+import track from '../../../modules/client/track';
 
 class AppRoute extends React.PureComponent {
   componentDidMount() {
@@ -16,8 +17,17 @@ class AppRoute extends React.PureComponent {
     if (title) {
       reactiveState.screenTitle.set(title);
     }
+    const page = this.props.location.pathname + this.props.location.search;
+    track.pageView(page);
   }
+  componentDidUpdate(prevProps) {
+    const currentPage = prevProps.location.pathname + prevProps.location.search;
+    const nextPage = this.props.location.pathname + this.props.location.search;
 
+    if (currentPage !== nextPage) {
+      track.pageView(nextPage);
+    }
+  }
   componentWillUnmount() {
     reactiveState.screenTitle.set('');
   }
@@ -79,6 +89,7 @@ class AppRoute extends React.PureComponent {
 
 AppRoute.propTypes = {
   classes: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
   component: PropTypes.func.isRequired,
   path: PropTypes.string.isRequired,
   user: PropTypes.object,
