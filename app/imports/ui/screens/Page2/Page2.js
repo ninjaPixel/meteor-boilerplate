@@ -14,7 +14,7 @@ class Page2 extends React.PureComponent {
           'app/client/main.html' and specific font settings (such as font weights for different elements) are declared
           in 'app/imports/ui/styles/Theme.js'
         </Typography>
-        <Typography variant="h1" gutterBottom noWrap align="left">
+        <Typography variant="h1" gutterBottom noWrap>
           h1 Heading
         </Typography>
         <Typography variant="h2" gutterBottom noWrap>

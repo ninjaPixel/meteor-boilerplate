@@ -1,45 +1,46 @@
-const style = theme => ({
+import { SPACING } from './constants';
+
+const style = (theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     alignSelf: 'flex-start',
     flex: 1,
-    marginBottom: 100,
+    marginBottom: SPACING['96'],
   },
   link: {
     color: theme.typography.body1.color,
     cursor: 'pointer',
   },
   insetContent: {
-    paddingLeft: theme.spacing.unit * 2,
+    paddingLeft: SPACING['16'],
   },
   button: {
     alignSelf: 'center',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: SPACING['24'],
   },
   cardContainer: {
-    marginTop: theme.spacing.unit * 2,
-    marginBottom: theme.spacing.unit * 2,
+    marginTop: SPACING['16'],
+    marginBottom: SPACING['16'],
     width: '100%',
   },
   section: {
-    marginTop: theme.spacing.unit * 7,
-    marginBottom: theme.spacing.unit * 0.5,
+    marginTop: SPACING['48'],
+    marginBottom: SPACING['4'],
   },
   sectionContent: {
     width: '100%',
-    paddingLeft: theme.spacing.unit * 1,
-    paddingRight: theme.spacing.unit * 1,
+    paddingLeft: SPACING['8'],
+    paddingRight: SPACING['8'],
     [theme.breakpoints.up('md')]: {
-      paddingLeft: theme.spacing.unit * 2,
-      paddingRight: theme.spacing.unit * 2,
+      paddingLeft: SPACING['16'],
+      paddingRight: SPACING['16'],
     },
   },
   section1: {
-    marginTop: theme.spacing.unit * 3,
-    marginBottom: theme.spacing.unit * 0.5,
-
+    marginTop: SPACING['24'],
+    marginBottom: SPACING['4'],
   },
   fullWidth: {
     width: '100%',

@@ -1,8 +1,10 @@
+import { TYPE_SCALE } from '../../styles/constants';
+
 const drawerWidth = 240;
 const appBarHeightXS = 56;
 const appBarHeight = 64;
 
-const styles = theme => ({
+const styles = (theme) => ({
   appFrame: {
     minHeight: '100vh',
     minWidth: '100vw',
@@ -43,6 +45,10 @@ const styles = theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  titleText: {
+    fontSize: TYPE_SCALE['36'],
+    fontWeight: 'bold',
   },
   drawer: {
     position: 'fixed',

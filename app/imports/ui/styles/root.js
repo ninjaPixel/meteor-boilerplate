@@ -1,16 +1,17 @@
+import { SPACING } from './constants';
+
 export const defaultRootStyle = (theme) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   height: '100%',
-  // flex: 1,
-  padding: theme.spacing.unit * 2,
+  width: '100%',
+  padding: SPACING['16'],
 });
 
 export const topCenterStyle = (theme) => ({
   ...defaultRootStyle(theme),
   alignItems: 'center',
-  width: '100%',
 });
 
 export const middleOfScreenStyle = (theme) => ({
@@ -18,5 +19,5 @@ export const middleOfScreenStyle = (theme) => ({
   flexDirection: 'column',
   alignItems: 'center',
   flex: 1,
-  padding: theme.spacing.unit * 2,
+  padding: SPACING['16'],
 });

@@ -1,10 +1,12 @@
+import { SPACING } from './constants';
+
 const style = (theme) => ({
   form: {
     width: '100%',
-    padding: theme.spacing.unit * 2,
+    padding: SPACING['16'],
     [theme.breakpoints.up('sm')]: {
       padding: 0,
-      width: 500,
+      width: SPACING['512'],
     },
     maxWidth: '100%',
     minHeight: '100%',
@@ -17,10 +19,10 @@ const style = (theme) => ({
     width: '100%',
   },
   inputCaptionContainer: {
-    minHeight: 32,
+    minHeight: SPACING['32'],
   },
   caption: {
-    marginTop: 24,
+    marginTop: SPACING['24'],
   },
   link: {
     cursor: 'pointer',

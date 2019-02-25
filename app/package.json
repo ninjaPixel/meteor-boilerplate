@@ -4,8 +4,14 @@
   "scripts": {
     "start": "meteor run --settings settings-development.json",
     "production": "meteor run --production --settings settings-development.json",
-    "test": "meteor test --once --driver-package meteortesting:mocha",
-    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "test:unit": "TEST_CLIENT=0 meteor test --once --driver-package meteortesting:mocha --settings settings-test.json",
+    "test:unit:watch": "TEST_CLIENT=0 TEST_WATCH=1 meteor test --port 3011 --driver-package meteortesting:mocha --settings settings-test.json",
+    "host:e2e": "meteor --production --port 3003 --settings settings-test.json",
+    "host:e2e:dev": "meteor --port 3003 --settings settings-test.json",
+    "test:e2e:circle": "testcafe chrome testCafe/tests/*.js --speed 1.0 -r xunit:/tmp/test-results/e2e/testcafe.xml",
+    "test:e2e:dev": "testcafe chrome testCafe/tests/*.js --speed 1.0",
+    "test:e2e:dev:mob": "testcafe 'chrome:emulation:device=iphone 6' imports/testCafe/tests/*.js",
+    "test:e2e:dev:ff": "testcafe firefox imports/testCafe/tests/*.js",
     "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json"
   },

@@ -13,11 +13,12 @@ import Loader from '../../components/Loading/Loading';
 import Theme from '../../styles/Theme';
 import { defaultRootStyle } from '../../styles/root';
 import routes from '../../../modules/routes';
+import { SPACING, TYPE_SCALE } from '../../styles/constants';
 
 const _HomeScreen = (props) => (
   <div className={props.classes.root}>
     <header>
-      <Typography variant="h2" gutterBottom>
+      <Typography variant="h2" className={props.classes.pageTitle}>
         Home screen
       </Typography>
     </header>
@@ -26,6 +27,11 @@ const _HomeScreen = (props) => (
 );
 const styles = (theme) => ({
   root: defaultRootStyle(theme),
+  pageTitle: {
+    fontSize: TYPE_SCALE['48'],
+    marginTop: SPACING['12'],
+    marginBottom: SPACING['4'],
+  },
 });
 
 const HomeScreen = withStyles(styles)(_HomeScreen);

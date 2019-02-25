@@ -103,7 +103,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
         <AppBar className={classes.appBarHiddenNavigation}>
           <Toolbar data-e2e="navigation-toolbar">
             {this.renderCloseIcon()}
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography className={classes.titleText} variant="h1" color="inherit" noWrap data-e2e="app-bar-text">
               {screenTitle}
             </Typography>
           </Toolbar>
@@ -123,7 +123,7 @@ class TitleBarAndNavDrawer extends React.PureComponent {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
+            <Typography className={classes.titleText} variant="h1" color="inherit" noWrap data-e2e="app-bar-text">
               {screenTitle}
             </Typography>
           </Toolbar>
@@ -138,9 +138,6 @@ class TitleBarAndNavDrawer extends React.PureComponent {
               paper: classes.drawerPaper,
             }}
             onClose={this.handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
           >
             {this.renderDrawer()}
           </Drawer>
