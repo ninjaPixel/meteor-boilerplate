@@ -371,7 +371,11 @@ class LoginForm extends React.PureComponent {
         );
       }
       if (newAccountCreated) {
-        return <Typography variant="h6">We've created your account. Welcome on board! 🚢</Typography>;
+        return (
+          <Typography variant="h6" data-e2e="new-account-welcome-message">
+            We've created your account. Welcome on board! 🚢
+          </Typography>
+        );
       }
       if (showProfileFields) {
         return <ResponsivePaper className={classes.paper}>{this.renderProfileForm()}</ResponsivePaper>;
