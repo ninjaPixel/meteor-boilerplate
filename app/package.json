@@ -16,23 +16,23 @@
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
-    "@material-ui/core": "^3.5.1",
-    "@material-ui/icons": "^3.0.1",
-    "bcrypt": "^3.0.0",
+    "@babel/runtime": "^7.4.5",
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
+    "bcrypt": "^3.0.6",
     "classnames": "^2.2.6",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.1.2",
     "juice": "^4.3.2",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "meteor-node-stubs": "^0.4.1",
-    "moment": "^2.22.2",
-    "nodemailer": "^4.6.7",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-error-boundary": "^1.2.3",
+    "moment": "^2.24.0",
+    "nodemailer": "^4.7.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-error-boundary": "^1.2.5",
     "react-filestack": "^0.9.7",
     "react-router-dom": "^4.3.1",
-    "simpl-schema": "^1.5.3"
+    "simpl-schema": "^1.5.5"
   },
   "meteor": {
     "mainModule": {
@@ -42,12 +42,12 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.116",
-    "@types/mocha": "^5.2.5",
-    "@types/react": "^16.4.8",
+    "@types/lodash": "^4.14.134",
+    "@types/mocha": "^5.2.7",
+    "@types/react": "^16.8.20",
     "babel-plugin-direct-import": "^0.6.0-beta.1",
     "babel-plugin-lodash": "^3.3.4",
-    "chai": "^4.1.2",
-    "testcafe": "^1.0.1"
+    "chai": "^4.2.0",
+    "testcafe": "^1.2.1"
   }
 }
