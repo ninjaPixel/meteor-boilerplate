@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, TextField, Button, Typography } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/Textfield';
 import { Accounts } from 'meteor/accounts-base';
 import snacks from '../../../modules/client/snacks';
 
@@ -42,7 +45,7 @@ class ResetPassword extends React.PureComponent {
     const { classes } = this.props;
     const { password, success } = this.state;
     if (success) {
-      return (<Typography variant="h5">Your password has been updated 🔓</Typography>);
+      return <Typography variant="h5">Your password has been updated 🔓</Typography>;
     }
     return (
       <form onSubmit={this.handleSubmit} className={classes.form}>
@@ -55,12 +58,13 @@ class ResetPassword extends React.PureComponent {
           margin="normal"
           className={classes.input}
         />
-        <Button type="submit" variant="contained" color="primary">Reset password</Button>
+        <Button type="submit" variant="contained" color="primary">
+          Reset password
+        </Button>
       </form>
     );
   }
 }
-
 
 ResetPassword.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -68,10 +72,8 @@ ResetPassword.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-
-const style = theme => ({
-  root: {
-  },
+const style = (theme) => ({
+  root: {},
   form: {
     width: '90%',
     maxWidth: 350,

@@ -5,8 +5,9 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { withStyles, Typography } from '@material-ui/core';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import DeferredComponent from '../../components/DeferredComponent/DeferredComponent';
 import AppRoute from '../../components/AppRoute/AppRoute';
 import Loader from '../../components/Loading/Loading';
@@ -78,11 +79,11 @@ const App = (props) => {
   return (
     <Fragment>
       <CssBaseline />
-      <MuiThemeProvider theme={Theme}>
+      <ThemeProvider theme={Theme}>
         <Router>
           <Switch>{paths()}</Switch>
         </Router>
-      </MuiThemeProvider>
+      </ThemeProvider>
     </Fragment>
   );
 };

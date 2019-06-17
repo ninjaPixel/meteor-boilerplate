@@ -1,8 +1,14 @@
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { Fragment } from 'react';
-import { withRouter } from 'react-router';
 import PropTypes from 'prop-types';
-import { withStyles, Grid, Drawer, AppBar, Toolbar, Typography, IconButton, Hidden } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 

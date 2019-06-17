@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import { Typography, withStyles } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 
 /*
   Please change these for your needs. I am not a lawyer!

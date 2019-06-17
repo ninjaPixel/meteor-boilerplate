@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/styles/withStyles';
 import UnstyledForm from './Unstyled';
 import styles from './styles';
 

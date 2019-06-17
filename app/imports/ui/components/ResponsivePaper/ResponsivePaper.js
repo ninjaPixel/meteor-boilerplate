@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Paper, Typography } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { paperStyle, responsivePaperTitleStyle } from '../../styles/common';
+
 const propTypes = {
   classes: PropTypes.object.isRequired,
   width: PropTypes.string.isRequired,

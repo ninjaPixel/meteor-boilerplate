@@ -11,7 +11,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-import { Star, StarBorder } from '@material-ui/icons';
+import Star from '@material-ui/icons/Star';
+import StarBorder from '@material-ui/icons/StarBorder';
 import IconButton from '../IconButton/IconButton';
 
 const propTypes = {
@@ -30,7 +31,7 @@ const propTypes = {
   onChange: PropTypes.func,
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
   direction: PropTypes.oneOf(['row', 'column']),
-  buttonVariant: PropTypes.oneOf(['flat', 'outlined', 'contained', 'text']),
+  buttonVariant: PropTypes.oneOf(['outlined', 'contained', 'text']),
   buttonColor: PropTypes.string,
   submitButtonText: PropTypes.string,
   submitButtonIcon: PropTypes.func,

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Button } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Button from '@material-ui/core/Button';
 
 const IconButton = (props) => {
   const { classes, text, icon, ...rest } = props;
@@ -19,11 +20,10 @@ IconButton.propTypes = {
   icon: PropTypes.func.isRequired,
 };
 
-const style = theme => ({
+const style = (theme) => ({
   icon: {
     marginRight: theme.spacing.unit,
   },
 });
-
 
 export default withStyles(style)(IconButton);

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Typography } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import { middleOfScreenStyle } from '../../styles/root';
 import { TYPE_SCALE } from '../../styles/constants';

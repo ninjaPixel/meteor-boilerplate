@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
 import LegalComponent from '../../components/Legal/Legal';
 import { defaultRootStyle } from '../../styles/root';
 

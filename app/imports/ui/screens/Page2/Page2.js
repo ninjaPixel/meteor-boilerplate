@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Typography } from '@material-ui/core';
-import rootStyles from '../../styles/root';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import { defaultRootStyle } from '../../styles/root';
 
 class Page2 extends React.PureComponent {

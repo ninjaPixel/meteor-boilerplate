@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import reactiveState from '../../../api/State/client/reactiveState';
 import Snackbar from '../../components/Snackbar/Snackbar';
 
-
 class GlobalSnackbar extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -29,12 +28,13 @@ class GlobalSnackbar extends React.PureComponent {
 
     return (
       <div data-e2e="global-snack">
-        {(_.isEmpty(snack) || snack.message === '') ? null : <Snackbar text={snack.message} requestClose={this.onClose} open={open} />}
+        {_.isEmpty(snack) || snack.message === '' ? null : (
+          <Snackbar text={snack.message} requestClose={this.onClose} open={open} />
+        )}
       </div>
     );
   }
 }
-
 
 GlobalSnackbar.propTypes = {
   snack: PropTypes.object,
@@ -44,7 +44,6 @@ GlobalSnackbar.defaultProps = {
   snack: {},
 };
 
-
 export default withTracker(() => {
   const snack = {
     message: reactiveState.snack.message.get(),
@@ -53,6 +52,4 @@ export default withTracker(() => {
   return {
     snack,
   };
-},
-)(GlobalSnackbar);
-
+})(GlobalSnackbar);

@@ -27,7 +27,6 @@ const theme = createMuiTheme({
     // Tell Material-UI what's the font-size on the html element.
     // 16px is the default font-size used by browsers.
     htmlFontSize: 16,
-    useNextVariants: true, //https://material-ui.com/style/typography/#migration-to-typography-v2
   },
 });
 

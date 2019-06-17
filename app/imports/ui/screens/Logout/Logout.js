@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Typography } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import Loading from '../../components/Loading/Loading';
 import { middleOfScreenStyle } from '../../styles/root';
 

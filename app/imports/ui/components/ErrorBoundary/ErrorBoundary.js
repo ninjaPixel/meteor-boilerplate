@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import ReactErrorBoundary from 'react-error-boundary';
-
 
 const ErrorFallback = ({ componentStack, error, classes }) => (
   <div className={classes.root}>
@@ -14,13 +13,11 @@ const ErrorFallback = ({ componentStack, error, classes }) => (
   </div>
 );
 
-const ErrorBoundary = props => (
-  <ReactErrorBoundary FallbackComponent={ErrorFallback}>
-    {props.children}
-  </ReactErrorBoundary>
+const ErrorBoundary = (props) => (
+  <ReactErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ReactErrorBoundary>
 );
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     padding: theme.spacing.unit,
     width: '100%',

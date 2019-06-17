@@ -1,7 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Badge, Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
-import { Home, ImportantDevices, Lock, ExitToApp, AccountBox, Gavel, ShortText } from '@material-ui/icons';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Home from '@material-ui/icons/Home';
+import ImportantDevices from '@material-ui/icons/ImportantDevices';
+import Lock from '@material-ui/icons/Lock';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import AccountBox from '@material-ui/icons/AccountBox';
+import Gavel from '@material-ui/icons/Gavel';
+import ShortText from '@material-ui/icons/ShortText';
 import { Link } from 'react-router-dom';
 import routes from '../../../modules/routes';
 

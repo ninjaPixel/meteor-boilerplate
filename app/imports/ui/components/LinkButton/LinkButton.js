@@ -2,11 +2,11 @@ import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { withStyles, Button } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import IconButton from '../IconButton/IconButton';
 import reactiveState from '../../../api/State/client/reactiveState';
-
 
 const _button = (props) => {
   const { text, icon, linkClassName, target, delayed, ...rest } = props;
@@ -14,10 +14,7 @@ const _button = (props) => {
   if (icon) {
     return <IconButton icon={icon} text={text} {...rest} />;
   }
-  return (
-    <Button {...rest}>
-      {text}
-    </Button>);
+  return <Button {...rest}>{text}</Button>;
 };
 
 const LinkButton = (_props) => {
@@ -25,7 +22,7 @@ const LinkButton = (_props) => {
   const { to, target, linkClassName, delayed } = props;
 
   if (props.disabled) {
-    return (_button(props));
+    return _button(props);
   }
   const cssClass = classNames({
     [linkClassName]: linkClassName,
@@ -34,13 +31,17 @@ const LinkButton = (_props) => {
 
   if (target) {
     return (
-      <Link target={target} to={to} className={cssClass}>{_button(props)}</Link>
+      <Link target={target} to={to} className={cssClass}>
+        {_button(props)}
+      </Link>
     );
   }
 
   if (to.includes('://')) {
     return (
-      <a href={to} className={cssClass}>{_button(props)}</a>
+      <a href={to} className={cssClass}>
+        {_button(props)}
+      </a>
     );
   }
 
@@ -57,11 +58,15 @@ const LinkButton = (_props) => {
       }, 30);
     };
     return (
-      <div onClick={onClick} className={cssClass}>{_button(props)}</div>
+      <div onClick={onClick} className={cssClass}>
+        {_button(props)}
+      </div>
     );
   }
   return (
-    <Link to={to} className={cssClass}>{_button(props)}</Link>
+    <Link to={to} className={cssClass}>
+      {_button(props)}
+    </Link>
   );
 };
 

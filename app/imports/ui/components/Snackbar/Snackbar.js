@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import withStyles from '@material-ui/styles/withStyles';
 import MuiSnackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const styles = theme => ({
+const styles = (theme) => ({
   close: {
     width: theme.spacing.unit * 4,
     height: theme.spacing.unit * 4,
@@ -51,7 +51,8 @@ class Snackbar extends React.Component {
             onClick={this.handleRequestClose}
           >
             <CloseIcon />
-          </IconButton>]}
+          </IconButton>,
+        ]}
       />
     );
   }

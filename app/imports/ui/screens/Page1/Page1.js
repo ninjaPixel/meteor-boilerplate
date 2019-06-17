@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, Typography } from '@material-ui/core';
+import withStyles from '@material-ui/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import _ from 'lodash';
 import { linkStyle } from '../../styles/common';
