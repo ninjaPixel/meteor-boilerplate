@@ -29,18 +29,15 @@ meteor npm i
 npm start
 ```
 
-## Serverless
+## λ functions
 
-This needs to be installed globally (it'd be nice to install it per project, but unfortunately it doesn't work like that)
+This projects uses Zeit Now to deploy and execute lambda functions.
+Since Meteor runs a Node server, it is single threaded and we want to make sure that
+big computations don't grind the server to a halt. Hence the λ functions. Any big computations
+should be sent to a λ function. The beauty of this is that we can spin up as many λ functions at
+once and not need to even worry about scaling our app.
 
-        npm install -g serverless
-        
-### Set up credentials
+Create an account with Zeit and [install the NOW desktop client or CLI](https://zeit.co/download). Then, from the `serverless` directory deploy
+your lambda functions by running:
 
-Follow this [guide for setting up your AWS IAM credentials](https://serverless.com/framework/docs/providers/aws/guide/credentials/).
-
-        serverless config credentials --provider aws --key 1234 --secret 5678 --profile boilerplate-serverless-admin
-        
-        serverless config credentials --provider aws --key 1234 --secret 5678 --profile boilerplate-serverless-agent
-        
-This will write your credentials to `~/.aws/credentials`.
+        now

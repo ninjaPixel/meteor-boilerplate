@@ -1,5 +1,5 @@
-const { findAll } = require('./lambdas/find');
-const { increment } = require('./lambdas/increment');
+const { findAll } = require('./modules/find');
+const { increment } = require('./modules/increment');
 const { connector } = require('./modules/connector');
 
 const go = async () => {
