@@ -12,4 +12,8 @@ const schema = new SimpleSchema({
 
 SampleCollection.attachSchema(schema);
 
+if (SampleCollection.find({}).fetch().length === 0) {
+  SampleCollection.insert({ count: 1 });
+}
+
 export default SampleCollection;
