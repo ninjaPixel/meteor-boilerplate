@@ -29,3 +29,18 @@ meteor npm i
 npm start
 ```
 
+## Serverless
+
+This needs to be installed globally (it'd be nice to install it per project, but unfortunately it doesn't work like that)
+
+        npm install -g serverless
+        
+### Set up credentials
+
+Follow this [guide for setting up your AWS IAM credentials](https://serverless.com/framework/docs/providers/aws/guide/credentials/).
+
+        serverless config credentials --provider aws --key 1234 --secret 5678 --profile boilerplate-serverless-admin
+        
+        serverless config credentials --provider aws --key 1234 --secret 5678 --profile boilerplate-serverless-agent
+        
+This will write your credentials to `~/.aws/credentials`.
