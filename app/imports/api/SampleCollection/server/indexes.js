@@ -1,7 +1,8 @@
 import SampleCollection from '../SampleCollection';
 
-SampleCollection._ensureIndex({
-  userId: 1,
-  fieldOne: 1,
-  fieldTwo: 1,
-});
+// This should look something like this:
+// SampleCollection._ensureIndex({
+// userId: 1,
+// fieldOne: 1,
+// fieldTwo: 1,
+// });

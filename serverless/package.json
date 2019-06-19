@@ -1,0 +1,14 @@
+{
+  "name": "serverless",
+  "version": "0.0.1",
+  "description": "Serverless functions for our Meteor app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Michel",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "mongodb": "^3.2.7"
+  }
+}

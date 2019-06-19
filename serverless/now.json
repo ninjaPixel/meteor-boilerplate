@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "meteor-boilerplate",
+  "public": false,
+  "builds": [
+    { "src": "./lambdas/inc.js", "use": "@now/node" }
+  ]
+}
