@@ -2,3 +2,5 @@
 node_modules
 /app/settings-staging.json
 /.deploy
+/app/dist
+/app/.cache

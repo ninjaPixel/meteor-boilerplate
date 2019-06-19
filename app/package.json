@@ -13,7 +13,8 @@
     "test:e2e:dev:mob": "testcafe 'chrome:emulation:device=iphone 6' imports/testCafe/tests/*.js",
     "test:e2e:dev:ff": "testcafe firefox imports/testCafe/tests/*.js",
     "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
-    "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json"
+    "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
+    "parcel": "parcel client/main.html"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
@@ -28,6 +29,7 @@
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
     "nodemailer": "^4.7.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-error-boundary": "^1.2.5",
@@ -43,12 +45,14 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
     "@types/lodash": "^4.14.134",
     "@types/mocha": "^5.2.7",
     "@types/react": "^16.8.20",
     "babel-plugin-direct-import": "^0.6.0-beta.1",
     "babel-plugin-lodash": "^3.3.4",
     "chai": "^4.2.0",
+    "parcel-bundler": "^1.12.3",
     "testcafe": "^1.2.1"
   }
 }

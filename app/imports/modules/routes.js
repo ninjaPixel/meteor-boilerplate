@@ -1,7 +1,4 @@
 // @flow
-import { Meteor } from 'meteor/meteor';
-
-const appUrl = Meteor.settings.public.appUrl;
 
 type CreateRouteInputType = {
   title: string,
