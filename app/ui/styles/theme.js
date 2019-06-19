@@ -1,5 +1,7 @@
-import indigo from '@material-ui/core/colors/indigo';
-import pink from '@material-ui/core/colors/pink';
+import primary from '@material-ui/core/colors/indigo';
+import secondary from '@material-ui/core/colors/pink';
+import tertiary from '@material-ui/core/colors/amber';
+import brown from '@material-ui/core/colors/brown';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const fontWeightLight = 200;
@@ -7,8 +9,14 @@ const fontWeightRegular = 200;
 const fontWeightMedium = 400;
 const theme = createMuiTheme({
   palette: {
-    primary: indigo,
-    secondary: pink,
+    primary,
+    secondary,
+    tertiary: {
+      light: tertiary[100],
+      main: tertiary[300],
+      dark: brown[800],
+      contrastText: brown[800],
+    },
     type: 'dark',
   },
   custom: {

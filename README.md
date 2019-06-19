@@ -3,7 +3,7 @@
 A fast and highly customisable Meteor.js boiler plate app.
 The UI is handled by Material Design and the performance is achieved 
 by selective tree-shaking and judicious use of dynamic imports, to
-keep the client bundle as small as reasonably possible.
+keep the client bundle as small as possible.
 
 **>>> [View Demo](https://meteor.ninjapixel.io) <<<**
 
@@ -13,6 +13,10 @@ keep the client bundle as small as reasonably possible.
 * Bundle size: [<250kB gZipped](https://www.ninjapixel.io/meteor-bundle-size.html) 🐭
 * Styling: [JSS](http://cssinjs.org/) 💅
 * Security: Users, roles and groups 🔐
+* Email: Just hook-up your favourite SMTP provider 📧
+* Developer friendly: you can use the `start:ui` cmd to just load the UI, for a snappy developer experience with Hot Module Reloading. It generally takes bout 50ms for a change to be built and loaded in the browser, which is about 3s quicker than if you were using
+  the Meteor bundler (i.e. with `npm start`) 🤓
+* λ functions: Execute intensive functions in the cloud, making sure that your node server is always free to fulfil client requests 😅
 
 
 For some background information on the performance enhancements in this app, check out [this blog post](https://www.ninjapixel.io/meteor-bundle-size.html).
