@@ -16,7 +16,6 @@ import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import NavDrawerItems from '../../components/NavDrawerItems/NavDrawerItems';
 import Loading from '../../components/Loading/Loading';
 import GlobalSnackbar from '../../components/GlobalSnackbar/GlobalSnackbar';
-// import security from '../../../modules/security';
 import styles from './styles';
 import reactiveState from '../../../api/State/client/reactiveState';
 

@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import baseTheme from './styles/theme';
 import Home from './components/Home/Home';
 import FourOhFour from './components/FourOhFour/FourOhFour';
-// import Big from './components/Big/Big';
 import DeferredComponent from './components/DeferredComponent/DeferredComponent';
+import Loading from './components/Loading/Loading';
 
 const propTypes = {
   events: PropTypes.object,
@@ -31,13 +31,23 @@ const App = props => {
     <div className={classes.root}>
       <Router>
         <Switch>
-          <Route path="/" exact render={routeProps => <Home />} />
+          <Route path="/" exact render={() => <Home />} />
           <Route
             path="/big"
             exact
-            render={routeProps => <DeferredComponent importFunction={() => import('./components/Big/Big.js')} />}
+            render={routeProps => (
+              <DeferredComponent
+                {...routeProps}
+                loadingComponent={
+                  <Loading color="secondary" linear>
+                    Loading component
+                  </Loading>
+                }
+                importFunction={() => import('./components/Big/Big.js')}
+              />
+            )}
           />
-          <Route path="/" title="404" render={routeProps => <FourOhFour />} />
+          <Route path="/" title="404" render={() => <FourOhFour />} />
         </Switch>
       </Router>
     </div>
