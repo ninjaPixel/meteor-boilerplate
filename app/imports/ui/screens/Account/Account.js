@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/Textfield';
+import TextField from '@material-ui/core/TextField';
 import snacks from '../../../modules/client/snacks';
 import userTools from '../../../modules/userTools';
 import security from '../../../modules/security';

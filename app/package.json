@@ -32,7 +32,7 @@
     "react-dom": "^16.8.6",
     "react-error-boundary": "^1.2.5",
     "react-filestack": "^0.9.7",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.1",
     "simpl-schema": "^1.5.5"
   },
   "meteor": {

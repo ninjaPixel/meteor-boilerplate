@@ -13,13 +13,13 @@ const ErrorFallback = ({ componentStack, error, classes }) => (
   </div>
 );
 
-const ErrorBoundary = (props) => (
+const ErrorBoundary = props => (
   <ReactErrorBoundary FallbackComponent={ErrorFallback}>{props.children}</ReactErrorBoundary>
 );
 
-const styles = (theme) => ({
+const styles = theme => ({
   root: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(),
     width: '100%',
     height: '100%',
   },
