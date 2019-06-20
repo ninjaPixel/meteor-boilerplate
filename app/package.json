@@ -14,7 +14,7 @@
     "test:e2e:dev:ff": "testcafe firefox imports/testCafe/tests/*.js",
     "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
-    "parcel": "parcel client/main.html"
+    "start:ui": "parcel client/main.html"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",

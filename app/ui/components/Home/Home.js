@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
+import BigIcon from '@material-ui/icons/DirectionsBus';
+
+import LinkButton from '../LinkButton/LinkButton';
 
 const propTypes = {};
 const defaultProps = {};
@@ -15,6 +18,10 @@ const Home = props => {
   return (
     <div className={classes.root}>
       <Typography>Home component.</Typography>
+      <LinkButton to="/big">
+        <BigIcon />
+        Goto Big page
+      </LinkButton>
     </div>
   );
 };

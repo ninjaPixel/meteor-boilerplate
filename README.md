@@ -25,12 +25,34 @@ For some background information on the performance enhancements in this app, che
 
 Note that the `meteor` app lives in the `/app` directory. The root directory contains
 some general setup, such as linting, and leaves space for including other items such as end-to-end
-tests and a react native app.
+tests, a react native app and serverless functions.
 
+### Installing dependencies
+
+Use `npm` to install the dependencies. Note that there are a few `package.json` files in the project.
+
+```bash
+npm i
+cd serverless
+npm i
+cd ../app
+meteor npm i
 ```
+
+### Starting the app
+
+To run the full-blown app - front-end, back-end and MongoDB database:
+
+```bash
 cd app
 meteor npm i
 npm start
+```
+
+If you just want to work on the UI, then you can run:
+```bash
+cd app
+npm run start:ui
 ```
 
 ## λ functions

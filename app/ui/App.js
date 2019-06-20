@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/styles/makeStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,18 +25,18 @@ const useStyles = makeStyles(() => ({
 }));
 
 const App = props => {
-  const { events, state } = props;
   const classes = useStyles({ color: 'white' });
   return (
     <div className={classes.root}>
       <Router>
         <Switch>
-          <Route path="/" exact render={() => <Home />} />
+          <Route path="/" exact render={() => <Home {...props} />} />
           <Route
             path="/big"
             exact
             render={routeProps => (
               <DeferredComponent
+                {...props}
                 {...routeProps}
                 loadingComponent={
                   <Loading color="secondary" linear>
@@ -47,7 +47,7 @@ const App = props => {
               />
             )}
           />
-          <Route path="/" title="404" render={() => <FourOhFour />} />
+          <Route path="/" title="404" render={() => <FourOhFour {...props} />} />
         </Switch>
       </Router>
     </div>
