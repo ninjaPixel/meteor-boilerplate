@@ -4,7 +4,8 @@
     "appName": "Meteor Boilerplate",
     "appUrl": "http://localhost:3000",
     "google_tag_manager": "",
-    "google_analytics_id": ""
+    "google_analytics_id": "",
+    "serverless_url": "http://localhost:8080"
   },
   "private": {
     "allow_database_reset": true,
