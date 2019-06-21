@@ -112,4 +112,4 @@ and then in your `production.now.json` file add a reference to it:
 Create an account with Zeit and [install the NOW desktop client or CLI](https://zeit.co/download). Then, from the `serverless` directory deploy
 your lambda functions by running:
 
-    now
+    now --local-config=production.now.json

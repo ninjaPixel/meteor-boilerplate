@@ -2,6 +2,15 @@
   "version": 2,
   "name": "meteor-boilerplate-production",
   "public": false,
+  "routes": [
+    {
+      "src": "/lambdas/(.*)",
+      "headers": {
+        "Access-Control-Allow-Headers": "content-type",
+        "Access-Control-Allow-Origin": "https://meteor.ninjapixel.io"
+      }
+    }
+  ],
   "builds": [
     {
       "src": "./lambdas/inc.js",
