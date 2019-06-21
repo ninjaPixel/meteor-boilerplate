@@ -1,14 +1,12 @@
 const { findAll } = require('./find');
 
-const increment = async (db) => {
+const increment = async (db, amount) => {
   const docs = await findAll(db);
-  let result;
   if (docs.length === 0) {
-    await db.collection('sampleCollection').insertOne({ count: 1 });
+    await db.collection('sampleCollection').insertOne({ count: amount });
   } else {
-    const _id = docs[0]._id;
-    const count = docs[0].count;
-    await db.collection('sampleCollection').updateOne({ _id }, { $set: { count: count + 1 } });
+    const { _id, count } = docs[0];
+    await db.collection('sampleCollection').updateOne({ _id }, { $set: { count: count + amount } });
   }
   const newDocs = await findAll(db);
   return newDocs[0].count;

@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const { DB_NAME, MONGO_URL } = require('./connection');
+
 const connector = async () => {
   const client = await MongoClient.connect(
     MONGO_URL,

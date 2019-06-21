@@ -9,6 +9,7 @@
   "author": "Matt Michel",
   "license": "UNLICENSED",
   "dependencies": {
+    "lodash": "^4.17.11",
     "mongodb": "^3.2.7"
   }
 }

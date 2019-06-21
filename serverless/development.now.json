@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "name": "meteor-boilerplate-dev",
+  "public": false,
+  "routes": [
+    {
+      "src": "/lambdas/(.*)",
+      "headers": {
+        "Access-Control-Allow-Headers": "content-type",
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ],
+  "builds": [
+    {
+      "src": "./lambdas/inc.js",
+      "use": "@now/node"
+    }
+  ],
+  "env": {
+    "MONGO_URL": "mongodb://localhost:3001/meteor",
+    "DB_NAME": "meteor"
+  }
+}
