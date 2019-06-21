@@ -1,7 +1,6 @@
 const { findAll } = require('./find');
 
 const increment = async (db, amount) => {
-  console.log('amount: ', amount);
   const docs = await findAll(db);
   if (docs.length === 0) {
     await db.collection('sampleCollection').insertOne({ count: amount });

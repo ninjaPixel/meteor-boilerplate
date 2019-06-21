@@ -13,6 +13,6 @@
   ],
   "env": {
     "MONGO_URL": "@meteor-boilerplate-production-mongo_url",
-    "DB_NAME": "@meteor-boilerplate-production-mongo_url"
+    "DB_NAME": "@meteor-boilerplate-production-db_name"
   }
 }
