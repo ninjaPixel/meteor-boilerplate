@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "meteor-boilerplate-staging",
+  "public": false,
+  "builds": [
+    {
+      "src": "./lambdas/inc.js",
+      "use": "@now/node"
+    }
+  ],
+  "regions": [
+    "dub1"
+  ],
+  "env": {
+    "MONGO_URL": "@meteor-boilerplate-staging-mongo_url",
+    "DB_NAME": "@meteor-boilerplate-staging-mongo_url"
+  }
+}

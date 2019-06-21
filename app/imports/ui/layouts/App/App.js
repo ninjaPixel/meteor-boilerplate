@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { HTTP } from 'meteor/http';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Roles } from 'meteor/alanning:roles';
 import React, { Fragment } from 'react';
@@ -8,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import DeferredComponent from '../../components/DeferredComponent/DeferredComponent';
 import AppRoute from '../../components/AppRoute/AppRoute';
 import Loader from '../../components/Loading/Loading';
@@ -15,18 +17,38 @@ import Theme from '../../styles/Theme';
 import { defaultRootStyle } from '../../styles/root';
 import routes from '../../../modules/routes';
 import { SPACING, TYPE_SCALE } from '../../styles/constants';
+import snacks from '../../../modules/client/snacks';
 
-const _HomeScreen = (props) => (
+const _HomeScreen = props => (
   <div className={props.classes.root}>
     <header>
       <Typography variant="h2" className={props.classes.pageTitle}>
         Home screen
       </Typography>
     </header>
-    <Typography>Some text...</Typography>
+    <Typography gutterBottom>Some text...</Typography>
+    <Button
+      variant="outlined"
+      onClick={() => {
+        HTTP.call(
+          'POST',
+          `${Meteor.settings.public.serverless_url}/lambdas/inc.js`,
+          { data: { amount: 5 } },
+          (err, res) => {
+            if (err) {
+              snacks.handleMethodError(err);
+            } else {
+              snacks.setMessage(res.content);
+            }
+          },
+        );
+      }}
+    >
+      Run serverless function
+    </Button>
   </div>
 );
-const styles = (theme) => ({
+const styles = theme => ({
   root: defaultRootStyle(theme),
   pageTitle: {
     fontSize: TYPE_SCALE['48'],
@@ -37,9 +59,9 @@ const styles = (theme) => ({
 
 const HomeScreen = withStyles(styles)(_HomeScreen);
 
-const App = (props) => {
+const App = props => {
   const paths = () => {
-    const appRoutes = Object.keys(routes).map((key) => {
+    const appRoutes = Object.keys(routes).map(key => {
       const { path, exact, title, loginRequired, importFunction, fullScreen } = routes[key];
       return (
         <AppRoute
