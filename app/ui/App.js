@@ -9,10 +9,12 @@ import Home from './components/Home/Home';
 import FourOhFour from './components/FourOhFour/FourOhFour';
 import DeferredComponent from './components/DeferredComponent/DeferredComponent';
 import Loading from './components/Loading/Loading';
+import AppRoute from './layout/AppRoute/AppRoute';
 
 const propTypes = {
   events: PropTypes.object,
   state: PropTypes.object,
+  user: PropTypes.object,
 };
 const defaultProps = {};
 const useStyles = makeStyles(() => ({
@@ -30,24 +32,19 @@ const App = props => {
     <div className={classes.root}>
       <Router>
         <Switch>
-          <Route path="/" exact render={() => <Home {...props} />} />
-          <Route
+          <AppRoute path="/" exact component={Home} />
+          <AppRoute
             path="/big"
             exact
-            render={routeProps => (
-              <DeferredComponent
-                {...props}
-                {...routeProps}
-                loadingComponent={
-                  <Loading color="secondary" linear>
-                    Loading component
-                  </Loading>
-                }
-                importFunction={() => import('./components/Big/Big.js')}
-              />
-            )}
+            importFunction={() => import('./components/Big/Big.js')}
+            loadingComponent={
+              <Loading color="secondary" linear>
+                Loading component
+              </Loading>
+            }
+            component={DeferredComponent}
           />
-          <Route path="/" title="404" render={() => <FourOhFour {...props} />} />
+          <AppRoute path="/" title="404" component={FourOhFour} />
         </Switch>
       </Router>
     </div>
