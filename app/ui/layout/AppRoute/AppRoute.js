@@ -4,23 +4,30 @@ import { Route } from 'react-router-dom';
 import TitleBarAndNavDrawer from '../TitleBarAndNavDrawer/TitleBarAndNavDrawer';
 
 const propTypes = {
-  location: PropTypes.object.isRequired,
-  component: PropTypes.func.isRequired,
-  path: PropTypes.string.isRequired,
-  user: PropTypes.object,
-  title: PropTypes.string.isRequired,
-  exact: PropTypes.bool,
-  authenticationRoles: PropTypes.array,
   authenticationGroup: PropTypes.string,
-  loginRequired: PropTypes.bool,
+  authenticationRoles: PropTypes.array,
+  component: PropTypes.func.isRequired,
+  exact: PropTypes.bool,
   fullScreen: PropTypes.bool,
   loading: PropTypes.bool,
+  location: PropTypes.object,
+  loginRequired: PropTypes.bool,
+  path: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  user: PropTypes.object,
 };
-const defaultProps = {};
+const defaultProps = {
+  exact: false,
+  fullScreen: false,
+  loading: false,
+  location: undefined,
+  loginRequired: false,
+  title: '',
+  user: undefined,
+};
 
 const AppRoute = props => {
   const { path, exact, component, user, ...rest } = props;
-
   return (
     <Route
       path={path}
