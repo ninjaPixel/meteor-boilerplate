@@ -32,8 +32,9 @@ const App = props => {
     <div className={classes.root}>
       <Router>
         <Switch>
-          <AppRoute path="/" exact component={Home} />
+          <AppRoute title="Meteor Boilerplate" path="/" exact component={Home} />
           <AppRoute
+            title="Big page"
             path="/big"
             exact
             importFunction={() => import('./components/Big/Big.js')}
@@ -44,7 +45,7 @@ const App = props => {
             }
             component={DeferredComponent}
           />
-          <AppRoute path="/" title="404" component={FourOhFour} />
+          <AppRoute title="404 :(" path="/" component={FourOhFour} />
         </Switch>
       </Router>
     </div>

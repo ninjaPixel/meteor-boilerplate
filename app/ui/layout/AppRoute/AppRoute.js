@@ -27,13 +27,14 @@ const defaultProps = {
 };
 
 const AppRoute = props => {
-  const { path, exact, component, user, ...rest } = props;
+  const { path, exact, component, user, title, ...rest } = props;
   return (
     <Route
       path={path}
       exact={exact}
       render={routeProps => (
-        <TitleBarAndNavDrawer>
+        <TitleBarAndNavDrawer screenTitle={title}
+        >
           {React.createElement(component, {
             ...routeProps,
             ...rest,

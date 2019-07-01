@@ -13,11 +13,12 @@ const styles = makeStyles(theme => ({
     maxWidth: '100vw',
     position: 'absolute',
     display: 'flex',
+    border: `2px dashed ${theme.palette.primary.main}`,
   },
   mainContent: {
     display: 'flex',
     alignItems: 'center',
-    border: `1px dashed ${theme.palette.primary.main}`,
+    border: `1px dashed ${theme.palette.secondary.main}`,
   },
   fourOhFour: {
     display: 'flex',
@@ -28,7 +29,7 @@ const styles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
   },
   fourOhFourImage: {
-    paddingBottom: theme.spacing.unit * 3,
+    paddingBottom: theme.spacing(3),
   },
   appBar: {
     height: appBarHeightXS,
@@ -75,8 +76,8 @@ const styles = makeStyles(theme => ({
   },
   drawerHeaderImageUplodaBtn: {
     position: 'absolute',
-    top: theme.spacing.unit / 2,
-    left: theme.spacing.unit / 2,
+    top: theme.spacing(1),
+    left: theme.spacing(1),
     backgroundColor: 'black',
     color: 'white',
     opacity: 0.5,
