@@ -81,6 +81,20 @@ now dev --local-config=development.now.json --port 8080
 ```
 
 After which you are able to call those functions from your code. e.g.
+```javascript
+        HTTP.call(
+          'POST',
+          `${Meteor.settings.public.serverless_url}/lambdas/inc.js`,
+          { data: { amount: 5 } },
+          (err, res) => {
+            if (err) {
+              snacks.handleMethodError(err);
+            } else {
+              snacks.setMessage(res.content);
+            }
+          },
+        );
+```
 
 
 ### Using secrets with λ functions
@@ -113,3 +127,11 @@ Create an account with Zeit and [install the NOW desktop client or CLI](https://
 your lambda functions by running:
 
     now --local-config=production.now.json
+
+#### Teams
+Note that if you are a member of one or more teams, then you should
+run the following before deploying, to make sure that you deploy 
+to the correct team
+```bash
+now switch <team-slug|username>
+```

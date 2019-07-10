@@ -1,7 +1,5 @@
 // @flow
-import { Meteor } from 'meteor/meteor';
-
-const appUrl = Meteor.settings.public.appUrl;
+/* eslint-disable import/no-absolute-path */
 
 type CreateRouteInputType = {
   title: string,

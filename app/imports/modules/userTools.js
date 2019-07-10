@@ -1,8 +1,7 @@
-import { Meteor } from 'meteor/meteor';
-import { Roles } from 'meteor/alanning:roles';
+// import { Roles } from 'meteor/alanning:roles';
 import _ from 'lodash';
 
-const name = (user) => {
+const name = user => {
   const profileName = _.get(user, 'profile.name', false);
   if (!profileName) {
     return 'n/a';
@@ -13,14 +12,14 @@ const name = (user) => {
 const email = user => _.get(user, 'emails[0].address', 'n/a');
 const phone = user => _.get(user, 'profile.phone', 'n/a');
 
-const isSuperAdmin = user => Roles.userIsInRole(user._id, ['super-admin'], Roles.GLOBAL_GROUP);
+// const isSuperAdmin = user => Roles.userIsInRole(user._id, ['super-admin'], Roles.GLOBAL_GROUP);
 
 const _notificationDefaults = {
   // Warning: do not change the names of these fields
   // N.B. the 'notify' prop acts as the default when a user's profile does not explicitly have a prop.
   // N.B. this object is saved under users.profile.notificationPreferences
   email: {
-    invitationToACrowd: true,
+    marketing: true,
   },
 };
 
@@ -42,9 +41,6 @@ export default {
   name,
   email,
   phone,
-  isSuperAdmin,
+  // isSuperAdmin,
   notificationPreference,
 };
-
-
-

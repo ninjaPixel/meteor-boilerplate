@@ -16,7 +16,6 @@ import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary';
 import NavDrawerItems from '../../components/NavDrawerItems/NavDrawerItems';
 import Loading from '../../components/Loading/Loading';
 import GlobalSnackbar from '../../components/GlobalSnackbar/GlobalSnackbar';
-// import security from '../../../modules/security';
 import styles from './styles';
 import reactiveState from '../../../api/State/client/reactiveState';
 
@@ -61,26 +60,6 @@ class TitleBarAndNavDrawer extends React.PureComponent {
     );
 
     return drawer;
-  }
-
-  render404() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.appFrame}>
-          <div className={classes.fourOhFour}>
-            <img
-              className={classes.fourOhFourImage}
-              src="https://media.giphy.com/media/Ra4J7WCjmcnXW/giphy.gif"
-              alt="404"
-            />
-            <Typography variant="h5">We don't recognise this company.</Typography>
-            <Typography variant="h5">Check the URL, this looks like a typo.</Typography>
-          </div>
-        </div>
-      </div>
-    );
   }
 
   renderCloseIcon() {
