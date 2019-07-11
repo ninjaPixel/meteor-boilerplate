@@ -1,5 +1,5 @@
 import primary from '@material-ui/core/colors/indigo';
-import secondary from '@material-ui/core/colors/pink';
+import secondary from '@material-ui/core/colors/teal';
 import tertiary from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -17,7 +17,7 @@ const theme = createMuiTheme({
       dark: brown[800],
       contrastText: brown[800],
     },
-    type: 'light',
+    type: 'dark',
   },
   custom: {
     noLink: {

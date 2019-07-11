@@ -110,5 +110,8 @@ const styles = makeStyles(theme => ({
       marginTop: appBarHeight,
     },
   },
+  notificationBell:{
+    color: theme.palette.primary.contrastText,
+  }
 }));
 export default styles;

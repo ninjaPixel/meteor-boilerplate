@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   notificationPaper: {
     position: 'absolute',
     right: theme.spacing(1),
-    marginTop: theme.spacing(1) * -1,
+    // marginTop: theme.spacing(1) * -1,
     maxHeight: '90vh',
     height: 400,
   },

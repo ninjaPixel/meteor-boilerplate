@@ -81,7 +81,7 @@ const TitleBarAndNavDrawer = props => {
             <Typography className={classes.titleText} variant="h1" color="inherit" noWrap data-e2e="app-bar-text">
               {screenTitle}
             </Typography>
-            <NotificationBell history={history} location={location} />
+            <NotificationBell className={classes.notificationBell} history={history} location={location} />
           </Toolbar>
           {loading ? <Loading linear /> : null}
         </AppBar>
@@ -102,7 +102,7 @@ const TitleBarAndNavDrawer = props => {
             <Typography className={classes.titleText} variant="h1" color="inherit" noWrap data-e2e="app-bar-text">
               {screenTitle}
             </Typography>
-            <NotificationBell history={history} location={location} />
+            <NotificationBell className={classes.notificationBell} history={history} location={location} />
           </Toolbar>
           {loading ? <Loading linear /> : null}
         </AppBar>
