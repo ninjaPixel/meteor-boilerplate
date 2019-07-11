@@ -17,7 +17,7 @@ const theme = createMuiTheme({
       dark: brown[800],
       contrastText: brown[800],
     },
-    type: 'dark',
+    type: 'light',
   },
   custom: {
     noLink: {

@@ -30,11 +30,16 @@ const useStyles = makeStyles(theme => ({
   },
   notificationList: {
     padding: theme.spacing(3),
+    maxWidth: 400,
+    height: '100%',
+    overflowY: 'auto',
   },
   notificationPaper: {
     position: 'absolute',
     right: theme.spacing(1),
-    // top: theme.spacing(1),
+    marginTop: theme.spacing(1) * -1,
+    maxHeight: '90vh',
+    height: 400,
   },
 }));
 

@@ -17,8 +17,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
+    cursor: 'pointer',
+    padding: theme.spacing(1),
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   circle: {
+    flexGrow: 0,
+    flexShrink: 0,
     height: RADIUS,
     width: RADIUS,
     borderRadius: '50%',
@@ -46,7 +53,7 @@ const NotificationListLine = props => {
   return (
     <div className={rootClass}>
       <span className={circleClass} />
-      <Typography>{text}</Typography>
+      <Typography noWrap>{text}</Typography>
     </div>
   );
 };

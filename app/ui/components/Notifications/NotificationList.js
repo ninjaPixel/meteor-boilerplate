@@ -12,7 +12,9 @@ const defaultProps = {
 };
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    maxWidth: '100%',
+  },
 }));
 
 const NotificationList = props => {
