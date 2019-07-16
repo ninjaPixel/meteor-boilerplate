@@ -14,6 +14,7 @@ import styles from './styles';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Loading from '../../../imports/ui/components/Loading/Loading';
 import NotificationBell from '../../components/Notifications/NotificationBell';
+import NavDrawerItems from './NavDrawerItems';
 
 const propTypes = {
   children: PropTypes.element.isRequired,
@@ -64,8 +65,7 @@ const TitleBarAndNavDrawer = props => {
     const drawer = (
       <div className={classes.drawer}>
         <div className={classes.drawerHeader} />
-        Hello world
-        {/*<NavDrawerItems onNavClick={this.handleDrawerToggle} user={user} />*/}
+        <NavDrawerItems onNavClick={handleDrawerToggle} user={user} />
       </div>
     );
 

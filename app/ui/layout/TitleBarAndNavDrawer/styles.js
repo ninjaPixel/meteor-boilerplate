@@ -1,9 +1,8 @@
 import makeStyles from '@material-ui/styles/makeStyles';
-
 import { TYPE_SCALE } from '../../../imports/ui/styles/constants';
+
 const drawerWidth = 240;
 const appBarHeightXS = 56;
-
 const appBarHeight = 64;
 
 const styles = makeStyles(theme => ({
@@ -13,12 +12,13 @@ const styles = makeStyles(theme => ({
     maxWidth: '100vw',
     position: 'absolute',
     display: 'flex',
-    border: `2px dashed ${theme.palette.primary.main}`,
   },
   mainContent: {
     display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
-    border: `1px dashed ${theme.palette.secondary.main}`,
+    padding: theme.spacing(1),
   },
   fourOhFour: {
     display: 'flex',
@@ -110,8 +110,8 @@ const styles = makeStyles(theme => ({
       marginTop: appBarHeight,
     },
   },
-  notificationBell:{
+  notificationBell: {
     color: theme.palette.primary.contrastText,
-  }
+  },
 }));
 export default styles;

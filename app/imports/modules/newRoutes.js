@@ -42,11 +42,11 @@ const createRoute = ({
 };
 
 export default {
-  big: createRoute({
-    title: 'Big page',
+  dynamicImports: createRoute({
+    title: 'Dynamic imports',
     importFunction: (): Promise => import('../../ui/components/Big/Big.js'),
     exact: true,
-    path: '/big',
+    path: '/dynamic-imports',
   }),
   notifications: createRoute({
     title: 'Notifications',
