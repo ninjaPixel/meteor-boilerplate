@@ -33,13 +33,7 @@ function _NavLink(props) {
       <ListItem button data-e2e={dataE2E}>
         <ListItemIcon>{icon}</ListItemIcon>
 
-        <ListItemText
-          primary={
-            <Typography variant="caption" noWrap>
-              {text}
-            </Typography>
-          }
-        />
+        <ListItemText primary={<Typography noWrap>{text}</Typography>} />
       </ListItem>
     </Link>
   );

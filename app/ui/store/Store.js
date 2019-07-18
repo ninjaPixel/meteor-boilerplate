@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 export function StoreProvider(props) {
-  const { children, state, notifications, eventHandlers } = props;
+  const { children, state, eventHandlers } = props;
 
   const value = { state, eventHandlers };
   return <Store.Provider value={value}>{children}</Store.Provider>;

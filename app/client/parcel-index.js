@@ -42,6 +42,13 @@ const StoreComponent = () => {
     },
   };
 
+  /*
+    TODO
+    We get a lot of unecessary renders.
+    b/c of state changes
+    If we used Redux would this fix it?
+   */
+
   return (
     <StoreProvider state={state} eventHandlers={eventHandlers}>
       <App />

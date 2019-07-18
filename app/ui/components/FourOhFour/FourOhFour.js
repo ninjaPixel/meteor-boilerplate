@@ -1,20 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import makeStyles from '@material-ui/styles/makeStyles';
+import SvgUndrawPageNotFound from '../Undraw/UndrawPageNotFound';
 
 const propTypes = {};
 const defaultProps = {};
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles(theme => ({
+  root: {
+    // backgroundColor: theme.palette.common.white,
+    // padding: theme.spacing(2),
+  },
 }));
 
 const FourOhFour = props => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography>FourOhFour component.</Typography>
+      <SvgUndrawPageNotFound viewBox="0 0 1000 1000" width="300" height="300" />
+      <Typography>Sorry, we can't find that page.</Typography>
     </div>
   );
 };

@@ -24,6 +24,7 @@ const styles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100vw',
+    maxWidth: '100vw',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.palette.background.default,
