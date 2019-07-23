@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/styles/makeStyles';
-import { Store } from '../../store/Store';
 import NotificationListLine from './NotificationListLine';
+import { useStoreNotifications } from '../../hooks/reduxSelectors';
 
 const propTypes = {
   className: PropTypes.string,
@@ -20,13 +20,12 @@ const useStyles = makeStyles(() => ({
 const NotificationList = props => {
   const { className } = props;
   const classes = useStyles();
-  const { state, eventHandlers } = React.useContext(Store);
-  const { notifications } = state;
+  const notifications = useStoreNotifications();
   React.useEffect(
     () =>
       // when the component unmounts, mark the notifications as 'read'
       () => {
-        eventHandlers.notifications.setRead(notifications.map(n => n._id));
+        // eventHandlers.notifications.setRead(notifications.map(n => n._id));
       },
     [],
   );

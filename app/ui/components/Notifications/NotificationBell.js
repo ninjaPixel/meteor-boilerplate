@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Badge from '@material-ui/core/Badge';
 import Paper from '@material-ui/core/Paper';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Notifications from '@material-ui/icons/Notifications';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
-import { Store } from '../../store/Store';
 import newRoutes from '../../../imports/modules/newRoutes';
 import useWidthMUI from '../../hooks/useWidthMUI';
 import NotificationList from './NotificationList';
+import { useStoreNotifications } from "../../hooks/reduxSelectors";
 
 const propTypes = {
   className: PropTypes.string,
@@ -44,9 +44,8 @@ const useStyles = makeStyles(theme => ({
 
 const NotificationBell = props => {
   const { className, history, location } = props;
-  const { state } = React.useContext(Store);
+  const notifications = useStoreNotifications();
   const [showNotificationsPopUp, setShowNotificationsPopUp] = React.useState(false);
-  const { notifications } = state;
 
   const screenWidth = useWidthMUI();
   const unseenCount = notifications.filter(({ notificationSeen }) => !notificationSeen).length;

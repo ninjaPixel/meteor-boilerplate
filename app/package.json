@@ -2,6 +2,7 @@
   "name": "meteor-boilerplate",
   "private": true,
   "scripts": {
+    "start:ui": "parcel client/main.html",
     "start": "meteor run --settings settings-development.json",
     "production": "meteor run --production --settings settings-development.json",
     "test:unit": "TEST_CLIENT=0 meteor test --once --driver-package meteortesting:mocha --settings settings-test.json",
@@ -14,7 +15,6 @@
     "test:e2e:dev:ff": "testcafe firefox imports/testCafe/tests/*.js",
     "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
-    "start:ui": "parcel client/main.html",
     "now:dev": "cd ../serverless && now dev --local-config=development.now.json --port 8080",
     "icons:generate-undraw": "npx @svgr/cli -d ./ui/components/Undraw ../assets/undraw"
   },
@@ -27,7 +27,7 @@
     "classnames": "^2.2.6",
     "handlebars": "^4.1.2",
     "juice": "^4.3.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
     "nodemailer": "^4.7.0",
@@ -36,7 +36,9 @@
     "react-dom": "^16.8.6",
     "react-error-boundary": "^1.2.5",
     "react-filestack": "^0.9.7",
+    "react-redux": "^7.1.0-rc.1",
     "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
     "simpl-schema": "^1.5.5"
   },
   "meteor": {
