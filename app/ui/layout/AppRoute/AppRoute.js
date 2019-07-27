@@ -4,8 +4,6 @@ import { Route } from 'react-router-dom';
 import TitleBarAndNavDrawer from '../TitleBarAndNavDrawer/TitleBarAndNavDrawer';
 
 const propTypes = {
-  authenticationGroup: PropTypes.string,
-  authenticationRoles: PropTypes.array,
   component: PropTypes.func.isRequired,
   exact: PropTypes.bool,
   fullScreen: PropTypes.bool,
@@ -33,15 +31,19 @@ const AppRoute = props => {
       path={path}
       exact={exact}
       render={routeProps => {
+        const { history, match, navigation } = routeProps;
+        // TODO: move routing handling to redux
+        const routerProps = { history, match, navigation };
         const componentProps = {
-          ...routeProps,
+          // history,
+          // match,
+          // navigation,
           ...rest,
           user,
-          matt: true,
           key: 'app-route-component',
         };
         return (
-          <TitleBarAndNavDrawer screenTitle={title} {...props} {...routeProps}>
+          <TitleBarAndNavDrawer screenTitle={title} {...routerProps} {...props}>
             {React.createElement(component, componentProps)}
           </TitleBarAndNavDrawer>
         );

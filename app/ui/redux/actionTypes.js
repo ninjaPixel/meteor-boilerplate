@@ -1,1 +1,3 @@
 export const SET_NOTIFICATIONS_READ = 'SET_NOTIFICATIONS_READ';
+export const ADD_SNACK = 'ADD_SNACK';
+export const REMOVE_SNACK = 'REMOVE_SNACK';
