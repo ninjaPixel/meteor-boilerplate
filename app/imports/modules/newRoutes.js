@@ -44,7 +44,7 @@ const createRoute = ({
 export default {
   dynamicImports: createRoute({
     title: 'Dynamic imports',
-    importFunction: (): Promise => import('../../ui/components/Big/Big.js'),
+    importFunction: (): Promise => import('../../ui/screens/DynamicImports/DynamicImports.js'),
     exact: true,
     path: '/dynamic-imports',
   }),
@@ -54,5 +54,11 @@ export default {
     exact: true,
     fullScreen: true,
     path: '/notifications',
+  }),
+  typography: createRoute({
+    title: 'Typography',
+    importFunction: (): Promise => import('../../ui/screens/Typography/Typography.js'),
+    exact: true,
+    path: '/typography',
   }),
 };

@@ -121,15 +121,15 @@ const NavDrawerItems = props => {
       text: routes.dynamicImports.title,
       onNavClick,
       icon: <ImportantDevices />,
-      dataE2E: 'nav-page-1',
+      dataE2E: `nav-page-${routes.dynamicImports.title}`,
     },
-    // {
-    //   to: routes.typography.getPath(),
-    //   text: routes.typography.title,
-    //   onNavClick: props.onNavClick,
-    //   icon: <ShortText />,
-    //   dataE2E: 'nav-page-2',
-    // },
+    {
+      to: routes.typography.getPath(),
+      text: routes.typography.title,
+      onNavClick,
+      icon: <ShortText />,
+      dataE2E: `nav-page-${routes.dynamicImports.title}`,
+    },
   ];
 
   return (

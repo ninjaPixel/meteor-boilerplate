@@ -8,6 +8,13 @@ const fontWeightLight = 200;
 const fontWeightRegular = 200;
 const fontWeightMedium = 400;
 const theme = createMuiTheme({
+  /*
+    there are 16 units of spacing.
+    '1' is the default 8px.
+    '0' (4px) should only be used for icon related stuff.
+    Note that the scale is not linear.
+   */
+  spacing: factor => [4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 769][factor],
   palette: {
     primary,
     secondary,

@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import baseTheme from './styles/theme';
-import Home from './components/Home/Home';
+import Home from './screens/Home/Home';
 import DeferredComponent from './components/DeferredComponent/DeferredComponent';
 import Loading from './components/Loading/Loading';
 import AppRoute from './layout/AppRoute/AppRoute';

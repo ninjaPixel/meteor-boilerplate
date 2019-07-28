@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
 import BigIcon from '@material-ui/icons/DirectionsBus';
 
-import LinkButton from '../LinkButton/LinkButton';
+import LinkButton from '../../components/LinkButton/LinkButton';
 
 const propTypes = {};
 const defaultProps = {};

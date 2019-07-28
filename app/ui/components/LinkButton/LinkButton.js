@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// todo: change this to our own Link component
 import { Link, withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/styles/makeStyles';
