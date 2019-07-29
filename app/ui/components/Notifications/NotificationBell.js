@@ -25,18 +25,18 @@ const defaultProps = {
 const useStyles = makeStyles(theme => ({
   root: {},
   margin: {
-    margin: theme.spacing(2),
-    marginRight: theme.spacing(3),
+    margin: theme.spacing(3),
+    marginRight: theme.spacing(4),
   },
   notificationList: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     maxWidth: 400,
     height: '100%',
     overflowY: 'auto',
   },
   notificationPaper: {
     position: 'absolute',
-    right: theme.spacing(1),
+    right: theme.spacing(2),
     maxHeight: '90vh',
     height: 400,
   },

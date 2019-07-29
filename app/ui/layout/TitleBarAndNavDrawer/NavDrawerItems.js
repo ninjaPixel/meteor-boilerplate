@@ -14,7 +14,7 @@ import ImportantDevices from '@material-ui/icons/ImportantDevices';
 import Lock from '@material-ui/icons/Lock';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import AccountBox from '@material-ui/icons/AccountBox';
-import Gavel from '@material-ui/icons/Gavel';
+import Style from '@material-ui/icons/Style';
 import ShortText from '@material-ui/icons/ShortText';
 import routes from '../../../imports/modules/newRoutes';
 
@@ -117,10 +117,10 @@ const NavDrawerItems = props => {
   const links = [
     { to: '/', text: 'Home', onNavClick, icon: <Home />, dataE2E: 'nav-page-home' },
     {
-      to: routes.dynamicImports.getPath(),
-      text: routes.dynamicImports.title,
+      to: routes.styling.getPath(),
+      text: routes.styling.title,
       onNavClick,
-      icon: <ImportantDevices />,
+      icon: <Style />,
       dataE2E: `nav-page-${routes.dynamicImports.title}`,
     },
     {
@@ -128,6 +128,13 @@ const NavDrawerItems = props => {
       text: routes.typography.title,
       onNavClick,
       icon: <ShortText />,
+      dataE2E: `nav-page-${routes.dynamicImports.title}`,
+    },
+    {
+      to: routes.dynamicImports.getPath(),
+      text: routes.dynamicImports.title,
+      onNavClick,
+      icon: <ImportantDevices />,
       dataE2E: `nav-page-${routes.dynamicImports.title}`,
     },
   ];

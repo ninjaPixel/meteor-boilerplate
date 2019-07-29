@@ -18,7 +18,7 @@ const styles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
   },
   fourOhFour: {
     display: 'flex',
@@ -30,7 +30,7 @@ const styles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
   },
   fourOhFourImage: {
-    paddingBottom: theme.spacing(3),
+    paddingBottom: theme.spacing(4),
   },
   toolbar: {
     justifyContent: 'space-between',
@@ -87,8 +87,8 @@ const styles = makeStyles(theme => ({
   },
   drawerHeaderImageUplodaBtn: {
     position: 'absolute',
-    top: theme.spacing(1),
-    left: theme.spacing(1),
+    top: theme.spacing(2),
+    left: theme.spacing(2),
     backgroundColor: 'black',
     color: 'white',
     opacity: 0.5,

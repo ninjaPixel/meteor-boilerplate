@@ -10,7 +10,7 @@ const defaultProps = {};
 const useStyles = makeStyles(theme => ({
   root: {
     // backgroundColor: theme.palette.common.white,
-    // padding: theme.spacing(2),
+    // padding: theme.spacing(3),
   },
 }));
 

@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import ReactErrorBoundary from 'react-error-boundary';
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(),
+    padding: theme.spacing(3),
     width: '100%',
     height: '100%',
   },

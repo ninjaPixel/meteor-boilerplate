@@ -13,30 +13,27 @@ const defaultProps = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(2, 0),
-    padding: theme.spacing(3),
-    backgroundColor: theme.palette.tertiary.main,
-    border: `2px solid ${theme.palette.tertiary.dark}`,
-    borderRadius: theme.spacing(2),
-  },
-  type: {
-    color: theme.palette.tertiary.contrastText,
+    backgroundColor: theme.palette.grey[200],
+    color: theme.palette.grey[800],
+    fontWeight: theme.typography.fontWeightMedium,
+    padding: theme.spacing(0, 1),
+    borderRadius: theme.spacing(1),
   },
 }));
 
-const Well = props => {
+const InlineCode = props => {
   const { className, children } = props;
   const classes = useStyles();
   const rootClass = className || classes.root;
   return (
-    <div className={rootClass}>
-      <Typography className={classes.type}>{children}</Typography>
-    </div>
+    <Typography className={rootClass} component="span">
+      {children}
+    </Typography>
   );
 };
 
-Well.propTypes = propTypes;
+InlineCode.propTypes = propTypes;
 
-Well.defaultProps = defaultProps;
+InlineCode.defaultProps = defaultProps;
 
-export default Well;
+export default InlineCode;

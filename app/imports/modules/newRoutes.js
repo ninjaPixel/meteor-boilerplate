@@ -61,4 +61,10 @@ export default {
     exact: true,
     path: '/typography',
   }),
+  styling: createRoute({
+    title: 'Styling',
+    importFunction: (): Promise => import('../../ui/screens/Styling/Styling.js'),
+    exact: true,
+    path: '/styling',
+  }),
 };

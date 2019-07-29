@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     width: RADIUS,
     borderRadius: '50%',
     display: 'inline-block',
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
   },
   emptyCircle: {
     border: `1px solid ${theme.palette.text.primary}`,

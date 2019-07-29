@@ -18,7 +18,11 @@ const defaultProps = {
 const useStyles = makeStyles(theme => ({
   root: {
     textDecoration: 'none',
-    color: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
+    borderBottom: `1px solid ${theme.palette.primary.main}`,
+    // backgroundColor: theme.palette.primary.main,
+    // color: 'white',
+    // padding: theme.spacing(0, 0),
   },
 }));
 
@@ -36,7 +40,7 @@ const LinkComponent = props => {
   }
   return (
     <Link className={rootClass} to={to}>
-      <Typography>{children}</Typography>
+      <Typography component="span">{children}</Typography>
     </Link>
   );
 };
