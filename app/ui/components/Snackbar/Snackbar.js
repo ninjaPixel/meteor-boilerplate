@@ -12,6 +12,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import { actionCloseSnack } from '../../redux/actions';
 
 const variantIcon = {
@@ -38,15 +39,22 @@ const useStyles1 = makeStyles(theme => ({
     backgroundColor: amber[50],
     color: amber[900],
   },
+  snackContentRoot: {
+    flexWrap: 'nowrap',
+    // alignItems: 'flex-start',
+  },
   icon: {
     fontSize: 20,
   },
   iconVariant: {
     marginRight: theme.spacing(2),
   },
-  message: {
+  messageContainer: {
     display: 'flex',
     alignItems: 'center',
+    fontSize: theme.typography.h6.fontSize,
+  },
+  message: {
     fontSize: theme.typography.h6.fontSize,
   },
 }));
@@ -68,11 +76,12 @@ function MySnackbarContentWrapper(props) {
   return (
     <SnackbarContent
       className={rootClass}
+      classes={{ root: classes.snackContentRoot }}
       aria-describedby="client-snackbar"
       message={
-        <span id="client-snackbar" className={classes.message}>
+        <span id="client-snackbar" className={classes.messageContainer}>
           <Icon className={iconClass} />
-          {message}
+          <Typography className={classes.message}>{message}</Typography>
         </span>
       }
       action={[

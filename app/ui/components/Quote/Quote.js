@@ -15,7 +15,7 @@ const defaultProps = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(2, 4),
+    padding: theme.spacing(1, 4),
     borderLeft: `2px solid ${theme.palette.text.secondary}`,
   },
   author: {
@@ -29,7 +29,9 @@ const Quote = props => {
   const rootClass = className || classes.root;
   return (
     <div className={rootClass}>
-      <Typography variant="body1">{children}</Typography>
+      <Typography variant="body1" gutterBottom>
+        {children}
+      </Typography>
       <Typography variant="caption">{author}</Typography>
     </div>
   );
