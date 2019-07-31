@@ -11,15 +11,20 @@ const defaultProps = {
   className: undefined,
 };
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: theme.palette.grey[200],
-    color: theme.palette.grey[800],
-    fontWeight: theme.typography.fontWeightMedium,
-    padding: theme.spacing(0, 1),
-    borderRadius: theme.spacing(1),
-  },
-}));
+const useStyles = makeStyles(theme => {
+  const { type } = theme.palette;
+  const backgroundColor = type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800];
+  const color = type === 'light' ? theme.palette.grey[800] : theme.palette.grey[100];
+  return {
+    root: {
+      backgroundColor,
+      color,
+      fontWeight: theme.typography.fontWeightMedium,
+      padding: theme.spacing(0, 1),
+      borderRadius: theme.spacing(1),
+    },
+  };
+});
 
 const InlineCode = props => {
   const { className, children } = props;

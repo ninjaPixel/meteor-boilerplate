@@ -15,16 +15,17 @@ const defaultProps = {
   target: '_self',
 };
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    textDecoration: 'none',
-    color: theme.palette.primary.main,
-    borderBottom: `1px solid ${theme.palette.primary.main}`,
-    // backgroundColor: theme.palette.primary.main,
-    // color: 'white',
-    // padding: theme.spacing(0, 0),
-  },
-}));
+const useStyles = makeStyles(theme => {
+  const { type } = theme.palette;
+  const color = type === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark;
+  return {
+    root: {
+      textDecoration: 'none',
+      color,
+      borderBottom: `1px solid ${color}`,
+    },
+  };
+});
 
 const LinkComponent = props => {
   const { className, to, target, children } = props;
