@@ -13,7 +13,7 @@ export const actionAddSnack = ({ dispatch, message, variant = 'default' }) => {
     payload: {
       message,
       variant,
-      _id: Date.now(),
+      _id: Date.now().toString(),
       time: new Date(),
       open: true,
     },

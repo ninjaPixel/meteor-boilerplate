@@ -65,7 +65,7 @@ const UserFeedback = props => {
           of lack of control, which can be unsettling.
         </Quote>
         <Typography component="div">
-          This boilerplate includes a few different flavours of snacks. Hit the buttons below to try them out.
+          This boilerplate includes a few different flavours of 'snacks'. Hit the buttons below to try them out.
         </Typography>
         <div className={classes.buttonGrid}>
           <Button
@@ -74,7 +74,7 @@ const UserFeedback = props => {
             onClick={() => {
               actionAddSnack({
                 dispatch,
-                message: 'This is an info snack',
+                message: 'This is an info message',
                 variant: 'info',
               });
             }}
@@ -87,7 +87,7 @@ const UserFeedback = props => {
             onClick={() => {
               actionAddSnack({
                 dispatch,
-                message: 'This is an error snack',
+                message: 'This is an error message',
                 variant: 'error',
               });
             }}
@@ -100,7 +100,7 @@ const UserFeedback = props => {
             onClick={() => {
               actionAddSnack({
                 dispatch,
-                message: 'This is a success snack',
+                message: 'This is a success message',
                 variant: 'success',
               });
             }}
@@ -113,7 +113,7 @@ const UserFeedback = props => {
             onClick={() => {
               actionAddSnack({
                 dispatch,
-                message: 'And this is a warning snack',
+                message: 'And this is a warning message',
                 variant: 'warning',
               });
             }}

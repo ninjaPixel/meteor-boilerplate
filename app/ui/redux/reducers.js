@@ -16,26 +16,24 @@ const setReadNotificationsRead = (arrayOfNotificationIds, state) => {
   return clonedState;
 };
 
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case SET_NOTIFICATIONS_READ:
-      return setReadNotificationsRead(action.payload._ids, state);
-    case ADD_NOTIFICATION:
-      return {
-        ...state,
-        notifications: [action.payload, ...state.notifications],
-      };
-    case ADD_SNACK:
-      return {
-        ...state,
-        snacks: [action.payload, ...state.snacks],
-      };
-    case CLOSE_SNACK:
-      return {
-        ...state,
-        snacks: state.snacks.filter(snack => snack._id !== action.payload._id),
-      };
-    default:
-      return state;
-  }
+export default function reducers(state = initialState, action) {
+  /* eslint no-param-reassign:0 default-case:0 */
+  return produce(state, draft => {
+    switch (action.type) {
+      case SET_NOTIFICATIONS_READ:
+        action.payload._ids.forEach(_id => {
+          _.find(draft.notifications, { _id }).notificationSeen = true;
+        });
+        break;
+      case ADD_NOTIFICATION:
+        draft.notifications = [action.payload, ...draft.notifications];
+        break;
+      case ADD_SNACK:
+        draft.snacks = [action.payload, ...draft.snacks];
+        break;
+      case CLOSE_SNACK:
+        _.find(draft.snacks, { _id: action.payload._id }).open = false;
+        break;
+    }
+  });
 }
