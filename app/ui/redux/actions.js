@@ -1,31 +1,35 @@
-import { ADD_NOTIFICATION, ADD_SNACK, REMOVE_SNACK, SET_NOTIFICATIONS_READ } from './actionTypes';
+import { ADD_NOTIFICATION, ADD_SNACK, CLOSE_SNACK, SET_NOTIFICATIONS_READ } from './actionTypes';
 
-export const actionSetNotificationsRead = ({ dispatch, ids }) => {
+export const actionSetNotificationsRead = ({ dispatch, _ids }) => {
   dispatch({
     type: SET_NOTIFICATIONS_READ,
-    ids,
+    payload: { _ids },
   });
 };
 
-export const actionAddSnack = ({ dispatch, message, variant = 'info' }) => {
+export const actionAddSnack = ({ dispatch, message, variant = 'default' }) => {
   dispatch({
     type: ADD_SNACK,
-    message,
-    variant,
-    id: Date.now(),
+    payload: {
+      message,
+      variant,
+      _id: Date.now(),
+      time: new Date(),
+      open: true,
+    },
   });
 };
 
-export const actionRemoveSnack = ({ dispatch, id }) => {
+export const actionCloseSnack = ({ dispatch, _id }) => {
   dispatch({
-    type: REMOVE_SNACK,
-    id,
+    type: CLOSE_SNACK,
+    payload: { _id },
   });
 };
 
 export const actionAddNotification = ({ dispatch, message }) => {
   dispatch({
     type: ADD_NOTIFICATION,
-    payload: { message, time: new Date(), notificationSeen: false, itemSeen: false, _id: new Date().toISOString() },
+    payload: { message, time: Date.now(), notificationSeen: false, itemSeen: false, _id: Date.now() },
   });
 };

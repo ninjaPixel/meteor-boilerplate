@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/styles/makeStyles';
 import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
 import InlineCode from '../../components/InlineCode/InlineCode';
-import { actionAddNotification } from '../../redux/actions';
+import { actionAddNotification, actionAddSnack } from '../../redux/actions';
+import Quote from '../../components/Quote/Quote';
 
 const propTypes = {
   className: PropTypes.string,
@@ -22,6 +23,13 @@ const useStyles = makeStyles(theme => ({
   },
   section: {
     ...stackStyle(theme),
+  },
+  buttonGrid: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(2),
+    },
   },
 }));
 
@@ -52,6 +60,67 @@ const UserFeedback = props => {
       </div>
       <div className={classes.section}>
         <Typography variant="h2">Alerts</Typography>
+        <Quote author="Don Norman. The Design of Everyday Things">
+          Feedback provides reassurance, even when it indicates a negative result. A lack of feedback creates a feeling
+          of lack of control, which can be unsettling.
+        </Quote>
+        <Typography component="div">
+          This boilerplate includes a few different flavours of snacks. Hit the buttons below to try them out.
+        </Typography>
+        <div className={classes.buttonGrid}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              actionAddSnack({
+                dispatch,
+                message: 'This is an info snack',
+                variant: 'info',
+              });
+            }}
+          >
+            Info
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              actionAddSnack({
+                dispatch,
+                message: 'This is an error snack',
+                variant: 'error',
+              });
+            }}
+          >
+            Error
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              actionAddSnack({
+                dispatch,
+                message: 'This is a success snack',
+                variant: 'success',
+              });
+            }}
+          >
+            Success
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              actionAddSnack({
+                dispatch,
+                message: 'And this is a warning snack',
+                variant: 'warning',
+              });
+            }}
+          >
+            Warning
+          </Button>
+        </div>
       </div>
     </div>
   );

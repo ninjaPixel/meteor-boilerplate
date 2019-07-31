@@ -18,7 +18,7 @@ const EmptyState = props => {
         There's nothing here
       </Typography>
       <SvgUndrawEmpty viewBox="0 0 1000 1000" width="300" height="300" />
-      <Typography>When friends share new things, or comment on your posts, you'll get notified here.</Typography>
+      <Typography>Explanation of when you'll receive notifications.</Typography>
     </div>
   );
 };

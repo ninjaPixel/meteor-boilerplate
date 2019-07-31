@@ -1,3 +1,5 @@
+/* eslint react/jsx-one-expression-per-line:0 */
+
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -29,8 +31,9 @@ const DynamicImports = () => {
       <Well>{theTime}</Well>
       <Typography>
         All of the App's routes (apart from " / " and the 404) are loaded dynamically (see the{' '}
-        <InlineCode>importFunction</InlineCode> in <InlineCode>app/ui/App.js</InlineCode>). You don't need to do any
-        extra work to make use of this feature.
+        <InlineCode>importFunction</InlineCode> in <InlineCode>app/ui/App.js</InlineCode>). Declare all your routes in
+        the <InlineCode>app/imports/modules/newRoutes.js</InlineCode>
+        to register all your routes and take advantage of dynamic loading.
       </Typography>
     </div>
   );

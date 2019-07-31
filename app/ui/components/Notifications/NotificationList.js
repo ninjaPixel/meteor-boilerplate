@@ -30,7 +30,7 @@ const NotificationList = props => {
     () =>
       // when the component unmounts, mark the notifications as 'read'
       () => {
-        actionSetNotificationsRead({ dispatch, ids: notifications.map(n => n._id) });
+        actionSetNotificationsRead({ dispatch, _ids: notifications.map(n => n._id) });
       },
     [],
   );
