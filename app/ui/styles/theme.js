@@ -4,6 +4,8 @@ import tertiary from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 import { createMuiTheme } from '@material-ui/core/styles';
 
+const SERIF_FONT = ['"Rokkitt"', 'monospace'].join(',');
+const SANS_SERIF_FONT = ['"Titillium Web"', 'sans-serif'].join(',');
 const fontWeightLight = 200;
 const fontWeightRegular = 200;
 const fontWeightMedium = 400;
@@ -32,12 +34,20 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: ['"Rokkitt"', 'monospace'].join(','),
+    fontFamily: SERIF_FONT,
     fontWeightLight,
     fontWeightRegular,
     fontWeightMedium,
     h1: {
       fontWeight: fontWeightLight,
+    },
+    body1: {
+      fontFamily: SANS_SERIF_FONT,
+      fontWeight: fontWeightMedium,
+    },
+    body2: {
+      fontFamily: SANS_SERIF_FONT,
+      fontWeight: fontWeightRegular,
     },
     fontSize: 16,
     /*
