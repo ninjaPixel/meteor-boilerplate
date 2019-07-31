@@ -10,7 +10,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import newRoutes from '../../../imports/modules/newRoutes';
 import useWidthMUI from '../../hooks/useWidthMUI';
 import NotificationList from './NotificationList';
-import { useStoreNotifications } from "../../hooks/reduxSelectors";
+import { useStoreNotifications } from '../../hooks/reduxSelectors';
 
 const propTypes = {
   className: PropTypes.string,
@@ -31,14 +31,16 @@ const useStyles = makeStyles(theme => ({
   notificationList: {
     padding: theme.spacing(4),
     maxWidth: 400,
+    minWidth: 200,
     height: '100%',
     overflowY: 'auto',
   },
   notificationPaper: {
     position: 'absolute',
     right: theme.spacing(2),
-    maxHeight: '90vh',
-    height: 400,
+    minHeight: theme.spacing(10),
+    maxHeight: theme.spacing(15),
+    overflowY: 'auto',
   },
 }));
 

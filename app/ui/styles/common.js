@@ -30,15 +30,21 @@ export const responsivePaperTitleStyle = theme => ({
   marginBottom: theme.spacing(2),
 });
 
-export const spacedContentStyle = theme => ({
+export const stackStyle = theme => ({
   '& > * + *': {
     marginTop: theme.spacing(3),
+  },
+});
+
+export const stackStyleLG = theme => ({
+  '& > * + *': {
+    marginTop: theme.spacing(8),
   },
 });
 
 export const documentLayoutStyle = theme => ({
   flex: 1,
   maxWidth: theme.spacing(15),
-  ...spacedContentStyle(theme),
+  ...stackStyle(theme),
   marginTop: theme.spacing(5),
 });

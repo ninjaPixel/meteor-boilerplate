@@ -16,6 +16,7 @@ import ExitToApp from '@material-ui/icons/ExitToApp';
 import AccountBox from '@material-ui/icons/AccountBox';
 import Style from '@material-ui/icons/Style';
 import ShortText from '@material-ui/icons/ShortText';
+import UserFeedbackIcon from '@material-ui/icons/Vibration';
 import routes from '../../../imports/modules/newRoutes';
 
 const navLinkStyles = makeStyles(theme => ({
@@ -121,14 +122,14 @@ const NavDrawerItems = props => {
       text: routes.styling.title,
       onNavClick,
       icon: <Style />,
-      dataE2E: `nav-page-${routes.dynamicImports.title}`,
+      dataE2E: `nav-page-${routes.styling.title}`,
     },
     {
       to: routes.typography.getPath(),
       text: routes.typography.title,
       onNavClick,
       icon: <ShortText />,
-      dataE2E: `nav-page-${routes.dynamicImports.title}`,
+      dataE2E: `nav-page-${routes.typography.title}`,
     },
     {
       to: routes.dynamicImports.getPath(),
@@ -136,6 +137,13 @@ const NavDrawerItems = props => {
       onNavClick,
       icon: <ImportantDevices />,
       dataE2E: `nav-page-${routes.dynamicImports.title}`,
+    },
+    {
+      to: routes.userFeedback.getPath(),
+      text: routes.userFeedback.title,
+      onNavClick,
+      icon: <UserFeedbackIcon />,
+      dataE2E: `nav-page-${routes.userFeedback.title}`,
     },
   ];
 

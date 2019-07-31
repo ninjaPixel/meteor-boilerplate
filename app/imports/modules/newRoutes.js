@@ -67,4 +67,10 @@ export default {
     exact: true,
     path: '/styling',
   }),
+  userFeedback: createRoute({
+    title: 'User Feedback',
+    importFunction: (): Promise => import('../../ui/screens/UserFeedback/UserFeedback.js'),
+    exact: true,
+    path: '/userfeedback',
+  }),
 };

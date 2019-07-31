@@ -43,17 +43,14 @@ const useStyles = makeStyles(theme => ({
 
 const NotificationListLine = props => {
   const { className, notification } = props;
-  const { author, type, thing, notificationSeen } = notification;
-  const name = userTools.name(author);
-  const action = type === 'rating' ? 'shared' : 'commented on';
-  const text = `${name} ${action} ${thing.name}`;
+  const { message, notificationSeen } = notification;
   const classes = useStyles();
   const rootClass = className || classes.root;
   const circleClass = `${classes.circle} ${notificationSeen ? classes.emptyCircle : classes.filledCircle}`;
   return (
     <div className={rootClass}>
       <span className={circleClass} />
-      <Typography noWrap>{text}</Typography>
+      <Typography noWrap>{message}</Typography>
     </div>
   );
 };

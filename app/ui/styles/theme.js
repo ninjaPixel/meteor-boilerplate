@@ -40,9 +40,10 @@ const theme = createMuiTheme({
       fontWeight: fontWeightLight,
     },
     fontSize: 16,
-    // Tell Material-UI what's the font-size on the html element.
-    // 16px is the default font-size used by browsers.
-    htmlFontSize: 16,
+    /*
+      Please, never override the browser font size!
+      htmlFontSize: 16, // don't set this field!
+    */
   },
 });
 

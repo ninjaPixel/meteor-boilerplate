@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import NotificationListLine from './NotificationListLine';
 import { useStoreNotifications } from '../../hooks/reduxSelectors';
 import { actionSetNotificationsRead } from '../../redux/actions';
+import EmptyState from './EmptyState';
 
 const propTypes = {
   className: PropTypes.string,
@@ -29,7 +30,6 @@ const NotificationList = props => {
     () =>
       // when the component unmounts, mark the notifications as 'read'
       () => {
-        // eventHandlers.notifications.setRead(notifications.map(n => n._id));
         actionSetNotificationsRead({ dispatch, ids: notifications.map(n => n._id) });
       },
     [],
@@ -37,9 +37,11 @@ const NotificationList = props => {
   const rootClass = className || classes.root;
   return (
     <div className={rootClass}>
-      {notifications.map(notification => (
-        <NotificationListLine key={notification._id} notification={notification} />
-      ))}
+      {notifications.length ? (
+        notifications.map(notification => <NotificationListLine key={notification._id} notification={notification} />)
+      ) : (
+        <EmptyState />
+      )}
     </div>
   );
 };

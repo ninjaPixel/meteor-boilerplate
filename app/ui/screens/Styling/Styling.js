@@ -38,7 +38,7 @@ const TypographyScreen = props => {
       <Typography>
         Individual components are styled using JSS. You should create the JSS classes you need to style your components
         within the actual component's file. This nicely encapsulates your styling and means that you can safely modify
-        style rules without knowing if it'll affect other components (and common problem when using regular CSS).
+        style rules without knowing if it'll affect other components (a common problem when using regular CSS).
       </Typography>
       <Typography>
         There are some common styling rules defined in <InlineCode>app/ui/styles/common.js</InlineCode>, which you can

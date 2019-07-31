@@ -1,6 +1,5 @@
 import _ from 'lodash';
-import sampleNotificationData from '../components/Notifications/sampleData';
-import { ADD_SNACK, SET_NOTIFICATIONS_READ } from './actionTypes';
+import { ADD_NOTIFICATION, ADD_SNACK, SET_NOTIFICATIONS_READ } from './actionTypes';
 
 const initialState = {
   snacks: [
@@ -10,7 +9,7 @@ const initialState = {
       error: false,
     },
   ],
-  notifications: sampleNotificationData,
+  notifications: [],
 };
 
 const setReadNotificationsRead = (arrayOfNotificationIds, state) => {
@@ -25,8 +24,11 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case SET_NOTIFICATIONS_READ:
       return setReadNotificationsRead(action.ids, state);
-    case ADD_SNACK:
-
+    case ADD_NOTIFICATION:
+      return {
+        ...state,
+        notifications: [action.payload, ...state.notifications],
+      };
     default:
       return state;
   }
