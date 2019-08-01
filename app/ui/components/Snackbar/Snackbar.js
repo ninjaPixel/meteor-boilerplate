@@ -26,18 +26,22 @@ const useStyles1 = makeStyles(theme => ({
   success: {
     backgroundColor: green[50],
     color: green[800],
+    border: `2px solid ${green[900]}`,
   },
   error: {
     backgroundColor: red[50],
     color: red[800],
+    border: `2px solid ${red[900]}`,
   },
   info: {
     backgroundColor: lightBlue[50],
     color: lightBlue[800],
+    border: `2px solid ${lightBlue[900]}`,
   },
   warning: {
     backgroundColor: amber[50],
     color: amber[900],
+    border: `2px solid ${amber[900]}`,
   },
   snackContentRoot: {
     flexWrap: 'nowrap',
@@ -52,10 +56,9 @@ const useStyles1 = makeStyles(theme => ({
   messageContainer: {
     display: 'flex',
     alignItems: 'center',
-    fontSize: theme.typography.h6.fontSize,
   },
   message: {
-    fontSize: theme.typography.h6.fontSize,
+    // fontSize: theme.typography.h6.fontSize,
   },
 }));
 
