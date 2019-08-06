@@ -73,4 +73,10 @@ export default {
     exact: true,
     path: '/userfeedback',
   }),
+  login: createRoute({
+    title: 'Login',
+    importFunction: (): Promise => import('../../ui/components/LoginForm/LoginForm.js'),
+    exact: true,
+    path: '/login',
+  }),
 };

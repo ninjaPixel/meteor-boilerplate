@@ -7,15 +7,19 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { paperStyle, responsivePaperTitleStyle } from '../../styles/common';
 
 const propTypes = {
-  classes: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
+  classes: PropTypes.object.isRequired,
+  paperClassName: PropTypes.string,
   title: PropTypes.string,
+  width: PropTypes.string.isRequired,
 };
 
-const defaultProps = {};
+const defaultProps = {
+  paperClassName: undefined,
+  title: undefined,
+};
 
-const ResponsivePaper = (props) => {
+const ResponsivePaper = props => {
   const { classes, width, children, paperClassName, title } = props;
   if (isWidthUp('sm', width)) {
     return (
@@ -41,7 +45,7 @@ ResponsivePaper.propTypes = propTypes;
 
 ResponsivePaper.defaultProps = defaultProps;
 
-const style = (theme) => ({
+const style = theme => ({
   paper: paperStyle(theme),
   title: responsivePaperTitleStyle(theme),
 });
