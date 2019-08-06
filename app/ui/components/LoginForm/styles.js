@@ -1,12 +1,11 @@
 const style = theme => ({
   form: {
-    width: '100%',
+    width: theme.spacing(13),
+    maxWidth: '100%',
     padding: theme.spacing(4),
     [theme.breakpoints.up('sm')]: {
       padding: 0,
-      width: theme.spacing(15),
     },
-    maxWidth: '100%',
     minHeight: '100%',
     display: 'flex',
     flexDirection: 'column',

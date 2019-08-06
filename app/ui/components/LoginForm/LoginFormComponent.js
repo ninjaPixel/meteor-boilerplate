@@ -22,7 +22,8 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    flex: 1,
+    // flex: 1,
+    width: '100%',
   },
   legal: {
     marginTop: theme.spacing.unit * 2.5,
