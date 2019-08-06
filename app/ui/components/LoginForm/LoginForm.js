@@ -22,7 +22,16 @@ const LoginForm = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
   const rootClass = className || classes.root;
-  return <LoginFormComponent {...rest} />;
+
+  return (
+    <LoginFormComponent
+      {...rest}
+      onCreateUser={() => {}}
+      onCheckIfEmailExists={() => {}}
+      onLogin={() => {}}
+      onSendPasswordResetEmail={() => {}}
+    />
+  );
 };
 
 LoginForm.propTypes = propTypes;

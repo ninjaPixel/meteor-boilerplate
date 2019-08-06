@@ -9,7 +9,6 @@ export const commonProps = {
     loginButtonText: PropTypes.string,
     registerButtonText: PropTypes.string,
     disableAutoFocus: PropTypes.bool,
-    location: PropTypes.object.isRequired,
   },
   defaultProps: {
     user: null,

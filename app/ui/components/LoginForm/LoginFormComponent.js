@@ -26,8 +26,7 @@ const styles = theme => ({
     width: '100%',
   },
   legal: {
-    marginTop: theme.spacing.unit * 2.5,
-    marginBottom: theme.spacing.unit * 2,
+    margin: theme.spacing(2, 0),
     alignSelf: 'flex-start',
   },
   ...loginFormStyles(theme),
@@ -35,7 +34,15 @@ const styles = theme => ({
   paper: paperStyle(theme),
   button: buttonStyle(theme),
 });
-
+const propTypes = {
+  classes: PropTypes.object.isRequired,
+  ...commonProps.propTypes,
+  onCreateUser: PropTypes.func.isRequired,
+  onCheckIfEmailExists: PropTypes.func.isRequired,
+  onSendPasswordResetEmail: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+};
 class LoginFormComponent extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -48,7 +55,6 @@ class LoginFormComponent extends React.PureComponent {
       last: '',
       phone: '',
       loading: false,
-      loadingMessage: '',
       newAccountCreated: false,
       errorMessage: '',
       authenticationErrorMessage: '',
@@ -56,7 +62,6 @@ class LoginFormComponent extends React.PureComponent {
       termsAccepted: false,
       showLegalModal: false,
     };
-    this.handleChange('email')({ target: { value: props.email } });
 
     this.handleCompleteRegistrationSubmit = this.handleCompleteRegistrationSubmit.bind(this);
     this.onSubmitLoginForm = this.onSubmitLoginForm.bind(this);
@@ -402,15 +407,6 @@ class LoginFormComponent extends React.PureComponent {
   }
 }
 
-LoginFormComponent.propTypes = {
-  classes: PropTypes.object.isRequired,
-  ...commonProps.propTypes,
-  onCreateUser: PropTypes.func.isRequired,
-  onCheckIfEmailExists: PropTypes.func.isRequired,
-  onSendPasswordResetEmail: PropTypes.func.isRequired,
-  onLogin: PropTypes.func.isRequired,
-};
-
-LoginFormComponent.defaultProps = {};
+LoginFormComponent.propTypes = propTypes;
 
 export default withStyles(styles)(withRouter(LoginFormComponent));
