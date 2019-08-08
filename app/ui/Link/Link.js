@@ -18,11 +18,23 @@ const defaultProps = {
 const useStyles = makeStyles(theme => {
   const { type } = theme.palette;
   const color = type === 'dark' ? theme.palette.primary.light : theme.palette.primary.dark;
+  const color2 = theme.palette.secondary.main;
   return {
     root: {
       textDecoration: 'none',
-      color,
-      borderBottom: `1px solid ${color}`,
+      color: 'inherit',
+      // borderBottom: `1px solid ${color}`,
+      padding: 0,
+
+      backgroundImage: `linear-gradient( transparent 0%, transparent calc(50% - 8px), ${color2} calc(50% - 8px), ${color2} 100% )`,
+      transition: 'background-position 120ms ease-in-out, padding 120ms ease-in-out',
+      backgroundSize: '100% 200%',
+      backgroundPosition: '0 0',
+      '&:hover': {
+        padding: '2px 0 4px 0',
+        backgroundImage: `linear-gradient( transparent 0%, transparent calc(50% - 8px), ${color2} calc(50% - 8px), ${color2} 100% )`,
+        backgroundPosition: '0 100%',
+      },
     },
   };
 });

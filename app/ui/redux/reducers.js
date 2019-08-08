@@ -8,14 +8,6 @@ const initialState = {
   notifications: [],
 };
 
-const setReadNotificationsRead = (arrayOfNotificationIds, state) => {
-  const clonedState = _.cloneDeep(state);
-  arrayOfNotificationIds.forEach(_id => {
-    _.find(clonedState.notifications, { _id }).notificationSeen = true;
-  });
-  return clonedState;
-};
-
 export default function reducers(state = initialState, action) {
   /* eslint no-param-reassign:0 default-case:0 */
   return produce(state, draft => {
