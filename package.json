@@ -57,26 +57,13 @@
     },
     "rules": {
       "arrow-parens": "off",
-      "object-curly-newline": "off",
-      "import/no-unresolved": 0,
-      "import/no-extraneous-dependencies": 0,
-      "import/prefer-default-export":0,
-      "import/extensions": 0,
-      "no-underscore-dangle": 0,
       "class-methods-use-this": 0,
-      "react/jsx-filename-extension": 0,
-      "react/jsx-wrap-multilines": 0,
-      "react/forbid-prop-types": 0,
-      "react/no-unescaped-entities": 0,
+      "implicit-arrow-linebreak": "off",
+      "import/extensions": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/no-unresolved": 0,
+      "import/prefer-default-export": 0,
       "max-len": 0,
-      "no-plusplus": 0,
-      "no-console": 0,
-      "no-unused-expressions": [
-        "error",
-        {
-          "allowTaggedTemplates": true
-        }
-      ],
       "new-cap": [
         "error",
         {
@@ -92,6 +79,20 @@
           ]
         }
       ],
+      "no-console": 0,
+      "no-plusplus": 0,
+      "no-underscore-dangle": 0,
+      "no-unused-expressions": [
+        "error",
+        {
+          "allowTaggedTemplates": true
+        }
+      ],
+      "object-curly-newline": "off",
+      "react/jsx-filename-extension": 0,
+      "react/jsx-wrap-multilines": 0,
+      "react/forbid-prop-types": 0,
+      "react/no-unescaped-entities": 0,
       "flowtype/boolean-style": [
         2,
         "boolean"

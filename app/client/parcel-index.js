@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import App from '../ui/App';
-import { devStore } from '../ui/redux/store';
+import App from '../view/App';
+import { devStore } from '../controller/store';
 
 const store = devStore();
 

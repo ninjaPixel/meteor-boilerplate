@@ -1,14 +1,14 @@
 import _ from 'lodash';
-import reactiveState from '../../api/State/client/reactiveState';
+import reactiveState from '../../../model/api/State/client/reactiveState';
 
 const set = ({ message }) => {
   if (!_.isUndefined(message)) {
     reactiveState.snack.message.set(message);
-    reactiveState.snack.time.set((new Date()).getTime());
+    reactiveState.snack.time.set(new Date().getTime());
   }
 };
 
-const setMessage = (message) => {
+const setMessage = message => {
   set({ message });
 };
 

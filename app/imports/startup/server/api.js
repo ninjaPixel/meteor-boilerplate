@@ -1,5 +1,5 @@
-import '../../api/SampleCollection/server/indexes';
-import '../../api/SampleCollection/server/publications';
+import '../../../model/api/SampleCollection/server/indexes';
+import '../../../model/api/SampleCollection/server/publications';
 
-import '../../api/Utility/server/methods';
-import '../../api/Utility/server/publications';
+import '../../../model/api/Utility/server/methods';
+import '../../../model/api/Utility/server/publications';

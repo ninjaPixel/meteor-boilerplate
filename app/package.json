@@ -16,13 +16,13 @@
     "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
     "now:dev": "cd ../serverless && now dev --local-config=development.now.json --port 8080",
-    "icons:generate-undraw": "npx @svgr/cli -d ./ui/components/Undraw ../assets/undraw"
+    "icons:generate-undraw": "npx @svgr/cli -d view/components/Undraw ../assets/undraw"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
-    "@material-ui/core": "^4.1.1",
-    "@material-ui/icons": "^4.2.0",
-    "@material-ui/styles": "^4.1.1",
+    "@material-ui/core": "^4.3.3",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.3.3",
     "bcrypt": "^3.0.6",
     "classnames": "^2.2.6",
     "handlebars": "^4.1.2",
@@ -33,8 +33,8 @@
     "moment": "^2.24.0",
     "nodemailer": "^4.7.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-error-boundary": "^1.2.5",
     "react-filestack": "^0.9.7",
     "react-redux": "^7.1.0-rc.1",

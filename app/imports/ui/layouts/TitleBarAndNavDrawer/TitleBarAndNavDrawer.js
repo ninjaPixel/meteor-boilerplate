@@ -17,7 +17,7 @@ import NavDrawerItems from '../../components/NavDrawerItems/NavDrawerItems';
 import Loading from '../../components/Loading/Loading';
 import GlobalSnackbar from '../../components/GlobalSnackbar/GlobalSnackbar';
 import styles from './styles';
-import reactiveState from '../../../api/State/client/reactiveState';
+import reactiveState from '../../../../model/api/State/client/reactiveState';
 
 class TitleBarAndNavDrawer extends React.PureComponent {
   constructor(props) {

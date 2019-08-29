@@ -2,7 +2,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import reactiveState from '../../../api/State/client/reactiveState';
+import reactiveState from '../../../../model/api/State/client/reactiveState';
 import Snackbar from '../../components/Snackbar/Snackbar';
 
 class GlobalSnackbar extends React.PureComponent {

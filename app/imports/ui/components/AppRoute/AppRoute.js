@@ -5,9 +5,9 @@ import { Roles } from 'meteor/alanning:roles';
 import { Route } from 'react-router-dom';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import LinkButton from '../../components/LinkButton/LinkButton';
-import LoginForm from '../../components/LoginForm/LoginForm';
-import reactiveState from '../../../api/State/client/reactiveState';
+import LinkButton from '../LinkButton/LinkButton';
+import LoginForm from '../LoginForm/LoginForm';
+import reactiveState from '../../../../model/api/State/client/reactiveState';
 import routes from '../../../modules/routes';
 import TitleBarAndNavDrawer from '../../layouts/TitleBarAndNavDrawer/TitleBarAndNavDrawer';
 import track from '../../../modules/client/track';
@@ -21,6 +21,7 @@ class AppRoute extends React.PureComponent {
     const page = this.props.location.pathname + this.props.location.search;
     track.pageView(page);
   }
+
   componentDidUpdate(prevProps) {
     const currentPage = prevProps.location.pathname + prevProps.location.search;
     const nextPage = this.props.location.pathname + this.props.location.search;
@@ -29,6 +30,7 @@ class AppRoute extends React.PureComponent {
       track.pageView(nextPage);
     }
   }
+
   componentWillUnmount() {
     reactiveState.screenTitle.set('');
   }
@@ -61,8 +63,8 @@ class AppRoute extends React.PureComponent {
     }
 
     if (
-      !_.isEmpty(authenticationRoles) &&
-      (_.isEmpty(this.props.user) || !Roles.userIsInRole(this.props.user._id, authenticationRoles, authenticationGroup))
+      !_.isEmpty(authenticationRoles)
+      && (_.isEmpty(this.props.user) || !Roles.userIsInRole(this.props.user._id, authenticationRoles, authenticationGroup))
     ) {
       return (
         <div className={classes.authRoot}>

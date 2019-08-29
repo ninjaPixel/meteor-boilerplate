@@ -6,7 +6,7 @@ import withStyles from '@material-ui/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import classNames from 'classnames';
 import IconButton from '../IconButton/IconButton';
-import reactiveState from '../../../api/State/client/reactiveState';
+import reactiveState from '../../../../model/api/State/client/reactiveState';
 
 const _button = (props) => {
   const { text, icon, linkClassName, target, delayed, ...rest } = props;
