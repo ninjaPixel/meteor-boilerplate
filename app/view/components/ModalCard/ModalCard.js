@@ -119,7 +119,7 @@ ModalCard.propTypes = propTypes;
 
 ModalCard.defaultProps = defaultProps;
 
-const style = (theme) => ({
+const style = theme => ({
   root: {
     display: 'flex',
   },
@@ -143,6 +143,7 @@ const style = (theme) => ({
     display: 'flex',
   },
   backdrop: {
+    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },

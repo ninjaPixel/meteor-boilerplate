@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/styles/makeStyles';
 import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
 import InlineCode from '../../components/InlineCode/InlineCode';
-import { actionAddNotification, actionAddSnack } from '../../../controller/actions';
+import { actionNotificationAdd, actionSnackAdd } from '../../../controller/actions';
 import Quote from '../../components/Quote/Quote';
 
 const propTypes = {
@@ -54,7 +54,7 @@ const UserFeedback = props => {
           variant="contained"
           color="primary"
           onClick={() => {
-            actionAddNotification({ dispatch, message: 'Hello, world!' });
+            actionNotificationAdd({ dispatch, message: 'Hello, world!' });
           }}
         >
           Generate a notification
@@ -74,7 +74,7 @@ const UserFeedback = props => {
             color="primary"
             variant="contained"
             onClick={() => {
-              actionAddSnack({
+              actionSnackAdd({
                 dispatch,
                 message: 'This is an info message',
                 variant: 'info',
@@ -87,7 +87,7 @@ const UserFeedback = props => {
             color="primary"
             variant="contained"
             onClick={() => {
-              actionAddSnack({
+              actionSnackAdd({
                 dispatch,
                 message: 'This is an error message',
                 variant: 'error',
@@ -100,7 +100,7 @@ const UserFeedback = props => {
             color="primary"
             variant="contained"
             onClick={() => {
-              actionAddSnack({
+              actionSnackAdd({
                 dispatch,
                 message: 'This is a success message',
                 variant: 'success',
@@ -113,7 +113,7 @@ const UserFeedback = props => {
             color="primary"
             variant="contained"
             onClick={() => {
-              actionAddSnack({
+              actionSnackAdd({
                 dispatch,
                 message: 'And this is a warning message',
                 variant: 'warning',

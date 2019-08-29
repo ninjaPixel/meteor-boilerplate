@@ -1,11 +1,19 @@
 import _ from 'lodash';
 import produce from 'immer';
 
-import { ADD_NOTIFICATION, ADD_SNACK, CLOSE_SNACK, SET_NOTIFICATIONS_READ } from './actionTypes';
+import {
+  NOTIFICATION_ADD,
+  SNACK_ADD,
+  SNACK_CLOSE,
+  NOTIFICATIONS_READ,
+  ACCOUNT_CHECK_IF_EMAIL_EXISTS,
+  ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
+} from './actionTypes';
 
 const initialState = {
   snacks: [],
   notifications: [],
+  loginForm: { existingEmail: false },
 };
 
 /*
@@ -16,18 +24,33 @@ export function reducerLite(state = initialState, action) {
   /* eslint no-param-reassign:0 default-case:0 */
   return produce(state, draft => {
     switch (action.type) {
-      case SET_NOTIFICATIONS_READ:
+      case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
+        draft.loginForm.existingEmail = false;
+        break;
+      case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
+        draft.snacks = [
+          {
+            message: 'Email not sent as we are in lite mode',
+            time: Date.now(),
+            variant: 'info',
+            open: true,
+            _id: Date.now(),
+          },
+          ...draft.snacks,
+        ];
+        break;
+      case NOTIFICATION_ADD:
+        draft.notifications = [action.payload, ...draft.notifications];
+        break;
+      case NOTIFICATIONS_READ:
         action.payload._ids.forEach(_id => {
           _.find(draft.notifications, { _id }).notificationSeen = true;
         });
         break;
-      case ADD_NOTIFICATION:
-        draft.notifications = [action.payload, ...draft.notifications];
-        break;
-      case ADD_SNACK:
+      case SNACK_ADD:
         draft.snacks = [action.payload, ...draft.snacks];
         break;
-      case CLOSE_SNACK:
+      case SNACK_CLOSE:
         _.find(draft.snacks, { _id: action.payload._id }).open = false;
         break;
     }

@@ -1,9 +1,10 @@
 import {
-  ADD_NOTIFICATION,
-  ADD_SNACK,
-  CLOSE_SNACK,
-  SEND_PASSWORD_RESET_EMAIL,
-  SET_NOTIFICATIONS_READ,
+  NOTIFICATION_ADD,
+  SNACK_ADD,
+  SNACK_CLOSE,
+  ACCOUNT_LOG_IN_WITH_PASSWORD,
+  ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
+  NOTIFICATIONS_READ,
 } from './actionTypes';
 
 /*
@@ -11,44 +12,49 @@ import {
   for a high-level overview on structuring actions
  */
 
-export const actionSetNotificationsRead = ({ dispatch, _ids }) => {
+export const actionSnackAdd = ({ dispatch, message, variant = 'info' }) => {
   dispatch({
-    type: SET_NOTIFICATIONS_READ,
-    payload: { _ids },
-  });
-};
-
-export const actionAddSnack = ({ dispatch, message, variant = 'default' }) => {
-  dispatch({
-    type: ADD_SNACK,
+    type: SNACK_ADD,
     payload: {
       message,
       variant,
-      _id: Date.now().toString(),
+      _id: Date.now(),
       time: new Date(),
       open: true,
     },
   });
 };
 
-export const actionCloseSnack = ({ dispatch, _id }) => {
+export const actionSnackClose = ({ dispatch, _id }) => {
   dispatch({
-    type: CLOSE_SNACK,
+    type: SNACK_CLOSE,
     payload: { _id },
   });
 };
 
-export const actionAddNotification = ({ dispatch, message }) => {
+export const actionNotificationAdd = ({ dispatch, message }) => {
   dispatch({
-    type: ADD_NOTIFICATION,
+    type: NOTIFICATION_ADD,
     payload: { message, time: Date.now(), notificationSeen: false, itemSeen: false, _id: Date.now() },
   });
 };
 
-export function actionLogInWithPassword({ dispatch, email, password }) {}
-export function actionSendPasswordResetEmail({ dispatch, email }) {
+export const actionNotificationsRead = ({ dispatch, _ids }) => {
   dispatch({
-    type: SEND_PASSWORD_RESET_EMAIL,
+    type: NOTIFICATIONS_READ,
+    payload: { _ids },
+  });
+};
+
+export function actionAccountLogIn({ dispatch, email, password }) {
+  dispatch({
+    type: ACCOUNT_LOG_IN_WITH_PASSWORD,
+    payload: { email, password },
+  });
+}
+export function actionAccountSendPasswordResetEmail({ dispatch, email }) {
+  dispatch({
+    type: ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
     payload: { email },
   });
 }

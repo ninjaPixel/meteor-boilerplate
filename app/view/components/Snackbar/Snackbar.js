@@ -13,7 +13,7 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { actionCloseSnack } from '../../../controller/actions';
+import { actionSnackClose } from '../../../controller/actions';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -116,7 +116,7 @@ function CustomizedSnackbar(props) {
     if (reason === 'clickaway') {
       return;
     }
-    actionCloseSnack({ dispatch, _id });
+    actionSnackClose({ dispatch, _id });
   }
 
   /*
@@ -140,7 +140,7 @@ function CustomizedSnackbar(props) {
   );
 }
 CustomizedSnackbar.propTypes = {
-  _id: PropTypes.string.isRequired,
+  _id: PropTypes.number.isRequired,
   open: PropTypes.bool.isRequired,
 };
 export default CustomizedSnackbar;

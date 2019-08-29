@@ -1,8 +1,11 @@
+/* eslint react/jsx-one-expression-per-line:0 */
+
 import _ from 'lodash';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import withStyles from '@material-ui/styles/withStyles';
+import makeStyles from '@material-ui/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -16,8 +19,18 @@ import ModalCard from '../ModalCard/ModalCard';
 import { buttonStyle, linkStyle, paperStyle } from '../../styles/common';
 import ResponsivePaper from '../ResponsivePaper/ResponsivePaper';
 import { commonProps } from './props';
+import { actionAccountSendPasswordResetEmail, actionSnackAdd } from '../../../controller/actions';
 
-const styles = theme => ({
+const propTypes = {
+  ...commonProps.propTypes,
+  onCreateUser: PropTypes.func.isRequired,
+  onCheckIfEmailExists: PropTypes.func.isRequired,
+  onSendPasswordResetEmail: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+};
+const minPasswordLength = 5;
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -33,51 +46,41 @@ const styles = theme => ({
   link: linkStyle(theme),
   paper: paperStyle(theme),
   button: buttonStyle(theme),
-});
-const propTypes = {
-  classes: PropTypes.object.isRequired,
-  ...commonProps.propTypes,
-  onCreateUser: PropTypes.func.isRequired,
-  onCheckIfEmailExists: PropTypes.func.isRequired,
-  onSendPasswordResetEmail: PropTypes.func.isRequired,
-  onLogin: PropTypes.func.isRequired,
-  location: PropTypes.object.isRequired,
-};
-class LoginFormComponent extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: props.email,
-      password: '',
-      existingEmail: false,
-      showProfileFields: false,
-      first: '',
-      last: '',
-      phone: '',
-      loading: false,
-      newAccountCreated: false,
-      errorMessage: '',
-      authenticationErrorMessage: '',
-      loggingIn: false,
-      termsAccepted: false,
-      showLegalModal: false,
-    };
+  permanentPasswordResetLink: {
+    color: theme.palette.primary.light,
+    marginTop: theme.spacing(7),
+    cursor: 'pointer',
+  },
+}));
+const LoginFormComponent = props => {
+  const { user, location, disableEmail, disableAutoFocus, loginButtonText, registerButtonText } = props;
+  const classes = useStyles();
 
-    this.handleCompleteRegistrationSubmit = this.handleCompleteRegistrationSubmit.bind(this);
-    this.onSubmitLoginForm = this.onSubmitLoginForm.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-    this.handleLoginRequest = this.handleLoginRequest.bind(this);
-    this.sendPasswordReset = this.sendPasswordReset.bind(this);
-    this.onEmailBlur = this.onEmailBlur.bind(this);
-    this.toggleLegalModal = this.toggleLegalModal.bind(this);
-    this.minPasswordLength = 5;
-  }
+  const dispatch = useDispatch();
+  const [authenticationErrorMessage, setAuthenticationErrorMessage] = useState('');
+  const [formValues, setFormValues] = useState({
+    email: '',
+    password: '',
+    first: '',
+    last: '',
+    phone: '',
+  });
+  const { email, password, first, last, phone } = formValues;
 
-  handleCompleteRegistrationSubmit(event) {
+  const [errorMessage, setErrorMessage] = useState('');
+  const [existingEmail, setExistingEmail] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [newAccountCreated, setNewAccountCreated] = useState(false);
+
+  const [showLegalModal, setShowLegalModal] = useState(false);
+  const [showPasswordResetModal, setShowPasswordResetModal] = useState(false);
+  const [showProfileFields, setShowProfileFields] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
+  function handleCompleteRegistrationSubmit(event) {
     event.preventDefault();
-    this.setState({ loading: true });
-    const { email, password, first, last, phone } = this.state;
+    setLoading(true);
     const user = {
       email,
       password,
@@ -91,78 +94,75 @@ class LoginFormComponent extends React.PureComponent {
     };
 
     const createUserCallback = error => {
-      this.setState({ loading: false });
+      setLoading(false);
       if (error) {
         console.log(error);
-        this.setState({ errorMessage: error.reason });
+        setErrorMessage(error.reason);
       } else {
-        this.setState({ newAccountCreated: true });
+        setNewAccountCreated(true);
       }
     };
-    // Accounts.createUser(user, createUserCallback);
-    this.props.onCreateUser(user, createUserCallback);
+    props.onCreateUser(user, createUserCallback);
   }
 
-  handleChange(name) {
+  function handleChange(name) {
     return event => {
       const { value } = event.target;
-      this.setState({
+      setFormValues({
+        ...formValues,
         [name]: value,
       });
     };
   }
 
-  handleCheckboxChange(name, value) {
-    return () => {
-      this.setState({ [name]: value });
-    };
-  }
-
-  onEmailBlur(event) {
+  function onEmailBlurOrPasswordFocus(event) {
     event.preventDefault();
-    const value = this.state.email;
+    const value = email;
     // check if there is already an account associated with this email address.
     if (!value) {
-      this.setState({ existingEmail: false });
+      setExistingEmail(false);
     } else {
       const onCheckIfEmailExistsCallback = (error, success) => {
         if (error || success !== true) {
           if (error) {
             console.log('utility.checkIfEmailAddressExists.error: ', error);
           }
-          this.setState({ existingEmail: false });
+          setExistingEmail(false);
         }
         if (success === true) {
-          this.setState({ existingEmail: true });
+          setExistingEmail(true);
         }
       };
       // Meteor.call('utility.checkIfEmailAddressExists', value, onCheckIfEmailExistsCallback);
-      this.props.onCheckIfEmailExists(value, onCheckIfEmailExistsCallback);
+      props.onCheckIfEmailExists(value, onCheckIfEmailExistsCallback);
     }
   }
 
-  sendPasswordReset() {
-    const { email } = this.state;
-    const sendPasswordCallback = (error, success) => {
+  function sendPasswordReset() {
+    actionAccountSendPasswordResetEmail({ dispatch, email });
+  }
+  function handleLoginRequest() {
+    setAuthenticationErrorMessage('');
+    setLoggingIn(true);
+
+    const loginCallback = (error, success) => {
+      setLoggingIn(false);
       if (error) {
-        snacks.set({ message: `Unable to send password reset email. ${error.reason}` });
-      }
-      if (success) {
-        snacks.set({ message: `Password reset sent to ${email}` });
+        setAuthenticationErrorMessage(error.reason);
+      } else {
+        /*
+        execute a login callback.
+        for example, if the user just accepted a staff invitation, assign this now.
+        */
+        props.loginCallback();
       }
     };
-    // Meteor.call(
-    //   'utility.sendPasswordResetEmail',
-    //   { email, windowLocationOrigin: window.location.origin },
-    //   sendPasswordCallback,
-    // );
-
-    this.props.onSendPasswordResetEmail({ email, windowLocationOrigin: window.location.origin }, sendPasswordCallback);
+    // Meteor.loginWithPassword(email, password, loginCallback);
+    props.onLogin(email, password, loginCallback);
   }
 
-  onSubmitLoginForm(event) {
+  function onSubmitLoginForm(event) {
     event.preventDefault();
-    const { password, loggingIn, email } = this.state;
     if (_.isEmpty(password) || loggingIn) {
       // do nothing
     } else {
@@ -173,42 +173,20 @@ class LoginFormComponent extends React.PureComponent {
           }
         }
         if (success === true) {
-          this.handleLoginRequest();
+          handleLoginRequest();
         } else {
-          this.setState({ showProfileFields: true });
+          setShowProfileFields(true);
         }
       };
 
       // do a final check to find out if this email address is recognized
       // autofilling of form means that an real address may be missed
       // Meteor.call('utility.checkIfEmailAddressExists', email, checkEMailCallback);
-      this.props.onCheckIfEmailExists(email, checkEMailCallback);
+      props.onCheckIfEmailExists(email, checkEMailCallback);
     }
   }
 
-  handleLoginRequest() {
-    this.setState({ authenticationErrorMessage: '', loggingIn: true });
-
-    const { email, password } = this.state;
-    const loginCallback = (error, success) => {
-      this.setState({ loggingIn: false });
-      if (error) {
-        this.setState({ authenticationErrorMessage: error.reason });
-      } else {
-        /*
-        execute a login callback.
-        for example, if the user just accepted a staff invitation, assign this now.
-        */
-        this.props.loginCallback();
-      }
-    };
-    // Meteor.loginWithPassword(email, password, loginCallback);
-    this.props.onLogin(email, password, loginCallback);
-  }
-
-  renderLoginRegisterForm() {
-    const { classes, disableEmail, disableAutoFocus, loginButtonText, registerButtonText } = this.props;
-    const { password, email, existingEmail, loggingIn } = this.state;
+  function renderLoginRegisterForm() {
     let buttonText = 'Login / Register';
     if (existingEmail) {
       buttonText = loginButtonText;
@@ -217,7 +195,7 @@ class LoginFormComponent extends React.PureComponent {
     }
 
     return (
-      <form onSubmit={this.onSubmitLoginForm} className={classes.form}>
+      <form onSubmit={onSubmitLoginForm} className={classes.form}>
         <TextField
           inputProps={{ 'data-e2e': 'login-form-email-input' }}
           label="Email"
@@ -225,8 +203,8 @@ class LoginFormComponent extends React.PureComponent {
           type="email"
           required
           value={email}
-          onChange={this.handleChange('email')}
-          onBlur={this.onEmailBlur}
+          onChange={handleChange('email')}
+          onBlur={onEmailBlurOrPasswordFocus}
           margin="normal"
           className={classes.input}
           autoComplete="email"
@@ -238,11 +216,11 @@ class LoginFormComponent extends React.PureComponent {
           required
           type="password"
           value={password}
-          onChange={this.handleChange('password')}
+          onChange={handleChange('password')}
           margin="normal"
           className={classes.input}
         />
-        <div className={classes.inputCaptionContainer}>{this.renderPasswordHelperText()}</div>
+        <div className={classes.inputCaptionContainer}>{renderPasswordHelperText()}</div>
         <Button
           data-e2e="login-form-submit-button"
           variant="contained"
@@ -257,46 +235,31 @@ class LoginFormComponent extends React.PureComponent {
     );
   }
 
-  renderPasswordHelperText() {
-    const { classes } = this.props;
-    const { authenticationErrorMessage, password, existingEmail } = this.state;
-    const resetLink = (
-      <a className={classes.link}>
-        <Typography variant="caption" color="primary" onClick={this.sendPasswordReset}>
-          Forgot password? Click to reset.
-        </Typography>
-      </a>
-    );
+  function renderPasswordHelperText() {
     if (authenticationErrorMessage) {
       return (
         <div>
-          {resetLink}
           <Typography variant="caption" color="error">
             {authenticationErrorMessage}
           </Typography>
         </div>
       );
     }
-    const needMoreCharactersInPassword = password.length && password.length < this.minPasswordLength;
+    const needMoreCharactersInPassword = password.length && password.length < minPasswordLength;
 
     if (!existingEmail && needMoreCharactersInPassword) {
       return (
-        <Typography variant="caption">{`Please use at least ${this.minPasswordLength} characters in your password.`}</Typography>
+        <Typography variant="caption">{`Please use at least ${minPasswordLength} characters in your password.`}</Typography>
       );
-    }
-    if (existingEmail) {
-      return resetLink;
     }
     return null;
   }
 
-  toggleLegalModal() {
-    this.setState({ showLegalModal: !this.state.showLegalModal });
+  function toggleLegalModal() {
+    setShowLegalModal(!showLegalModal);
   }
 
-  renderProfileForm() {
-    const { classes, disableAutoFocus } = this.props;
-    const { first, last, phone, termsAccepted, showLegalModal } = this.state;
+  function renderProfileForm() {
     return (
       <form className={classes.form} onSubmit={this.handleCompleteRegistrationSubmit}>
         <TextField
@@ -306,7 +269,7 @@ class LoginFormComponent extends React.PureComponent {
           autoFocus
           required
           value={first}
-          onChange={this.handleChange('first')}
+          onChange={handleChange('first')}
           margin="normal"
           className={classes.input}
           autoComplete="given-name"
@@ -316,7 +279,7 @@ class LoginFormComponent extends React.PureComponent {
           label="Last name"
           required
           value={last}
-          onChange={this.handleChange('last')}
+          onChange={handleChange('last')}
           margin="normal"
           className={classes.input}
           autoComplete="family-name"
@@ -327,7 +290,7 @@ class LoginFormComponent extends React.PureComponent {
               <Checkbox
                 data-e2e="login-form-tos-checkbox"
                 checked={termsAccepted}
-                onChange={this.handleCheckboxChange('termsAccepted', !termsAccepted)}
+                onChange={setTermsAccepted(!termsAccepted)}
                 value="terms-accepted"
               />
             }
@@ -335,7 +298,7 @@ class LoginFormComponent extends React.PureComponent {
           />
           <Typography variant="caption">
             Read the{' '}
-            <a data-e2e="login-form-tos-link" className={classes.link} onClick={this.toggleLegalModal}>
+            <a data-e2e="login-form-tos-link" className={classes.link} onClick={toggleLegalModal}>
               terms & conditions, and our privacy policy here
             </a>
             .
@@ -351,21 +314,56 @@ class LoginFormComponent extends React.PureComponent {
         >
           Complete registration
         </Button>
-        <ModalCard
-          show={showLegalModal}
-          hideCancelButton
-          onClose={this.toggleLegalModal}
-          onRequestOk={this.toggleLegalModal}
-        >
+        <ModalCard show={showLegalModal} hideCancelButton onClose={toggleLegalModal} onRequestOk={toggleLegalModal}>
           <Legal />
         </ModalCard>
       </form>
     );
   }
 
-  render() {
-    const { classes, user, location } = this.props;
-    const { showProfileFields, loading, errorMessage, newAccountCreated } = this.state;
+  function renderResetPasswordModal() {
+    return (
+      <ModalCard
+        show={showPasswordResetModal}
+        okText="Reset password"
+        onClose={() => {
+          setShowPasswordResetModal(false);
+        }}
+        onRequestOk={() => {
+          if (email) {
+            sendPasswordReset();
+          } else {
+            actionSnackAdd({ dispatch, message: 'Please enter an email address' });
+          }
+        }}
+      >
+        <form
+          onSubmit={() => {
+            sendPasswordReset();
+            setShowPasswordResetModal(false);
+          }}
+          className={classes.form}
+        >
+          <Typography>Forgot your password? It happens! enter your email and we'll send you a reset link.</Typography>
+          <TextField
+            inputProps={{ 'data-e2e': 'login-form-password-reset-input' }}
+            label="Email"
+            autoFocus
+            type="email"
+            required
+            value={email}
+            onChange={handleChange('email')}
+            onBlur={onEmailBlurOrPasswordFocus}
+            margin="normal"
+            className={classes.input}
+            autoComplete="email"
+          />
+        </form>
+      </ModalCard>
+    );
+  }
+
+  function render() {
     const child = () => {
       if (loading) {
         return <Loading />;
@@ -402,13 +400,28 @@ class LoginFormComponent extends React.PureComponent {
       if (showProfileFields) {
         return <ResponsivePaper className={classes.paper}>{this.renderProfileForm()}</ResponsivePaper>;
       }
-      return <ResponsivePaper className={classes.paper}>{this.renderLoginRegisterForm()}</ResponsivePaper>;
+      return (
+        <>
+          <ResponsivePaper>{renderLoginRegisterForm()}</ResponsivePaper>
+          <Typography
+            onClick={() => {
+              setShowPasswordResetModal(true);
+            }}
+            className={classes.permanentPasswordResetLink}
+          >
+            Forgot password?
+          </Typography>
+          {renderResetPasswordModal()}
+        </>
+      );
     };
 
     return <div className={classes.root}>{child()}</div>;
   }
-}
+
+  return render();
+};
 
 LoginFormComponent.propTypes = propTypes;
 
-export default withStyles(styles)(withRouter(LoginFormComponent));
+export default withRouter(LoginFormComponent);

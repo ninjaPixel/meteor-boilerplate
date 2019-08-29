@@ -4,7 +4,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import { useDispatch } from 'react-redux';
 import NotificationListLine from './NotificationListLine';
 import { useStoreNotifications } from '../../hooks/reduxSelectors';
-import { actionSetNotificationsRead } from '../../../controller/actions';
+import { actionNotificationsRead } from '../../../controller/actions';
 import EmptyState from './EmptyState';
 
 const propTypes = {
@@ -30,7 +30,7 @@ const NotificationList = props => {
     () =>
       // when the component unmounts, mark the notifications as 'read'
       () => {
-        actionSetNotificationsRead({ dispatch, _ids: notifications.map(n => n._id) });
+        actionNotificationsRead({ dispatch, _ids: notifications.map(n => n._id) });
       },
     [],
   );
