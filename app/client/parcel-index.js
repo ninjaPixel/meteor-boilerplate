@@ -12,3 +12,5 @@ render(
   </Provider>,
   document.getElementById('render-target'),
 );
+
+module.hot.accept();

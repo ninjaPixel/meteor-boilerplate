@@ -37,6 +37,7 @@
     "react-dom": "^16.9.0",
     "react-error-boundary": "^1.2.5",
     "react-filestack": "^0.9.7",
+    "react-hot-loader": "^4.12.12",
     "react-redux": "^7.1.0-rc.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",

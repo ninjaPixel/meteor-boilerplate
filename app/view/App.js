@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader';
 import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/styles/makeStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -107,4 +108,4 @@ const ThemedApp = props => {
 ThemedApp.propTypes = { ...propTypes, theme: PropTypes.object };
 ThemedApp.defaultProps = { ...defaultProps, theme: baseTheme };
 
-export default ThemedApp;
+export default hot(module)(ThemedApp);

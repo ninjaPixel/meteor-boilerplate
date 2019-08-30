@@ -424,13 +424,13 @@ const Legal = props => {
 };
 const style = theme => ({
   section: {
-    marginBottom: theme.spacing.unit * 10,
+    marginBottom: theme.spacing(10),
   },
   title: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing(2),
   },
   inset: {
-    marginLeft: theme.spacing.unit * 2,
+    marginLeft: theme.spacing(2),
   },
 });
 

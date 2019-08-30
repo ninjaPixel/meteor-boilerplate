@@ -70,6 +70,7 @@ export default {
   }),
   architecture: createRoute({
     title: 'Architecture',
+    // eslint-disable-next-line import/no-cycle
     importFunction: (): Promise => import('../../view/screens/Architecture/Architecture.js'),
     exact: true,
     path: '/architecture',

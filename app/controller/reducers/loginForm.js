@@ -39,6 +39,7 @@ function createUserObjectFromStore({ state, draft }) {
 
   const { email, password, first, last, phone } = formState;
   const user = {
+    _id: 'some_user_id',
     email,
     password,
     profile: {

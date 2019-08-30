@@ -65,7 +65,7 @@ const LoginFormComponent = props => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const [authenticationErrorMessage, setAuthenticationErrorMessage] = useState('');
+  const [authenticationErrorMessage] = useState('');
   const state = useStoreComponentLoginForm();
   const {
     email,
@@ -87,25 +87,11 @@ const LoginFormComponent = props => {
   function handleCompleteRegistrationSubmit(event) {
     event.preventDefault();
     actionAccountCreateUser({ dispatch });
-    // const createUserCallback = error => {
-    //   setLoading(false);
-    //   if (error) {
-    //     console.log(error);
-    //     setErrorMessage(error.reason);
-    //   } else {
-    //     setNewAccountCreated(true);
-    //   }
-    // };
-    // props.onCreateUser(user, createUserCallback);
   }
 
   function handleChange(name) {
     return event => {
       const { value } = event.target;
-      // setFormValues({
-      //   ...formValues,
-      //   [name]: value,
-      // });
 
       actionUpdateComponentLoginForm({
         dispatch,
@@ -247,7 +233,7 @@ const LoginFormComponent = props => {
           />
           <Typography variant="caption">
             Read the{' '}
-            <a data-e2e="login-form-tos-link" className={classes.link} onClick={toggleLegalModal}>
+            <a role="button" data-e2e="login-form-tos-link" className={classes.link} onClick={toggleLegalModal}>
               terms & conditions, and our privacy policy here
             </a>
             .
