@@ -8,12 +8,30 @@ import {
   NOTIFICATIONS_READ,
   ACCOUNT_CHECK_IF_EMAIL_EXISTS,
   ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
-} from './actionTypes';
+  FORM_STATE_UPDATE,
+  ACCOUNT_CREATE_NEW_USER,
+  ACCOUNT_LOG_IN_WITH_PASSWORD,
+} from '../actionTypes';
+import {
+  initialStateLoginFormComponent,
+  loginFormCheckIfEmailExists,
+  loginFormHandleLogin,
+  loginFormHandleRegistration,
+} from './loginForm';
+import { LOGIN_FORM_KEY } from './constants';
 
 const initialState = {
   snacks: [],
   notifications: [],
+  user: {},
+  components: {
+    [LOGIN_FORM_KEY]: initialStateLoginFormComponent,
+  },
 };
+
+function updateFormState({ key, value, draft }) {
+  _.set(draft, key, value);
+}
 
 /*
   This is the reducer used in 'lite' mode.
@@ -23,12 +41,14 @@ export function reducerLite(state = initialState, action) {
   /* eslint no-param-reassign:0 default-case:0 */
   return produce(state, draft => {
     switch (action.type) {
+      case FORM_STATE_UPDATE:
+        updateFormState({ ...action.payload, draft });
+        break;
+      case ACCOUNT_LOG_IN_WITH_PASSWORD:
+        loginFormHandleLogin({ state, draft });
+        break;
       case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
-        let exists = false;
-        if (action.payload.email === 'test@test.com') {
-          exists = true;
-        }
-        action.payload.callback(null, exists);
+        loginFormCheckIfEmailExists({ state, draft });
         break;
       case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
         draft.snacks = [
@@ -41,6 +61,10 @@ export function reducerLite(state = initialState, action) {
           },
           ...draft.snacks,
         ];
+        draft.components[LOGIN_FORM_KEY].showPasswordResetModal = false;
+        break;
+      case ACCOUNT_CREATE_NEW_USER:
+        loginFormHandleRegistration({ state, draft });
         break;
       case NOTIFICATION_ADD:
         draft.notifications = [action.payload, ...draft.notifications];

@@ -86,4 +86,12 @@ export default {
     exact: true,
     path: '/login',
   }),
+  account: createRoute({
+    title: 'Account',
+    importFunction: (): Promise => import('../../view/components/LoginForm/LoginForm.js'),
+    exact: true,
+    loginRequired: true,
+    getPath: (userId: string): string => `/account/${userId}`,
+    path: '/account/:userId',
+  }),
 };

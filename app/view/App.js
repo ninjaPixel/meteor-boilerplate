@@ -12,10 +12,9 @@ import AppRoute from './layout/AppRoute/AppRoute';
 import routes from '../imports/modules/newRoutes';
 import { middleOfScreenStyle } from './styles/common';
 import Snacks from './components/Snacks/Snacks';
+import { useStoreUser } from './hooks/reduxSelectors';
 
 const propTypes = {
-  events: PropTypes.object,
-  state: PropTypes.object,
   user: PropTypes.object,
 };
 

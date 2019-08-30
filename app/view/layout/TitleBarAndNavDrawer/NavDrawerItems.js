@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -19,6 +20,7 @@ import ShortText from '@material-ui/icons/ShortText';
 import UserFeedbackIcon from '@material-ui/icons/Vibration';
 import ArchitectureIcon from '@material-ui/icons/Layers';
 import routes from '../../../imports/modules/newRoutes';
+import { useStoreUser } from '../../hooks/reduxSelectors';
 
 const navLinkStyles = makeStyles(theme => ({
   noDecoration: {
@@ -115,7 +117,8 @@ const useStyles = makeStyles(theme => ({
 }));
 const NavDrawerItems = props => {
   const classes = useStyles();
-  const { user, onNavClick } = props;
+  const user = useStoreUser();
+  const { onNavClick } = props;
   const links = [
     { to: '/', text: 'Home', onNavClick, icon: <Home />, dataE2E: 'nav-page-home' },
     {
@@ -162,7 +165,7 @@ const NavDrawerItems = props => {
           <NavLink {...link} key={link.text} />
         ))}
         <Divider />
-        {user ? renderClientLinks(props) : renderLoginLink(props)}
+        {!_.isEmpty(user) ? renderClientLinks({ ...props, user }) : renderLoginLink({ ...props, user })}
       </List>
       {/*<List className={classes.legalSection}>*/}
       {/*  <NavLink icon={<Gavel />} to={routes.legal.getPath()} text="Legal" />*/}
@@ -173,11 +176,8 @@ const NavDrawerItems = props => {
 
 NavDrawerItems.propTypes = {
   onNavClick: PropTypes.func.isRequired,
-  user: PropTypes.object,
 };
 
-NavDrawerItems.defaultProps = {
-  user: null,
-};
+NavDrawerItems.defaultProps = {};
 
 export default NavDrawerItems;

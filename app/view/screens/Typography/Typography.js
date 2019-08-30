@@ -55,7 +55,7 @@ const TypographyScreen = props => {
         One really neat feature in this boilerplate is that the ratio of font sizes between different elements (
         <InlineCode>h1</InlineCode>, <InlineCode>h2</InlineCode>, ... <InlineCode>p</InlineCode>) reduces as the screen
         size gets smaller ✌️. See the MUI docs on{' '}
-        <LinkComponent to={'https://material-ui.com/customization/theming/#responsivefontsizes-theme-options-theme'}>
+        <LinkComponent to="https://material-ui.com/customization/theming/#responsivefontsizes-theme-options-theme">
           responsive font sizes
         </LinkComponent>{' '}
         for more details.

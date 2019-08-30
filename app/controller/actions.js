@@ -6,7 +6,10 @@ import {
   ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
   NOTIFICATIONS_READ,
   ACCOUNT_CHECK_IF_EMAIL_EXISTS,
+  FORM_STATE_UPDATE,
+  ACCOUNT_CREATE_NEW_USER,
 } from './actionTypes';
+import { LOGIN_FORM_KEY } from './reducers/constants';
 
 /*
   See https://github.com/redux-utilities/flux-standard-action
@@ -47,22 +50,30 @@ export const actionNotificationsRead = ({ dispatch, _ids }) => {
   });
 };
 
-export function actionAccountLogIn({ dispatch, email, password }) {
+export function actionAccountLogIn({ dispatch }) {
   dispatch({
     type: ACCOUNT_LOG_IN_WITH_PASSWORD,
-    payload: { email, password },
   });
 }
-export function actionAccountSendPasswordResetEmail({ dispatch, email }) {
+export function actionAccountSendPasswordResetEmail({ dispatch }) {
   dispatch({
     type: ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
-    payload: { email },
   });
 }
 
-export function actionAccountCheckIfEmailExists({ dispatch, email, callback = () => {} }) {
+export function actionAccountCheckIfEmailExists({ dispatch }) {
   dispatch({
     type: ACCOUNT_CHECK_IF_EMAIL_EXISTS,
-    payload: { email, callback },
   });
+}
+
+export function actionUpdateComponentLoginForm({ dispatch, key, value }) {
+  dispatch({
+    type: FORM_STATE_UPDATE,
+    payload: { key: `components.${LOGIN_FORM_KEY}.${key}`, value },
+  });
+}
+
+export function actionAccountCreateUser({ dispatch }) {
+  dispatch({ type: ACCOUNT_CREATE_NEW_USER });
 }

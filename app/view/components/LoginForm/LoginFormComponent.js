@@ -21,10 +21,13 @@ import ResponsivePaper from '../ResponsivePaper/ResponsivePaper';
 import { commonProps } from './props';
 import {
   actionAccountCheckIfEmailExists,
+  actionAccountCreateUser,
+  actionAccountLogIn,
   actionAccountSendPasswordResetEmail,
   actionSnackAdd,
+  actionUpdateComponentLoginForm,
 } from '../../../controller/actions';
-import { useStoreLoginForm } from '../../hooks/reduxSelectors';
+import { useStoreComponentLoginForm } from '../../hooks/reduxSelectors';
 
 const propTypes = {
   ...commonProps.propTypes,
@@ -63,98 +66,62 @@ const LoginFormComponent = props => {
 
   const dispatch = useDispatch();
   const [authenticationErrorMessage, setAuthenticationErrorMessage] = useState('');
-  const [formValues, setFormValues] = useState({
-    email: '',
-    password: '',
-    first: '',
-    last: '',
-    phone: '',
-  });
-  const { email, password, first, last, phone } = formValues;
-
-  const [errorMessage, setErrorMessage] = useState('');
-  // const state = useStoreLoginForm();
-  // const { existingEmail } = state;
-  const [existingEmail, setExistingEmail] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loggingIn, setLoggingIn] = useState(false);
-  const [newAccountCreated, setNewAccountCreated] = useState(false);
-
-  const [showLegalModal, setShowLegalModal] = useState(false);
-  const [showPasswordResetModal, setShowPasswordResetModal] = useState(false);
-  const [showProfileFields, setShowProfileFields] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  const state = useStoreComponentLoginForm();
+  const {
+    email,
+    password,
+    first,
+    last,
+    // phone,
+    errorMessage,
+    existingEmail,
+    loading,
+    loggingIn,
+    newAccountCreated,
+    showLegalModal,
+    showPasswordResetModal,
+    showProfileFields,
+    termsAccepted,
+  } = state;
 
   function handleCompleteRegistrationSubmit(event) {
     event.preventDefault();
-    setLoading(true);
-    const user = {
-      email,
-      password,
-      profile: {
-        name: {
-          first,
-          last,
-        },
-        phone,
-      },
-    };
-
-    const createUserCallback = error => {
-      setLoading(false);
-      if (error) {
-        console.log(error);
-        setErrorMessage(error.reason);
-      } else {
-        setNewAccountCreated(true);
-      }
-    };
-    props.onCreateUser(user, createUserCallback);
+    actionAccountCreateUser({ dispatch });
+    // const createUserCallback = error => {
+    //   setLoading(false);
+    //   if (error) {
+    //     console.log(error);
+    //     setErrorMessage(error.reason);
+    //   } else {
+    //     setNewAccountCreated(true);
+    //   }
+    // };
+    // props.onCreateUser(user, createUserCallback);
   }
 
   function handleChange(name) {
     return event => {
       const { value } = event.target;
-      setFormValues({
-        ...formValues,
-        [name]: value,
+      // setFormValues({
+      //   ...formValues,
+      //   [name]: value,
+      // });
+
+      actionUpdateComponentLoginForm({
+        dispatch,
+        key: name,
+        value,
       });
     };
   }
 
   function onEmailBlurOrPasswordFocus(event) {
     event.preventDefault();
-    actionAccountCheckIfEmailExists({
-      dispatch,
-      email,
-      callback: (error, value) => {
-        setExistingEmail(value);
-      },
-    });
+    actionAccountCheckIfEmailExists({ dispatch });
   }
 
   function sendPasswordReset() {
-    setShowPasswordResetModal(false);
-    actionAccountSendPasswordResetEmail({ dispatch, email });
-  }
-  function handleLoginRequest() {
-    setAuthenticationErrorMessage('');
-    setLoggingIn(true);
-
-    const loginCallback = (error, success) => {
-      setLoggingIn(false);
-      if (error) {
-        setAuthenticationErrorMessage(error.reason);
-      } else {
-        /*
-        execute a login callback.
-        for example, if the user just accepted a staff invitation, assign this now.
-        */
-        props.loginCallback();
-      }
-    };
-    // Meteor.loginWithPassword(email, password, loginCallback);
-    props.onLogin(email, password, loginCallback);
+    actionAccountSendPasswordResetEmail({ dispatch });
   }
 
   function onSubmitLoginForm(event) {
@@ -162,23 +129,7 @@ const LoginFormComponent = props => {
     if (_.isEmpty(password) || loggingIn) {
       // do nothing
     } else {
-      const checkEMailCallback = (error, success) => {
-        if (error || success !== true) {
-          if (error) {
-            console.log('utility.checkIfEmailAddressExists.error: ', error);
-          }
-        }
-        if (success === true) {
-          handleLoginRequest();
-        } else {
-          setShowProfileFields(true);
-        }
-      };
-
-      // do a final check to find out if this email address is recognized
-      // autofilling of form means that an real address may be missed
-      // Meteor.call('utility.checkIfEmailAddressExists', email, checkEMailCallback);
-      actionAccountCheckIfEmailExists({ dispatch, email, callback: checkEMailCallback });
+      actionAccountLogIn({ dispatch });
     }
   }
 
@@ -252,7 +203,7 @@ const LoginFormComponent = props => {
   }
 
   function toggleLegalModal() {
-    setShowLegalModal(!showLegalModal);
+    actionUpdateComponentLoginForm({ dispatch, key: 'showLegalModal', value: !showLegalModal });
   }
 
   function renderProfileForm() {
@@ -286,7 +237,9 @@ const LoginFormComponent = props => {
               <Checkbox
                 data-e2e="login-form-tos-checkbox"
                 checked={termsAccepted}
-                onChange={setTermsAccepted(!termsAccepted)}
+                onChange={() => {
+                  actionUpdateComponentLoginForm({ dispatch, key: 'termsAccepted', value: !termsAccepted });
+                }}
                 value="terms-accepted"
               />
             }
@@ -310,7 +263,13 @@ const LoginFormComponent = props => {
         >
           Complete registration
         </Button>
-        <ModalCard show={showLegalModal} hideCancelButton onClose={toggleLegalModal} onRequestOk={toggleLegalModal}>
+        <ModalCard
+          okText="Close"
+          show={showLegalModal}
+          hideCancelButton
+          onClose={toggleLegalModal}
+          onRequestOk={toggleLegalModal}
+        >
           <Legal />
         </ModalCard>
       </form>
@@ -323,7 +282,11 @@ const LoginFormComponent = props => {
         show={showPasswordResetModal}
         okText="Reset password"
         onClose={() => {
-          setShowPasswordResetModal(false);
+          actionUpdateComponentLoginForm({
+            dispatch,
+            key: 'showPasswordResetModal',
+            value: false,
+          });
         }}
         onRequestOk={() => {
           if (email) {
@@ -336,7 +299,6 @@ const LoginFormComponent = props => {
         <form
           onSubmit={() => {
             sendPasswordReset();
-            setShowPasswordResetModal(false);
           }}
           className={classes.form}
         >
@@ -389,7 +351,10 @@ const LoginFormComponent = props => {
       if (newAccountCreated) {
         return (
           <Typography variant="h6" data-e2e="new-account-welcome-message">
-            We've created your account. Welcome on board! 🚢
+            We've created your account. Welcome on board!{' '}
+            <span role="img" aria-label="ship">
+              🚢
+            </span>
           </Typography>
         );
       }
@@ -401,7 +366,11 @@ const LoginFormComponent = props => {
           <ResponsivePaper>{renderLoginRegisterForm()}</ResponsivePaper>
           <Typography
             onClick={() => {
-              setShowPasswordResetModal(true);
+              actionUpdateComponentLoginForm({
+                dispatch,
+                key: 'showPasswordResetModal',
+                value: true,
+              });
             }}
             className={classes.permanentPasswordResetLink}
           >

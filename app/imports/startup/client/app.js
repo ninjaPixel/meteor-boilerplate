@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
-// import App from '../../ui/layouts/App/App';
 import App from '../../../view/App';
-// Meteor.startup(() => render(<App />, document.getElementById('react-root')));
+
+// todo subscribe to User collection
 
 Meteor.startup(() => {
   render(<App />, document.getElementById('render-target'));

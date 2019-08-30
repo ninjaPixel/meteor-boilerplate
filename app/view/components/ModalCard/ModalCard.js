@@ -135,12 +135,16 @@ const style = theme => ({
   },
   children: {
     display: 'flex',
+    maxHeight: '80vh',
     overflowY: 'scroll',
     // note
-    // prob need to force scroll bars on osx https://stackoverflow.com/questions/7855590/preventing-scroll-bars-from-being-hidden-for-macos-trackpad-users-in-webkit-blin
+    // prob need to force scroll bars on osx
+    // eslint-disable-next-line max-len
+    // https://stackoverflow.com/questions/7855590/preventing-scroll-bars-from-being-hidden-for-macos-trackpad-users-in-webkit-blin
   },
   cardContent: {
     display: 'flex',
+    flexDirection: 'column',
   },
   backdrop: {
     display: 'flex',

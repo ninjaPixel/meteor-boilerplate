@@ -7,7 +7,6 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import LinkComponent from '../../components/Link/Link';
 import InlineCode from '../../components/InlineCode/InlineCode';
 import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
-import Quote from '../../components/Quote/Quote';
 import newRoutes from '../../../imports/modules/newRoutes';
 
 const propTypes = {
@@ -113,13 +112,15 @@ const Architecture = props => {
           </span>
         </Typography>
         <Typography component="div">
-          In general, I save a components state variables to the Redux store. This does fragment the code somewhat but I
-          think the payoff is worth it because it means that if a component unmounts, the user does not loose their
+          In general, I save a component's state variables to the Redux store. This does fragment the code somewhat but
+          I think the payoff is worth it because it means that if a component unmounts, the user does not loose their
           state. This is particularly important when a user is filling in a form and then gets distracted by a
-          notification. When they return to the form, we don't want them to have to start from scratch.
+          notification. When they return to the form, we don't want them to have to start from scratch. Another benefit,
+          is that the loading progress of any action is always up-to-date. If a user leaves a screen and then comes back
+          to it, the progress indicator will not be reset.
         </Typography>
         <Typography variant="h4">Sagas</Typography>
-        <Typography component="div">Used for asynchronous state changes</Typography>
+        <Typography component="div">Used for asynchronous state changes to the Redux store.</Typography>
       </div>
       <div className={classes.section}>
         <Typography variant="h2">Other...</Typography>
