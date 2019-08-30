@@ -36,8 +36,8 @@ const TypographyScreen = props => {
         to get an idea of how to use the <InlineCode> Typography</InlineCode> component.
       </Typography>
       <Typography>
-        You can modify the default typography settings in <InlineCode>app/view/styles/theme.js</InlineCode>. Here, you can
-        also change the font. Note that you will also need to load this font in the document head.
+        You can modify the default typography settings in <InlineCode>app/view/styles/theme.js</InlineCode>. Here, you
+        can also change the font. Note that you will also need to load this font in the document head.
       </Typography>
       <Typography>
         Note that often you will want an item to semantically be a H1 (i.e. you set{' '}
@@ -50,6 +50,15 @@ const TypographyScreen = props => {
         <InlineCode>Typography</InlineCode> elements inside other <InlineCode>Typography</InlineCode> elements (e.g. you
         want to include an inline <InlineCode>Link</InlineCode>, among a block of text) as it changes the component from
         a P element to a span.
+      </Typography>
+      <Typography>
+        One really neat feature in this boilerplate is that the ratio of font sizes between different elements (
+        <InlineCode>h1</InlineCode>, <InlineCode>h2</InlineCode>, ... <InlineCode>p</InlineCode>) reduces as the screen
+        size gets smaller ✌️. See the MUI docs on{' '}
+        <LinkComponent to={'https://material-ui.com/customization/theming/#responsivefontsizes-theme-options-theme'}>
+          responsive font sizes
+        </LinkComponent>{' '}
+        for more details.
       </Typography>
     </div>
   );

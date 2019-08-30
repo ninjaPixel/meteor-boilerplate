@@ -5,6 +5,7 @@ import {
   ACCOUNT_LOG_IN_WITH_PASSWORD,
   ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
   NOTIFICATIONS_READ,
+  ACCOUNT_CHECK_IF_EMAIL_EXISTS,
 } from './actionTypes';
 
 /*
@@ -56,5 +57,12 @@ export function actionAccountSendPasswordResetEmail({ dispatch, email }) {
   dispatch({
     type: ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
     payload: { email },
+  });
+}
+
+export function actionAccountCheckIfEmailExists({ dispatch, email, callback = () => {} }) {
+  dispatch({
+    type: ACCOUNT_CHECK_IF_EMAIL_EXISTS,
+    payload: { email, callback },
   });
 }

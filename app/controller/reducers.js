@@ -13,7 +13,6 @@ import {
 const initialState = {
   snacks: [],
   notifications: [],
-  loginForm: { existingEmail: false },
 };
 
 /*
@@ -25,7 +24,11 @@ export function reducerLite(state = initialState, action) {
   return produce(state, draft => {
     switch (action.type) {
       case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
-        draft.loginForm.existingEmail = false;
+        let exists = false;
+        if (action.payload.email === 'test@test.com') {
+          exists = true;
+        }
+        action.payload.callback(null, exists);
         break;
       case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
         draft.snacks = [

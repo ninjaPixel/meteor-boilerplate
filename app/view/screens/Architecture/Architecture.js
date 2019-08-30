@@ -58,8 +58,9 @@ const Architecture = props => {
           The heart of this project is built with the{' '}
           <LinkComponent to="https://www.meteor.com">Meteor framework</LinkComponent>. The only big difference is that
           I've created a 'lite' mode which builds the UI components very fast. Rebuild times for a Meteor app are
-          usually 2-3 seconds, but running in lite mode a rebuild takes less than 100ms. For me, this is a crucial
-          developer experience which allows me to remain in a flow state when I'm iterating the UI 🧘.
+          usually 2-3 seconds, but running in lite mode a rebuild takes less than 100ms (and is often less than 20ms).
+          For me, this is a crucial developer experience which allows me to remain in a flow state when I'm iterating
+          the UI 🧘.
         </Typography>
         <Typography component="div">
           Lite mode is a script that can be run from the <InlineCode>app</InlineCode> directory with{' '}
@@ -106,7 +107,16 @@ const Architecture = props => {
         <Typography variant="h2">Controller</Typography>
         <Typography variant="h3">Redux</Typography>
         <Typography component="div">
-          Used for for handling the state. Make sure that you download the redux dev tools as they are lit 🔥
+          Used for for handling the state. Make sure that you download the redux dev tools as they are lit{' '}
+          <span role="img" aria-label="flame">
+            🔥
+          </span>
+        </Typography>
+        <Typography component="div">
+          In general, I save a components state variables to the Redux store. This does fragment the code somewhat but I
+          think the payoff is worth it because it means that if a component unmounts, the user does not loose their
+          state. This is particularly important when a user is filling in a form and then gets distracted by a
+          notification. When they return to the form, we don't want them to have to start from scratch.
         </Typography>
         <Typography variant="h4">Sagas</Typography>
         <Typography component="div">Used for asynchronous state changes</Typography>
@@ -126,7 +136,8 @@ const Architecture = props => {
         <Typography>
           I'll write a whole page about this at some point, but for now I'll just mention that the{' '}
           <InlineCode>serverless</InlineCode> directory allows us to deploy serverless functions (using{' '}
-          <LinkComponent to="https://www.zeit.co">Zeit Now</LinkComponent>).
+          <LinkComponent to="https://www.zeit.co">Zeit Now</LinkComponent>). Really handy for off-loading long-running
+          processes, so that your Meteor server does not become slow to client requests.
         </Typography>
         <Typography variant="h3">Emails</Typography>
         <Typography>

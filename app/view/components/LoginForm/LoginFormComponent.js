@@ -19,7 +19,12 @@ import ModalCard from '../ModalCard/ModalCard';
 import { buttonStyle, linkStyle, paperStyle } from '../../styles/common';
 import ResponsivePaper from '../ResponsivePaper/ResponsivePaper';
 import { commonProps } from './props';
-import { actionAccountSendPasswordResetEmail, actionSnackAdd } from '../../../controller/actions';
+import {
+  actionAccountCheckIfEmailExists,
+  actionAccountSendPasswordResetEmail,
+  actionSnackAdd,
+} from '../../../controller/actions';
+import { useStoreLoginForm } from '../../hooks/reduxSelectors';
 
 const propTypes = {
   ...commonProps.propTypes,
@@ -68,6 +73,8 @@ const LoginFormComponent = props => {
   const { email, password, first, last, phone } = formValues;
 
   const [errorMessage, setErrorMessage] = useState('');
+  // const state = useStoreLoginForm();
+  // const { existingEmail } = state;
   const [existingEmail, setExistingEmail] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
@@ -117,28 +124,17 @@ const LoginFormComponent = props => {
 
   function onEmailBlurOrPasswordFocus(event) {
     event.preventDefault();
-    const value = email;
-    // check if there is already an account associated with this email address.
-    if (!value) {
-      setExistingEmail(false);
-    } else {
-      const onCheckIfEmailExistsCallback = (error, success) => {
-        if (error || success !== true) {
-          if (error) {
-            console.log('utility.checkIfEmailAddressExists.error: ', error);
-          }
-          setExistingEmail(false);
-        }
-        if (success === true) {
-          setExistingEmail(true);
-        }
-      };
-      // Meteor.call('utility.checkIfEmailAddressExists', value, onCheckIfEmailExistsCallback);
-      props.onCheckIfEmailExists(value, onCheckIfEmailExistsCallback);
-    }
+    actionAccountCheckIfEmailExists({
+      dispatch,
+      email,
+      callback: (error, value) => {
+        setExistingEmail(value);
+      },
+    });
   }
 
   function sendPasswordReset() {
+    setShowPasswordResetModal(false);
     actionAccountSendPasswordResetEmail({ dispatch, email });
   }
   function handleLoginRequest() {
@@ -182,8 +178,28 @@ const LoginFormComponent = props => {
       // do a final check to find out if this email address is recognized
       // autofilling of form means that an real address may be missed
       // Meteor.call('utility.checkIfEmailAddressExists', email, checkEMailCallback);
-      props.onCheckIfEmailExists(email, checkEMailCallback);
+      actionAccountCheckIfEmailExists({ dispatch, email, callback: checkEMailCallback });
     }
+  }
+
+  function renderPasswordHelperText() {
+    if (authenticationErrorMessage) {
+      return (
+        <div>
+          <Typography variant="caption" color="error">
+            {authenticationErrorMessage}
+          </Typography>
+        </div>
+      );
+    }
+    const needMoreCharactersInPassword = password.length && password.length < minPasswordLength;
+
+    if (!existingEmail && needMoreCharactersInPassword) {
+      return (
+        <Typography variant="caption">{`Please use at least ${minPasswordLength} characters in your password.`}</Typography>
+      );
+    }
+    return null;
   }
 
   function renderLoginRegisterForm() {
@@ -235,33 +251,13 @@ const LoginFormComponent = props => {
     );
   }
 
-  function renderPasswordHelperText() {
-    if (authenticationErrorMessage) {
-      return (
-        <div>
-          <Typography variant="caption" color="error">
-            {authenticationErrorMessage}
-          </Typography>
-        </div>
-      );
-    }
-    const needMoreCharactersInPassword = password.length && password.length < minPasswordLength;
-
-    if (!existingEmail && needMoreCharactersInPassword) {
-      return (
-        <Typography variant="caption">{`Please use at least ${minPasswordLength} characters in your password.`}</Typography>
-      );
-    }
-    return null;
-  }
-
   function toggleLegalModal() {
     setShowLegalModal(!showLegalModal);
   }
 
   function renderProfileForm() {
     return (
-      <form className={classes.form} onSubmit={this.handleCompleteRegistrationSubmit}>
+      <form className={classes.form} onSubmit={handleCompleteRegistrationSubmit}>
         <TextField
           inputProps={{ 'data-e2e': 'login-form-first-name-input' }}
           key="autofocusmonkeypatch"
@@ -398,7 +394,7 @@ const LoginFormComponent = props => {
         );
       }
       if (showProfileFields) {
-        return <ResponsivePaper className={classes.paper}>{this.renderProfileForm()}</ResponsivePaper>;
+        return <ResponsivePaper className={classes.paper}>{renderProfileForm()}</ResponsivePaper>;
       }
       return (
         <>
