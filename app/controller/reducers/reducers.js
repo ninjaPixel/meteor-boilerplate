@@ -19,6 +19,7 @@ import {
   loginFormHandleLogin,
   loginFormHandleRegistration,
   loginFormReset,
+  loginFormSendPasswordResetEmail,
 } from './loginForm';
 import { LOGIN_FORM_KEY } from './constants';
 
@@ -58,17 +59,7 @@ export function reducerLite(state = initialState, action) {
         loginFormCheckIfEmailExists({ state, draft });
         break;
       case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
-        draft.snacks = [
-          {
-            message: 'Email not sent as we are in lite mode',
-            time: Date.now(),
-            variant: 'info',
-            open: true,
-            _id: Date.now(),
-          },
-          ...draft.snacks,
-        ];
-        draft.components[LOGIN_FORM_KEY].showPasswordResetModal = false;
+        loginFormSendPasswordResetEmail({ state, draft });
         break;
       case ACCOUNT_CREATE_NEW_USER:
         loginFormHandleRegistration({ state, draft });

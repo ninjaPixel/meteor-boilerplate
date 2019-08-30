@@ -3,12 +3,13 @@ import secondary from '@material-ui/core/colors/teal';
 import tertiary from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { FONT_WEIGHTS } from './constants';
 
 const SERIF_FONT = ['"Rokkitt"', 'monospace'].join(',');
 const SANS_SERIF_FONT = ['"Titillium Web"', 'sans-serif'].join(',');
-const fontWeightLight = 200;
-const fontWeightRegular = 200;
-const fontWeightMedium = 400;
+const fontWeightLight = FONT_WEIGHTS.light;
+const fontWeightRegular = FONT_WEIGHTS.regular;
+const fontWeightMedium = FONT_WEIGHTS.bold;
 const theme = createMuiTheme({
   /*
     there are 17 units of spacing.

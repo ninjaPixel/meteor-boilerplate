@@ -26,10 +26,14 @@ export const initialStateLoginFormComponent = {
 
 export function loginFormCheckIfEmailExists({ state, draft }) {
   const { draftState, formState } = getStates({ state, draft });
+  const { email } = formState;
   let exists = false;
-  // todo Call Meteor
-  if (formState.email === 'test@test.com') {
-    exists = true;
+
+  if (email) {
+    // todo Call Meteor
+    if (email === 'test@test.com') {
+      exists = true;
+    }
   }
   draftState.existingEmail = exists;
 }
@@ -117,4 +121,34 @@ export function loginFormReset({ state, draft }) {
   draftState.showPasswordResetModal = false;
   draftState.showProfileFields = false;
   draftState.termsAccepted = false;
+}
+
+export function loginFormSendPasswordResetEmail({ state, draft }) {
+  const { draftState, formState } = getStates({ state, draft });
+  const { email } = formState;
+  // todo create a more robust test
+  if (!email.includes('@') || !email.includes('.')) {
+    draft.snacks = [
+      {
+        message: 'Please enter your email address',
+        time: Date.now(),
+        variant: 'warning',
+        open: true,
+        _id: Date.now(),
+      },
+      ...draft.snacks,
+    ];
+  } else {
+    draft.snacks = [
+      {
+        message: 'Email not sent as we are in lite mode',
+        time: Date.now(),
+        variant: 'info',
+        open: true,
+        _id: Date.now(),
+      },
+      ...draft.snacks,
+    ];
+    draftState.showPasswordResetModal = false;
+  }
 }

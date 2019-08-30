@@ -46,7 +46,7 @@ const UserFeedback = props => {
         <Typography variant="h2">Notifications</Typography>
         <Typography component="div">
           Notifications are a common feature but are hard to build. The boilerplate includes the UI for notifications;
-          if you want to generate notifications in your app, we recommend doing this using serverless functions, so that
+          if you want to generate notifications in your app, I recommend doing this using serverless functions, so that
           the processing logic does not tie-up your server's only thread. See the <InlineCode>/serverless</InlineCode>{' '}
           directory for a code stub.
         </Typography>

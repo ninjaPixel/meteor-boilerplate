@@ -26,10 +26,6 @@ export const inputStyle = theme => ({
   width: '100%',
 });
 
-export const responsivePaperTitleStyle = theme => ({
-  marginBottom: theme.spacing(2),
-});
-
 export const stackStyle = theme => ({
   '& > * + *': {
     marginTop: theme.spacing(3),
