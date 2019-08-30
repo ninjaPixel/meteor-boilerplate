@@ -32,7 +32,7 @@ export const TYPE_SCALE = {
 // };
 
 export const FONT_WEIGHTS = {
-  light: 100,
+  light: 200,
   regular: 300,
   bold: 400,
 };

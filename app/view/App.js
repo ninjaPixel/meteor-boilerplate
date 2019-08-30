@@ -1,3 +1,4 @@
+/* eslint react/jsx-pascal-case:0 */
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import PropTypes from 'prop-types';
@@ -13,7 +14,6 @@ import AppRoute from './layout/AppRoute/AppRoute';
 import routes from '../imports/modules/newRoutes';
 import { middleOfScreenStyle } from './styles/common';
 import Snacks from './components/Snacks/Snacks';
-import { useStoreUser } from './hooks/reduxSelectors';
 
 const propTypes = {
   user: PropTypes.object,
@@ -41,7 +41,7 @@ const ScreenLoader = () => {
   );
 };
 
-const App = props => {
+const _App = props => {
   const classes = useStyles({ color: 'white' });
   const commonProps = {};
   const paths = () => {
@@ -91,15 +91,15 @@ const App = props => {
   );
 };
 
-App.propTypes = propTypes;
-App.defaultProps = defaultProps;
+_App.propTypes = propTypes;
+_App.defaultProps = defaultProps;
 
 const ThemedApp = props => {
   const { theme, ...rest } = props;
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App {...rest} />
+      <_App {...rest} />
       <Snacks />
     </ThemeProvider>
   );
@@ -108,4 +108,6 @@ const ThemedApp = props => {
 ThemedApp.propTypes = { ...propTypes, theme: PropTypes.object };
 ThemedApp.defaultProps = { ...defaultProps, theme: baseTheme };
 
-export default hot(module)(ThemedApp);
+export const HMRApp = hot(module)(ThemedApp);
+
+export const App = ThemedApp;

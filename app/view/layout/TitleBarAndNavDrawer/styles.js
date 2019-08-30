@@ -1,5 +1,5 @@
 import makeStyles from '@material-ui/styles/makeStyles';
-import { TYPE_SCALE } from '../../../imports/ui/styles/constants';
+import { FONT_WEIGHTS, TYPE_SCALE } from '../../styles/constants';
 
 const drawerWidth = 240;
 const appBarHeightXS = 56;
@@ -62,8 +62,8 @@ const styles = makeStyles(theme => ({
     },
   },
   titleText: {
-    fontSize: TYPE_SCALE['36'],
-    fontWeight: 'bold',
+    fontSize: TYPE_SCALE.XL3.fontSize,
+    fontWeight: FONT_WEIGHTS.light,
   },
   drawer: {
     position: 'fixed',

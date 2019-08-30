@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import App from '../view/App';
-import { devStore } from '../controller/store';
+import { HMRApp } from '../view/App';
+import { store } from '../controller/store';
 
-const store = devStore();
+const reduxStore = store(true);
 
 render(
-  <Provider store={store}>
-    <App />
+  <Provider store={reduxStore}>
+    <HMRApp />
   </Provider>,
   document.getElementById('render-target'),
 );

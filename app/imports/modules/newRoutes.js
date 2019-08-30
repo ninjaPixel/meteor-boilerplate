@@ -47,7 +47,6 @@ export default {
     importFunction: (): Promise => import('../../view/screens/DynamicImports/DynamicImports.js'),
     exact: true,
     path: '/dynamic-imports',
-    loginRequired: true,
   }),
   notifications: createRoute({
     title: 'Notifications',
