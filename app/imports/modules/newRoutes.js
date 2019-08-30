@@ -87,6 +87,12 @@ export default {
     exact: true,
     path: '/login',
   }),
+  logout: createRoute({
+    title: 'Logout',
+    importFunction: (): Promise => import('../../view/components/Logout/Logout.js'),
+    exact: true,
+    path: '/logout',
+  }),
   account: createRoute({
     title: 'Account',
     importFunction: (): Promise => import('../../view/components/LoginForm/LoginForm.js'),

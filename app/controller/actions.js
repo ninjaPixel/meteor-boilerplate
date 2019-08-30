@@ -8,6 +8,7 @@ import {
   ACCOUNT_CHECK_IF_EMAIL_EXISTS,
   FORM_STATE_UPDATE,
   ACCOUNT_CREATE_NEW_USER,
+  ACCOUNT_LOG_OUT,
 } from './actionTypes';
 import { LOGIN_FORM_KEY } from './reducers/constants';
 
@@ -53,6 +54,12 @@ export const actionNotificationsRead = ({ dispatch, _ids }) => {
 export function actionAccountLogIn({ dispatch }) {
   dispatch({
     type: ACCOUNT_LOG_IN_WITH_PASSWORD,
+  });
+}
+
+export function actionAccountLogOut({ dispatch }) {
+  dispatch({
+    type: ACCOUNT_LOG_OUT,
   });
 }
 export function actionAccountSendPasswordResetEmail({ dispatch }) {

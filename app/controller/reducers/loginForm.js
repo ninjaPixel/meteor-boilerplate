@@ -100,3 +100,21 @@ export function loginFormHandleLogin({ state, draft }) {
     draftState.showProfileFields = true;
   }
 }
+
+export function loginFormReset({ state, draft }) {
+  const { draftState } = getStates({ state, draft });
+  draftState.email = '';
+  draftState.password = '';
+  draftState.first = '';
+  draftState.last = '';
+  draftState.phone = '';
+  draftState.errorMessage = '';
+  draftState.existingEmail = false;
+  draftState.loading = false;
+  draftState.loggingIn = false;
+  draftState.newAccountCreated = false;
+  draftState.showLegalModal = false;
+  draftState.showPasswordResetModal = false;
+  draftState.showProfileFields = false;
+  draftState.termsAccepted = false;
+}

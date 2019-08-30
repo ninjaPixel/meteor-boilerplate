@@ -11,12 +11,14 @@ import {
   FORM_STATE_UPDATE,
   ACCOUNT_CREATE_NEW_USER,
   ACCOUNT_LOG_IN_WITH_PASSWORD,
+  ACCOUNT_LOG_OUT,
 } from '../actionTypes';
 import {
   initialStateLoginFormComponent,
   loginFormCheckIfEmailExists,
   loginFormHandleLogin,
   loginFormHandleRegistration,
+  loginFormReset,
 } from './loginForm';
 import { LOGIN_FORM_KEY } from './constants';
 
@@ -43,6 +45,11 @@ export function reducerLite(state = initialState, action) {
     switch (action.type) {
       case FORM_STATE_UPDATE:
         updateFormState({ ...action.payload, draft });
+        break;
+      case ACCOUNT_LOG_OUT:
+        draft.user = {};
+        loginFormReset({ state, draft });
+        // todo Meteor logout
         break;
       case ACCOUNT_LOG_IN_WITH_PASSWORD:
         loginFormHandleLogin({ state, draft });
