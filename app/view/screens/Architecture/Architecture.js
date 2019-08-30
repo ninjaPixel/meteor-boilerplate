@@ -120,7 +120,10 @@ const Architecture = props => {
           to it, the progress indicator will not be reset.
         </Typography>
         <Typography variant="h4">Sagas</Typography>
-        <Typography component="div">Used for asynchronous state changes to the Redux store.</Typography>
+        <Typography component="div">
+          Redux-Sagas is a library used for asynchronous state changes to the Redux store. I haven't hooked it up yet,
+          but this is prob what we'll use for this.
+        </Typography>
       </div>
       <div className={classes.section}>
         <Typography variant="h2">Other...</Typography>

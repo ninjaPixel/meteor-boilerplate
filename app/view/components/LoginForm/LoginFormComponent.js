@@ -28,6 +28,8 @@ import {
   actionUpdateComponentLoginForm,
 } from '../../../controller/actions';
 import { useStoreComponentLoginForm } from '../../hooks/reduxSelectors';
+import LinkButton from '../LinkButton/LinkButton';
+import newRoutes from '../../../imports/modules/newRoutes';
 
 const propTypes = {
   ...commonProps.propTypes,
@@ -58,6 +60,15 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.light,
     marginTop: theme.spacing(7),
     cursor: 'pointer',
+  },
+  loggedInButtons: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    flex: 1,
+    '& > * + *': {
+      marginTop: theme.spacing(3),
+    },
   },
 }));
 const LoginFormComponent = props => {
@@ -328,9 +339,14 @@ const LoginFormComponent = props => {
               </Typography>
               {location.pathname.includes('/login') ? null : <Loading linear text="Loading page..." />}
             </Grid>
-            <Grid item xs={12} align="center">
-              <Typography>Default screen.</Typography>
-            </Grid>
+            <div className={classes.loggedInButtons}>
+              <LinkButton color="primary" to="/">
+                Home
+              </LinkButton>
+              <LinkButton color="primary" to={newRoutes.account.getPath(user._id)}>
+                My account
+              </LinkButton>
+            </div>
           </Grid>
         );
       }

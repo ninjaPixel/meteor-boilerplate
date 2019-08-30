@@ -28,7 +28,6 @@ const defaultProps = {
 const AppRoute = props => {
   const { path, exact, component, title, location, ...rest } = props;
   const user = useStoreUser();
-  console.log('user: ', user);
   const { loginRequired } = props;
   return (
     <Route
