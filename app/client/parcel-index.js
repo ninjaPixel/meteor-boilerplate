@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { HMRApp } from '../view/App';
 import { store } from '../controller/store';
 
-const reduxStore = store(true);
+const reduxStore = store();
 
 render(
   <Provider store={reduxStore}>

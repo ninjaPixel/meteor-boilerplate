@@ -36,50 +36,48 @@ function updateFormState({ key, value, draft }) {
   _.set(draft, key, value);
 }
 
-export function reducer(lite = false) {
-  return function reducerFn(state = initialState, action) {
-    /* eslint no-param-reassign:0 default-case:0 */
-    return produce(state, draft => {
-      switch (action.type) {
-        case FORM_STATE_UPDATE:
-          updateFormState({ ...action.payload, draft });
-          break;
-        case ACCOUNT_LOG_OUT:
-          loginFormReset({ state, draft });
-          if (lite) {
-            draft.user = {};
-          } else {
-            // todo Meteor logout
-          }
+export function reducer(state = initialState, action) {
+  /* eslint no-param-reassign:0 default-case:0 */
+  return produce(state, draft => {
+    switch (action.type) {
+      case FORM_STATE_UPDATE:
+        updateFormState({ ...action.payload, draft });
+        break;
+      case ACCOUNT_LOG_OUT:
+        loginFormReset({ state, draft });
+        if (window.Meteor) {
+          // todo Meteor logout
+        } else {
+          draft.user = {};
+        }
 
-          break;
-        case ACCOUNT_LOG_IN_WITH_PASSWORD:
-          loginFormHandleLogin({ state, draft });
-          break;
-        case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
-          loginFormCheckIfEmailExists({ state, draft });
-          break;
-        case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
-          loginFormSendPasswordResetEmail({ state, draft });
-          break;
-        case ACCOUNT_CREATE_NEW_USER:
-          loginFormHandleRegistration({ state, draft });
-          break;
-        case NOTIFICATION_ADD:
-          draft.notifications = [action.payload, ...draft.notifications];
-          break;
-        case NOTIFICATIONS_READ:
-          action.payload._ids.forEach(_id => {
-            _.find(draft.notifications, { _id }).notificationSeen = true;
-          });
-          break;
-        case SNACK_ADD:
-          draft.snacks = [action.payload, ...draft.snacks];
-          break;
-        case SNACK_CLOSE:
-          _.find(draft.snacks, { _id: action.payload._id }).open = false;
-          break;
-      }
-    });
-  };
+        break;
+      case ACCOUNT_LOG_IN_WITH_PASSWORD:
+        loginFormHandleLogin({ state, draft });
+        break;
+      case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
+        loginFormCheckIfEmailExists({ state, draft });
+        break;
+      case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
+        loginFormSendPasswordResetEmail({ state, draft });
+        break;
+      case ACCOUNT_CREATE_NEW_USER:
+        loginFormHandleRegistration({ state, draft });
+        break;
+      case NOTIFICATION_ADD:
+        draft.notifications = [action.payload, ...draft.notifications];
+        break;
+      case NOTIFICATIONS_READ:
+        action.payload._ids.forEach(_id => {
+          _.find(draft.notifications, { _id }).notificationSeen = true;
+        });
+        break;
+      case SNACK_ADD:
+        draft.snacks = [action.payload, ...draft.snacks];
+        break;
+      case SNACK_CLOSE:
+        _.find(draft.snacks, { _id: action.payload._id }).open = false;
+        break;
+    }
+  });
 }
