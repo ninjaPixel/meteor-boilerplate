@@ -1,4 +1,5 @@
-import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects';
+import { eventChannel, END } from 'redux-saga';
+import { call, put, takeEvery, take, takeLatest, select } from 'redux-saga/effects';
 import { ACCOUNT_CHECK_IF_EMAIL_EXISTS, FORM_STATE_UPDATE } from '../actionTypes';
 import { LOGIN_FORM_KEY } from '../reducers/constants';
 
@@ -8,30 +9,38 @@ function fetchEmailExistsApi(email) {
   return window.Meteor.call();
 }
 
+function meteorFetchEmailExists(email) {
+  return eventChannel(emitter => {
+    window.Meteor.call('utility.checkIfEmailAddressExists', email, (error, success) => {
+      if (error) {
+        emitter({ error });
+      } else {
+        emitter({ success });
+      }
+      emitter(END);
+    });
+
+    // The subscriber must return an unsubscribe function
+    return () => {};
+  });
+}
+
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* checkIfEmailExists(action) {
   try {
     const loginFormState = yield select(getState);
     const { email } = loginFormState;
     if (window.Meteor) {
-      // const result = window.Meteor.call('utility.checkIfEmailAddressExists', email);
-      // console.log('result: ', result);
-      // window.Meteor.call('utility.checkIfEmailAddressExists', email, (err, exists) => {
-      //   if (err) {
-      //     // todo
-      //   } else {
-      //
-      //           yield put({
-      //   type: FORM_STATE_UPDATE,
-      //   payload: {
-      //     key: `components.${LOGIN_FORM_KEY}.existingEmail`,
-      //     value: exists,
-      //   },
-      // });
-      //
-      //
-      //   }
-      // });
+      const chan = yield call(meteorFetchEmailExists, email);
+      try {
+        while (true) {
+          // take(END) will cause the saga to terminate by jumping to the finally block
+          let response = yield take(chan);
+          console.log('response: ', response);
+        }
+      } finally {
+        console.log('countdown terminated');
+      }
     } else {
       let exists = false;
       if (email === 'test@test.com') {
