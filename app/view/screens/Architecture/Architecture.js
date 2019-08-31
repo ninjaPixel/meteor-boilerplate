@@ -8,6 +8,7 @@ import LinkComponent from '../../components/Link/Link';
 import InlineCode from '../../components/InlineCode/InlineCode';
 import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
 import newRoutes from '../../../imports/modules/newRoutes';
+import Quote from '../../components/Quote/Quote';
 
 const propTypes = {
   className: PropTypes.string,
@@ -124,6 +125,12 @@ const Architecture = props => {
           Redux-Sagas is a library used for asynchronous state changes to the Redux store. I haven't hooked it up yet,
           but this is prob what we'll use for this.
         </Typography>
+        <Quote author={'the Saga docs'}>
+          The mental model is that a saga is like a separate thread in your application that's solely responsible for
+          side effects. redux-saga is a redux middleware, which means this thread can be started, paused and cancelled
+          from the main application with normal redux actions, it has access to the full redux application state and it
+          can dispatch redux actions as well.
+        </Quote>
       </div>
       <div className={classes.section}>
         <Typography variant="h2">Other...</Typography>

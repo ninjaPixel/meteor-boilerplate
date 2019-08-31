@@ -7,11 +7,10 @@ import { App } from '../../../view/App';
 import { store } from '../../../controller/store';
 
 // todo subscribe to User collection
-const reduxStore = store();
 
 Meteor.startup(() => {
   render(
-    <Provider store={reduxStore}>
+    <Provider store={store}>
       <App />
     </Provider>,
     document.getElementById('render-target'),

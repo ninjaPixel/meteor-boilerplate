@@ -42,6 +42,8 @@
     "react-resize-aware": "^3.0.0-beta.3",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.0.5",
     "simpl-schema": "^1.5.5"
   },
   "meteor": {
@@ -52,7 +54,7 @@
     "testModule": "tests/main.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.5",
     "@types/lodash": "^4.14.134",
     "@types/mocha": "^5.2.7",
     "@types/react": "^16.8.20",
@@ -61,5 +63,9 @@
     "chai": "^4.2.0",
     "parcel-bundler": "^1.12.3",
     "testcafe": "^1.2.1"
-  }
+  },
+  "browserslist": [
+    "> 10%",
+    "not dead"
+  ]
 }

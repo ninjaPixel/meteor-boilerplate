@@ -4,10 +4,8 @@ import { Provider } from 'react-redux';
 import { HMRApp } from '../view/App';
 import { store } from '../controller/store';
 
-const reduxStore = store();
-
 render(
-  <Provider store={reduxStore}>
+  <Provider store={store}>
     <HMRApp />
   </Provider>,
   document.getElementById('render-target'),

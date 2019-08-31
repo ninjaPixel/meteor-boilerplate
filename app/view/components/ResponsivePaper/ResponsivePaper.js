@@ -26,7 +26,6 @@ const defaultProps = {
 
 const ResponsivePaper = props => {
   const { classes, width, children, paperClassName, flatClassName, title, breakPoint } = props;
-  console.log('width: ', width);
   const titleVariant = 'h4';
   if (width >= breakPoint) {
     if (title) {

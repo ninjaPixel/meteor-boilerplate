@@ -15,7 +15,7 @@ import {
 } from '../actionTypes';
 import {
   initialStateLoginFormComponent,
-  loginFormCheckIfEmailExists,
+  _loginFormCheckIfEmailExists,
   loginFormHandleLogin,
   loginFormHandleRegistration,
   loginFormReset,
@@ -55,9 +55,9 @@ export function reducer(state = initialState, action) {
       case ACCOUNT_LOG_IN_WITH_PASSWORD:
         loginFormHandleLogin({ state, draft });
         break;
-      case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
-        loginFormCheckIfEmailExists({ state, draft });
-        break;
+      // case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
+      //   loginFormCheckIfEmailExists({ state, draft });
+      //   break;
       case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
         loginFormSendPasswordResetEmail({ state, draft });
         break;
