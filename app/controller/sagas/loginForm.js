@@ -2,12 +2,9 @@ import { eventChannel, END } from 'redux-saga';
 import { call, put, takeEvery, take, takeLatest, select } from 'redux-saga/effects';
 import { ACCOUNT_CHECK_IF_EMAIL_EXISTS, FORM_STATE_UPDATE } from '../actionTypes';
 import { LOGIN_FORM_KEY } from '../reducers/constants';
+import { dispatchErrorSnack } from './helpers';
 
 const getState = state => state.components[LOGIN_FORM_KEY];
-
-function fetchEmailExistsApi(email) {
-  return window.Meteor.call();
-}
 
 function meteorFetchEmailExists(email) {
   return eventChannel(emitter => {
@@ -17,6 +14,7 @@ function meteorFetchEmailExists(email) {
       } else {
         emitter({ success });
       }
+
       emitter(END);
     });
 
@@ -26,7 +24,7 @@ function meteorFetchEmailExists(email) {
 }
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
-function* checkIfEmailExists(action) {
+function* checkIfEmailExists() {
   try {
     const loginFormState = yield select(getState);
     const { email } = loginFormState;
@@ -35,11 +33,21 @@ function* checkIfEmailExists(action) {
       try {
         while (true) {
           // take(END) will cause the saga to terminate by jumping to the finally block
-          let response = yield take(chan);
-          console.log('response: ', response);
+          const { success, error } = yield take(chan);
+          if (error) {
+            yield dispatchErrorSnack(error);
+          } else {
+            yield put({
+              type: FORM_STATE_UPDATE,
+              payload: {
+                key: `components.${LOGIN_FORM_KEY}.existingEmail`,
+                value: success,
+              },
+            });
+          }
         }
       } finally {
-        console.log('countdown terminated');
+        // console.log('checkIfEmailExists terminated');
       }
     } else {
       let exists = false;

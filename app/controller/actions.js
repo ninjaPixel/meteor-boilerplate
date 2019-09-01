@@ -17,8 +17,8 @@ import { LOGIN_FORM_KEY } from './reducers/constants';
   for a high-level overview on structuring actions
  */
 
-export const actionSnackAdd = ({ dispatch, message, variant = 'info' }) => {
-  dispatch({
+export const createSnackDispatch = ({ message, variant = 'info' }) => {
+  return {
     type: SNACK_ADD,
     payload: {
       message,
@@ -27,7 +27,11 @@ export const actionSnackAdd = ({ dispatch, message, variant = 'info' }) => {
       time: new Date(),
       open: true,
     },
-  });
+  };
+};
+
+export const actionSnackAdd = ({ dispatch, message, variant }) => {
+  dispatch(createSnackDispatch({ message, variant }));
 };
 
 export const actionSnackClose = ({ dispatch, _id }) => {

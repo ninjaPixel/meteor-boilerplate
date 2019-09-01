@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { reducer } from './reducers/reducers';
-import sagas from './sagas/sagas';
+import loginFormSagas from './sagas/loginForm';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,4 +17,4 @@ export const store = createStore(
   ),
 );
 
-sagaMiddleware.run(sagas);
+sagaMiddleware.run(loginFormSagas);
