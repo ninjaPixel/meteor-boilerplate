@@ -12,6 +12,7 @@ import {
   ACCOUNT_CREATE_NEW_USER,
   ACCOUNT_LOG_IN_WITH_PASSWORD,
   ACCOUNT_LOG_OUT,
+  ACCOUNT_LOGGED_IN,
 } from '../actionTypes';
 import {
   initialStateLoginFormComponent,
@@ -20,6 +21,7 @@ import {
   loginFormHandleRegistration,
   loginFormReset,
   loginFormSendPasswordResetEmail,
+  loginFormUserLoggedIn,
 } from './loginForm';
 import { LOGIN_FORM_KEY } from './constants';
 
@@ -52,12 +54,12 @@ export function reducer(state = initialState, action) {
         }
 
         break;
-      case ACCOUNT_LOG_IN_WITH_PASSWORD:
-        loginFormHandleLogin({ state, draft });
-        break;
-      // case ACCOUNT_CHECK_IF_EMAIL_EXISTS:
-      //   loginFormCheckIfEmailExists({ state, draft });
+      // case ACCOUNT_LOG_IN_WITH_PASSWORD:
+      //   loginFormHandleLogin({ state, draft });
       //   break;
+      case ACCOUNT_LOGGED_IN:
+        loginFormUserLoggedIn({ state, draft, action });
+        break;
       case ACCOUNT_SEND_PASSWORD_RESET_EMAIL:
         loginFormSendPasswordResetEmail({ state, draft });
         break;

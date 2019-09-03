@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 import newCollection from '../../../imports/modules/newCollection';
 
@@ -12,7 +13,7 @@ const schema = new SimpleSchema({
 
 SampleCollection.attachSchema(schema);
 
-if (SampleCollection.find({}).fetch().length === 0) {
+if (Meteor.isServer && SampleCollection.find({}).fetch().length === 0) {
   SampleCollection.insert({ count: 1 });
 }
 

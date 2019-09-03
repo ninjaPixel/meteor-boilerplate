@@ -164,3 +164,14 @@ export function loginFormSendPasswordResetEmail({ state, draft }) {
     draftState.showPasswordResetModal = false;
   }
 }
+
+export function loginFormUserLoggedIn({ state, draft, action }) {
+  const { payload } = action;
+  const { user } = payload;
+  draft.user = user;
+
+  // clean up the login form
+  const { draftState } = getStates({ state, draft });
+  draftState.password = '';
+  draftState.loggingIn = false;
+}

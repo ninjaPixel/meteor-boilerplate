@@ -9,6 +9,7 @@ import {
   FORM_STATE_UPDATE,
   ACCOUNT_CREATE_NEW_USER,
   ACCOUNT_LOG_OUT,
+  ACCOUNT_LOGGED_IN,
 } from './actionTypes';
 import { LOGIN_FORM_KEY } from './reducers/constants';
 
@@ -87,4 +88,8 @@ export function actionUpdateComponentLoginForm({ dispatch, key, value }) {
 
 export function actionAccountCreateUser({ dispatch }) {
   dispatch({ type: ACCOUNT_CREATE_NEW_USER });
+}
+
+export function actionAccountLoggedIn({ dispatch, user }) {
+  dispatch({ type: ACCOUNT_LOGGED_IN, payload: { user } });
 }
