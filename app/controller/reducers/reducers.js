@@ -6,18 +6,15 @@ import {
   SNACK_ADD,
   SNACK_CLOSE,
   NOTIFICATIONS_READ,
-  ACCOUNT_CHECK_IF_EMAIL_EXISTS,
   ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
   FORM_STATE_UPDATE,
   ACCOUNT_CREATE_NEW_USER,
-  ACCOUNT_LOG_IN_WITH_PASSWORD,
   ACCOUNT_LOG_OUT,
   ACCOUNT_LOGGED_IN,
+  USER_CHANGE_PUBLISHED,
 } from '../actionTypes';
 import {
   initialStateLoginFormComponent,
-  _loginFormCheckIfEmailExists,
-  loginFormHandleLogin,
   loginFormHandleRegistration,
   loginFormReset,
   loginFormSendPasswordResetEmail,
@@ -29,6 +26,7 @@ const initialState = {
   snacks: [],
   notifications: [],
   user: {},
+  userReady: true,
   components: {
     [LOGIN_FORM_KEY]: initialStateLoginFormComponent,
   },
@@ -41,9 +39,14 @@ function updateFormState({ key, value, draft }) {
 export function reducer(state = initialState, action) {
   /* eslint no-param-reassign:0 default-case:0 */
   return produce(state, draft => {
+    const { payload } = action;
     switch (action.type) {
       case FORM_STATE_UPDATE:
-        updateFormState({ ...action.payload, draft });
+        updateFormState({ ...payload, draft });
+        break;
+      case USER_CHANGE_PUBLISHED:
+        draft.user = payload.user;
+        draft.userReady = payload.ready;
         break;
       case ACCOUNT_LOG_OUT:
         loginFormReset({ state, draft });

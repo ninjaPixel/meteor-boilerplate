@@ -70,6 +70,9 @@ const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(3),
     },
   },
+  tosCheckbox: {
+    fontSize: theme.typography.subtitle2.fontSize,
+  },
 }));
 const LoginFormComponent = props => {
   const { user, location, disableEmail, disableAutoFocus, loginButtonText, registerButtonText } = props;
@@ -230,6 +233,7 @@ const LoginFormComponent = props => {
         />
         <div className={classes.legal}>
           <FormControlLabel
+            classes={{ label: classes.tosCheckbox }}
             control={
               <Checkbox
                 data-e2e="login-form-tos-checkbox"

@@ -24,31 +24,6 @@ export const initialStateLoginFormComponent = {
   termsAccepted: false,
 };
 
-export function loginFormCheckIfEmailExists({ state, draft }) {
-  const { draftState, formState } = getStates({ state, draft });
-  const { email } = formState;
-
-  if (email) {
-    if (window.Meteor) {
-      window.Meteor.call('utility.checkIfEmailAddressExists', email, (err, exists) => {
-        if (err) {
-          // todo
-        } else {
-          // can't do this
-          // need Sagas or something like that/
-          draftState.existingEmail = exists;
-        }
-      });
-    } else {
-      let exists = false;
-      if (email === 'test@test.com') {
-        exists = true;
-      }
-      draftState.existingEmail = exists;
-    }
-  }
-}
-
 function createUserObjectFromStore({ state, draft }) {
   const { formState } = getStates({ state, draft });
 
@@ -78,43 +53,6 @@ export function loginFormHandleRegistration({ state, draft }) {
   draft.user = user;
   draftState.newAccountCreated = true;
   draftState.loading = false;
-}
-
-export function loginFormHandleLogin({ state, draft, lite }) {
-  /*
-    If this is an existing account, log them in.
-    Else, ask for more details, so that we can create an account for them.
-   */
-  const { draftState, formState } = getStates({ state, draft });
-  draftState.errorMessage = '';
-  // do a final check to find out if this email address is recognized
-  // autofilling of form means that an real address may be missed
-  loginFormCheckIfEmailExists({ state, draft });
-  if (draftState.existingEmail) {
-    draftState.showProfileFields = false;
-    draftState.loggingIn = true;
-    const { email, password } = formState;
-    if (window.Meteor) {
-      // todo Call meteor
-      // Meteor.call('utility.checkIfEmailAddressExists', email, checkEMailCallback);
-    } else {
-      draft.user = {
-        _id: '1234567',
-        email,
-        profile: {
-          name: {
-            first: 'Steve',
-            last: 'Jobs',
-          },
-          phone: '',
-        },
-      };
-
-      draftState.loggingIn = false;
-    }
-  } else {
-    draftState.showProfileFields = true;
-  }
 }
 
 export function loginFormReset({ state, draft }) {

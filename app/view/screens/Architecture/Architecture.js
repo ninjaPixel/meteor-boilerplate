@@ -122,8 +122,11 @@ const Architecture = props => {
         </Typography>
         <Typography variant="h4">Sagas</Typography>
         <Typography component="div">
-          Redux-Sagas is a library used for asynchronous state changes to the Redux store. I haven't hooked it up yet,
-          but this is prob what we'll use for this.
+          <LinkComponent to={'https://redux-saga.js.org/'}>Redux-Sagas</LinkComponent> is a library used for
+          asynchronous state changes to the Redux store. In this project, it is used for making calls to the backend
+          server (e.g. when you login). The use of Redux-Sagas does add an extra level of complexity to the project, so
+          appolgies for that. What we've lost in DX (developer experience) will be made up for with long-term robustness
+          and (hoefully) easier debugging of this project.
         </Typography>
         <Quote author={'the Saga docs'}>
           The mental model is that a saga is like a separate thread in your application that's solely responsible for
@@ -131,6 +134,9 @@ const Architecture = props => {
           from the main application with normal redux actions, it has access to the full redux application state and it
           can dispatch redux actions as well.
         </Quote>
+        <Typography component="div">
+          I'm still getting to grips with Redux-Sags, and am just at the start of my journey with this library!
+        </Typography>
       </div>
       <div className={classes.section}>
         <Typography variant="h2">Other...</Typography>

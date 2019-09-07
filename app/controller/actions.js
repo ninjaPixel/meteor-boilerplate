@@ -10,6 +10,7 @@ import {
   ACCOUNT_CREATE_NEW_USER,
   ACCOUNT_LOG_OUT,
   ACCOUNT_LOGGED_IN,
+  USER_CHANGE_PUBLISHED,
 } from './actionTypes';
 import { LOGIN_FORM_KEY } from './reducers/constants';
 
@@ -92,4 +93,11 @@ export function actionAccountCreateUser({ dispatch }) {
 
 export function actionAccountLoggedIn({ dispatch, user }) {
   dispatch({ type: ACCOUNT_LOGGED_IN, payload: { user } });
+}
+
+export function actionUserChangePublished({ dispatch, user, ready }) {
+  dispatch({
+    type: USER_CHANGE_PUBLISHED,
+    payload: { user, ready },
+  });
 }

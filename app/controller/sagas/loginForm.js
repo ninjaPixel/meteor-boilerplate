@@ -11,6 +11,16 @@ import { dispatchErrorSnack } from './helpers';
 
 const getState = state => state.components[LOGIN_FORM_KEY];
 
+function* updateFormState(key, value) {
+  yield put({
+    type: FORM_STATE_UPDATE,
+    payload: {
+      key: `components.${LOGIN_FORM_KEY}.${key}`,
+      value,
+    },
+  });
+}
+
 function meteorFetchEmailExists(email) {
   return eventChannel(emitter => {
     window.Meteor.call('utility.checkIfEmailAddressExists', email, (error, success) => {
@@ -49,39 +59,41 @@ function* checkIfEmailExists() {
   try {
     const loginFormState = yield select(getState);
     const { email } = loginFormState;
-    if (window.Meteor) {
-      const chan = yield call(meteorFetchEmailExists, email);
-      try {
-        while (true) {
-          // take(END) will cause the saga to terminate by jumping to the finally block
-          const { success, error } = yield take(chan);
-          if (error) {
-            yield dispatchErrorSnack(error);
-          } else {
-            yield put({
-              type: FORM_STATE_UPDATE,
-              payload: {
-                key: `components.${LOGIN_FORM_KEY}.existingEmail`,
-                value: success,
-              },
-            });
+    if (email) {
+      if (window.Meteor) {
+        const chan = yield call(meteorFetchEmailExists, email);
+        try {
+          while (true) {
+            // take(END) will cause the saga to terminate by jumping to the finally block
+            const { success, error } = yield take(chan);
+            if (error) {
+              yield dispatchErrorSnack(error);
+            } else {
+              yield put({
+                type: FORM_STATE_UPDATE,
+                payload: {
+                  key: `components.${LOGIN_FORM_KEY}.existingEmail`,
+                  value: success,
+                },
+              });
+            }
           }
+        } finally {
+          // console.log('checkIfEmailExists terminated');
         }
-      } finally {
-        // console.log('checkIfEmailExists terminated');
+      } else {
+        let exists = false;
+        if (email === 'test@test.com') {
+          exists = true;
+        }
+        yield put({
+          type: FORM_STATE_UPDATE,
+          payload: {
+            key: `components.${LOGIN_FORM_KEY}.existingEmail`,
+            value: exists,
+          },
+        });
       }
-    } else {
-      let exists = false;
-      if (email === 'test@test.com') {
-        exists = true;
-      }
-      yield put({
-        type: FORM_STATE_UPDATE,
-        payload: {
-          key: `components.${LOGIN_FORM_KEY}.existingEmail`,
-          value: exists,
-        },
-      });
     }
   } catch (e) {
     yield dispatchErrorSnack(e);
@@ -96,44 +108,51 @@ function* loginWithPassword() {
       value: true,
     },
   });
+  yield checkIfEmailExists();
+  const loginFormState = yield select(getState);
+  const { email, password, existingEmail } = loginFormState;
+
   try {
-    const loginFormState = yield select(getState);
-    const { email, password } = loginFormState;
-    if (window.Meteor) {
-      // do meteor stuff
-      const chan = yield call(meteorLoginWithPassword, { email, password });
-      try {
-        while (true) {
-          // take(END) will cause the saga to terminate by jumping to the finally block
-          const { success, error } = yield take(chan);
-          if (error) {
-            yield dispatchErrorSnack(error);
-          } else {
-            // the subscription to the user collection will update the store
+    if (existingEmail) {
+      if (window.Meteor) {
+        // do meteor stuff
+        const chan = yield call(meteorLoginWithPassword, { email, password });
+        try {
+          while (true) {
+            // take(END) will cause the saga to terminate by jumping to the finally block
+            const { success, error } = yield take(chan);
+            if (error) {
+              yield dispatchErrorSnack(error);
+            } else {
+              // the subscription to the user collection will update the store
+            }
           }
+        } finally {
+          // console.log('checkIfEmailExists terminated');
         }
-      } finally {
-        // console.log('checkIfEmailExists terminated');
+      } else {
+        // mock the meteor call
+        const user = {
+          _id: 'test_user_id',
+          email,
+          profile: {
+            name: {
+              first: 'Testy',
+              last: 'McTester',
+            },
+            phone: '',
+          },
+        };
+        yield put({
+          type: ACCOUNT_LOGGED_IN,
+          payload: {
+            user,
+          },
+        });
       }
     } else {
-      // mock the meteor call
-      const user = {
-        _id: 'test_user_id',
-        email,
-        profile: {
-          name: {
-            first: 'Testy',
-            last: 'McTester',
-          },
-          phone: '',
-        },
-      };
-      yield put({
-        type: ACCOUNT_LOGGED_IN,
-        payload: {
-          user,
-        },
-      });
+      yield updateFormState('showProfileFields', true);
+      console.log('showProfileFields: ', true);
     }
   } catch (exception) {
     yield dispatchErrorSnack(exception);
@@ -148,24 +167,9 @@ function* loginWithPassword() {
   }
 }
 
-/*
-  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-  Allows concurrent fetches of user.
-*/
-// function* mySaga() {
-//   yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
-// }
-
-/*
-  Alternatively you may use takeLatest.
-
-  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
-function* mySaga() {
+function* loginFormSagas() {
   yield takeLatest(ACCOUNT_CHECK_IF_EMAIL_EXISTS, checkIfEmailExists);
   yield takeLatest(ACCOUNT_LOG_IN_WITH_PASSWORD, loginWithPassword);
 }
 
-export default mySaga;
+export default loginFormSagas;
