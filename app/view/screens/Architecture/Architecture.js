@@ -64,18 +64,17 @@ const Architecture = props => {
         </Typography>
         <Typography component="div">
           Lite mode is a script that can be run from the <InlineCode>app</InlineCode> directory with{' '}
-          <InlineCode>npm run start:ui</InlineCode>. The only drawback of this approach is that the serverside code does
-          not run, therfore you can't subscribe to collections or make method (API) calls. I now see this as a blessing
-          in disguise as it's forced me to completely separate all of the Meteor-specific logic out of the UI
+          <InlineCode>npm run start:lite</InlineCode>. The only drawback of this approach is that the serverside code
+          does not run, therefore you can't subscribe to collections or make method (API) calls. I now see this as a
+          blessing in disguise as it's forced me to completely separate all of the Meteor-specific logic out of the UI
           components.
         </Typography>
+
         <Typography component="div">
           The ui code all lives in the <InlineCode>app/view</InlineCode> directory and the code that fetches data and
-          responds to user actions lives in the <InlineCode>app/controller</InlineCode> directory. There are two
-          controllers, one which is used in lite mode (it can't talk to the backend server) and one that is used in
-          regular mode (it can talk to the backend server). These are called <InlineCode>devStore</InlineCode> and{' '}
-          <InlineCode>fullStore</InlineCode> respectively; they can be found in{' '}
-          <InlineCode>app/controller/store.js</InlineCode>.
+          responds to user actions lives in the <InlineCode>app/controller</InlineCode> directory. Functions that
+          request data (for example, a database call) reside in <InlineCode>app/controller/sagas</InlineCode> (more on
+          this later)
         </Typography>
       </div>
       <div className={classes.section}>
@@ -125,8 +124,8 @@ const Architecture = props => {
           <LinkComponent to={'https://redux-saga.js.org/'}>Redux-Sagas</LinkComponent> is a library used for
           asynchronous state changes to the Redux store. In this project, it is used for making calls to the backend
           server (e.g. when you login). The use of Redux-Sagas does add an extra level of complexity to the project, so
-          appolgies for that. What we've lost in DX (developer experience) will be made up for with long-term robustness
-          and (hoefully) easier debugging of this project.
+          apologies for that. What we've lost in DX (developer experience) will be made up for with long-term robustness
+          and (hopefully) easier debugging of this project.
         </Typography>
         <Quote author={'the Saga docs'}>
           The mental model is that a saga is like a separate thread in your application that's solely responsible for
@@ -135,7 +134,15 @@ const Architecture = props => {
           can dispatch redux actions as well.
         </Quote>
         <Typography component="div">
-          I'm still getting to grips with Redux-Sags, and am just at the start of my journey with this library!
+          I'm still getting to grips with Redux-Sagas, and am just at the start of my journey with this library!
+        </Typography>
+        <Typography>
+          For functions that need to interact with our server, we check if the <InlineCode>window.Meteor</InlineCode>{' '}
+          variable exists. If it does, we are running in regular mode and can call Meteor methods etc. If{' '}
+          <InlineCode>window.Meteor</InlineCode> does not exist then it means we are in lite mode, as such the saga will
+          mock the Meteor calls. The entry point for the client app is{' '}
+          <InlineCode>app/imports/meteor_startup/client/app.js</InlineCode>, however in lite mode the entry point is{' '}
+          <InlineCode>app/client/parcel-index.js</InlineCode>.
         </Typography>
       </div>
       <div className={classes.section}>

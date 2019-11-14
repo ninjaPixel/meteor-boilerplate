@@ -14,7 +14,7 @@ keep the client bundle as small as reasonably possible.
 * Styling: [JSS](http://cssinjs.org/) 💅
 * Security: Users, roles and groups 🔐
 * Email: Just hook-up your favourite SMTP provider 📧
-* Developer friendly: you can use the `start:ui` cmd to just load the UI, for a snappy developer experience with Hot Module Reloading. It generally takes bout 50ms for a change to be built and loaded in the browser, which is about 3s quicker than if you were using
+* Developer friendly: you can use the `start:lite` cmd to just load the UI, for a snappy developer experience with Hot Module Reloading. It generally takes bout 50ms for a change to be built and loaded in the browser, which is about 3s quicker than if you were using
   the Meteor bundler (i.e. with `npm start`) 🤓
 * λ functions: Execute intensive functions in the cloud, making sure that your node server is always free to fulfil client requests 😅
 
@@ -49,7 +49,7 @@ npm start
 
 If you just want to work on the UI, then, from the `app` directory, you can run:
 ```bash
-npm run start:ui
+npm run start:lite
 ```
 
 ## λ functions

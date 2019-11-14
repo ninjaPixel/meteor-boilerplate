@@ -6,8 +6,6 @@ import { App } from '../../../view/App';
 import { store } from '../../../controller/store';
 import UserSubscription from '../../../controller/subscriptions/UserSubscription';
 
-// todo subscribe to User collection
-
 Meteor.startup(() => {
   render(
     <Provider store={store}>
