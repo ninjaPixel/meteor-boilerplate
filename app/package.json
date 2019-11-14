@@ -33,11 +33,11 @@
     "moment": "^2.24.0",
     "nodemailer": "^4.7.0",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-error-boundary": "^1.2.5",
     "react-filestack": "^0.9.7",
-    "react-hot-loader": "^4.12.12",
+    "react-hot-loader": "^4.12.17",
     "react-redux": "^7.1.0-rc.1",
     "react-resize-aware": "^3.0.0-beta.3",
     "react-router-dom": "^5.0.1",
@@ -61,7 +61,7 @@
     "babel-plugin-direct-import": "^0.6.0-beta.1",
     "babel-plugin-lodash": "^3.3.4",
     "chai": "^4.2.0",
-    "parcel-bundler": "^1.12.3",
+    "parcel-bundler": "^1.12.4",
     "testcafe": "^1.2.1"
   },
   "browserslist": [
