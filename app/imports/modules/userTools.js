@@ -1,18 +1,16 @@
-// import { Roles } from 'meteor/alanning:roles';
-import _ from 'lodash';
+import _get from 'lodash/get';
+import _isNull from 'lodash/isNull';
 
 const name = user => {
-  const profileName = _.get(user, 'profile.name', false);
+  const profileName = _get(user, 'profile.name', false);
   if (!profileName) {
     return 'n/a';
   }
   return `${profileName.first} ${profileName.last}`;
 };
 
-const email = user => _.get(user, 'emails[0].address', 'n/a');
-const phone = user => _.get(user, 'profile.phone', 'n/a');
-
-// const isSuperAdmin = user => Roles.userIsInRole(user._id, ['super-admin'], Roles.GLOBAL_GROUP);
+const email = user => _get(user, 'emails[0].address', 'n/a');
+const phone = user => _get(user, 'profile.phone', 'n/a');
 
 const _notificationDefaults = {
   // Warning: do not change the names of these fields
@@ -29,10 +27,10 @@ const notificationPreference = (user, notification) => {
   then we assume the default preference. This is so that we can add new types of notifications
   without having to update the database every time with default preferences.
    */
-  const notificationPreferences = _.get(user, 'profile.notificationPreferences', _notificationDefaults);
-  let pref = _.get(notificationPreferences, notification, null);
-  if (_.isNull(pref)) {
-    pref = _.get(_notificationDefaults, notification, true);
+  const notificationPreferences = _get(user, 'profile.notificationPreferences', _notificationDefaults);
+  let pref = _get(notificationPreferences, notification, null);
+  if (_isNull(pref)) {
+    pref = _get(_notificationDefaults, notification, true);
   }
   return pref;
 };
@@ -41,6 +39,5 @@ export default {
   name,
   email,
   phone,
-  // isSuperAdmin,
   notificationPreference,
 };
