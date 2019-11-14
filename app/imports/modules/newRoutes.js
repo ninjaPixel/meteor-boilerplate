@@ -42,6 +42,13 @@ const createRoute = ({
 };
 
 export default {
+  resetPassword: createRoute({
+    title: 'Reset password',
+    importFunction: (): Promise => import('../../view/screens/PasswordReset/PasswordReset.js'),
+    exact: true,
+    path: '/reset-password/:token',
+    getPath: (token: string): string => `/reset-password/${token}`,
+  }),
   dynamicImports: createRoute({
     title: 'Dynamic imports',
     importFunction: (): Promise => import('../../view/screens/DynamicImports/DynamicImports.js'),

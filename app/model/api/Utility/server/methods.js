@@ -4,7 +4,7 @@ import { check } from 'meteor/check';
 import _ from 'lodash';
 import rateLimit from '../../rateLimit';
 import sendEmail from '../../../../imports/modules/server/email/send';
-import routes from '../../../../imports/modules/routes';
+import routes from '../../../../imports/modules/newRoutes';
 import security from '../../../../imports/modules/security';
 
 const _sendPasswordResetEmail = function({ email, firstName, token, windowLocationOrigin }) {
