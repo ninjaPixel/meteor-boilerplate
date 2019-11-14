@@ -48,7 +48,8 @@
     "simpl-schema": "^1.5.5"
   },
   "_comment_alias": {
-    "react-dom": "This is used by the HMR to enable React 16.6+ features, when using Parcel. I should review this in 6 months (May 2020) to see if it is still required. https://github.com/gaearon/react-hot-loader/issues/1227#issuecomment-492006017"
+    "react-dom": "This is used by the HMR to enable React 16.6+ features, when using Parcel. I should review this in 6 months (May 2020) to see if it is still required. https://github.com/gaearon/react-hot-loader/issues/1227#issuecomment-492006017",
+    "update":"HMR is frigin broken with this "
   },
   "_alias": {
     "react-dom": "@hot-loader/react-dom"
