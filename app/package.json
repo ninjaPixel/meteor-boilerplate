@@ -2,7 +2,7 @@
   "name": "meteor-boilerplate",
   "private": true,
   "scripts": {
-    "start:lite": "parcel client/main.html",
+    "start:lite": "parcel client/main.html --target browser",
     "start": "meteor run --settings settings-development.json",
     "production": "meteor run --production --settings settings-development.json",
     "test:unit": "TEST_CLIENT=0 meteor test --once --driver-package meteortesting:mocha --settings settings-test.json",
