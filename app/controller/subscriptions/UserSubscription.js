@@ -10,7 +10,10 @@ const propTypes = {
   user: PropTypes.object,
   ready: PropTypes.bool,
 };
-const defaultProps = {};
+const defaultProps = {
+  user: undefined,
+  ready: undefined,
+};
 
 const UserSubscription = props => {
   const { user, ready } = props;
@@ -20,7 +23,7 @@ const UserSubscription = props => {
     actionUserChangePublished({ dispatch, user, ready });
   }, [user, ready]);
 
-  return <div></div>;
+  return null;
 };
 
 UserSubscription.propTypes = propTypes;

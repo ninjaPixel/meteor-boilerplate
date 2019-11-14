@@ -59,6 +59,8 @@ function* checkIfEmailExists() {
   try {
     const loginFormState = yield select(getState);
     const { email } = loginFormState;
+    const key = `components.${LOGIN_FORM_KEY}.existingEmail`;
+    const type = FORM_STATE_UPDATE;
     if (email) {
       if (window.Meteor) {
         const chan = yield call(meteorFetchEmailExists, email);
@@ -70,9 +72,9 @@ function* checkIfEmailExists() {
               yield dispatchErrorSnack(error);
             } else {
               yield put({
-                type: FORM_STATE_UPDATE,
+                type,
                 payload: {
-                  key: `components.${LOGIN_FORM_KEY}.existingEmail`,
+                  key,
                   value: success,
                 },
               });
@@ -87,9 +89,9 @@ function* checkIfEmailExists() {
           exists = true;
         }
         yield put({
-          type: FORM_STATE_UPDATE,
+          type,
           payload: {
-            key: `components.${LOGIN_FORM_KEY}.existingEmail`,
+            key,
             value: exists,
           },
         });

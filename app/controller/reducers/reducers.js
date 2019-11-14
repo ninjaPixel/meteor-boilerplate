@@ -12,6 +12,7 @@ import {
   ACCOUNT_LOG_OUT,
   ACCOUNT_LOGGED_IN,
   USER_CHANGE_PUBLISHED,
+  ACCOUNT_LOGGED_OUT,
 } from '../actionTypes';
 import {
   initialStateLoginFormComponent,
@@ -48,14 +49,10 @@ export function reducer(state = initialState, action) {
         draft.user = payload.user;
         draft.userReady = payload.ready;
         break;
-      case ACCOUNT_LOG_OUT:
+      case ACCOUNT_LOGGED_OUT:
         loginFormReset({ state, draft });
-        if (window.Meteor) {
-          // todo Meteor logout
-        } else {
-          draft.user = {};
-        }
-
+        draft.user = {};
+        draft.userReady = true;
         break;
       // case ACCOUNT_LOG_IN_WITH_PASSWORD:
       //   loginFormHandleLogin({ state, draft });
