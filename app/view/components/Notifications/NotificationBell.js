@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Notifications from '@material-ui/icons/Notifications';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import newRoutes from '../../../imports/modules/newRoutes';
+import newRoutes from '../../../imports/modules/routes';
 import useWidthMUI from '../../hooks/useWidthMUI';
 import NotificationList from './NotificationList';
 import { useStoreNotifications } from '../../hooks/reduxSelectors';

@@ -11,7 +11,7 @@ import Home from './screens/Home/Home';
 import DeferredComponent from './components/DeferredComponent/DeferredComponent';
 import Loading from './components/Loading/Loading';
 import AppRoute from './layout/AppRoute/AppRoute';
-import routes from '../imports/modules/newRoutes';
+import routes from '../imports/modules/routes';
 import { middleOfScreenStyle } from './styles/common';
 import Snacks from './components/Snacks/Snacks';
 

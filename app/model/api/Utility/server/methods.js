@@ -4,7 +4,7 @@ import { check } from 'meteor/check';
 import _ from 'lodash';
 import rateLimit from '../../rateLimit';
 import sendEmail from '../../../../imports/modules/server/email/send';
-import routes from '../../../../imports/modules/newRoutes';
+import routes from '../../../../imports/modules/routes';
 import security from '../../../../imports/modules/security';
 
 const _sendPasswordResetEmail = function({ email, firstName, token, windowLocationOrigin }) {
@@ -24,7 +24,7 @@ const _sendPasswordResetEmail = function({ email, firstName, token, windowLocati
     },
   })
     .catch(error => {
-      console.warn(`Could not sent password reset email to ${email}`, error);
+      console.warn(`Could not send password reset email to ${email}`, error);
     })
     .finally(() => {});
 };

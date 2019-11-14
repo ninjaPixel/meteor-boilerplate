@@ -19,7 +19,7 @@ import Style from '@material-ui/icons/Style';
 import ShortText from '@material-ui/icons/ShortText';
 import UserFeedbackIcon from '@material-ui/icons/Vibration';
 import ArchitectureIcon from '@material-ui/icons/Layers';
-import routes from '../../../imports/modules/newRoutes';
+import routes from '../../../imports/modules/routes';
 import { useStoreUser } from '../../hooks/reduxSelectors';
 
 const navLinkStyles = makeStyles(theme => ({

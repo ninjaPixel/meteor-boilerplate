@@ -29,7 +29,7 @@ import {
 } from '../../../controller/actions';
 import { useStoreComponentLoginForm } from '../../hooks/reduxSelectors';
 import LinkButton from '../LinkButton/LinkButton';
-import newRoutes from '../../../imports/modules/newRoutes';
+import newRoutes from '../../../imports/modules/routes';
 
 const propTypes = {
   ...commonProps.propTypes,

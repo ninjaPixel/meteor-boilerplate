@@ -7,7 +7,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import LinkComponent from '../../components/Link/Link';
 import InlineCode from '../../components/InlineCode/InlineCode';
 import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
-import newRoutes from '../../../imports/modules/newRoutes';
+import newRoutes from '../../../imports/modules/routes';
 import Quote from '../../components/Quote/Quote';
 
 const propTypes = {

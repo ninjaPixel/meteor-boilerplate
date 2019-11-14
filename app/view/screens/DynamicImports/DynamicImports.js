@@ -32,7 +32,7 @@ const DynamicImports = () => {
       <Typography>
         All of the App's routes (apart from " / " and the 404) are loaded dynamically (see the{' '}
         <InlineCode>importFunction</InlineCode> in <InlineCode>app/view/App.js</InlineCode>). Declare all your routes in
-        the <InlineCode>app/imports/modules/newRoutes.js</InlineCode>
+        the <InlineCode>app/imports/modules/routes.js</InlineCode>
         to register all your routes and take advantage of dynamic loading.
       </Typography>
     </div>
