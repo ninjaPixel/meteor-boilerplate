@@ -72,11 +72,8 @@ const styles = makeStyles(theme => ({
     flexDirection: 'column',
     height: '100vh',
     width: drawerWidth,
-    border: `1px solid ${theme.palette.divider}`,
   },
   drawerHeader: {
-    // ...theme.mixins.toolbar,
-    // padding: 15,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

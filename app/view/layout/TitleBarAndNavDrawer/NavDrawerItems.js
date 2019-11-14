@@ -85,7 +85,7 @@ const renderLoginLink = ({ onNavClick }) => (
 
 const renderClientLinks = props => [
   <ListItem key="user-name">
-    <ListItemText secondary={props.user.profile.name.first} key="user-name" />
+    <ListItemText className={props.classes.listItemText} secondary={props.user.profile.name.first} key="user-name" />
   </ListItem>,
   <NavLink
     key="account"
@@ -113,6 +113,9 @@ const useStyles = makeStyles(theme => ({
   },
   legalSection: {
     flex: 'none',
+  },
+  listItemText: {
+    userSelect: 'none',
   },
 }));
 const NavDrawerItems = props => {
@@ -165,7 +168,7 @@ const NavDrawerItems = props => {
           <NavLink {...link} key={link.text} />
         ))}
         <Divider />
-        {!_.isEmpty(user) ? renderClientLinks({ ...props, user }) : renderLoginLink({ ...props, user })}
+        {!_.isEmpty(user) ? renderClientLinks({ ...props, classes, user }) : renderLoginLink({ ...props, user })}
       </List>
       {/*<List className={classes.legalSection}>*/}
       {/*  <NavLink icon={<Gavel />} to={routes.legal.getPath()} text="Legal" />*/}

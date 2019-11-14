@@ -1,1 +1,1 @@
-import '../imports/startup/client';
+import '../imports/meteor_startup/client';

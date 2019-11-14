@@ -12,7 +12,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import styles from './styles';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import Loading from '../../../imports/ui/components/Loading/Loading';
+import Loading from '../../components/Loading/Loading';
 import NotificationBell from '../../components/Notifications/NotificationBell';
 import NavDrawerItems from './NavDrawerItems';
 
