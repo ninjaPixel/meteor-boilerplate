@@ -64,6 +64,7 @@ const styles = makeStyles(theme => ({
   titleText: {
     fontSize: TYPE_SCALE.XL3.fontSize,
     fontWeight: FONT_WEIGHTS.light,
+    userSelect: 'none',
   },
   drawer: {
     position: 'fixed',

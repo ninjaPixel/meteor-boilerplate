@@ -29,11 +29,6 @@ const theme = createMuiTheme({
     },
     type: 'dark',
   },
-  custom: {
-    noLink: {
-      textDecoration: 'none',
-    },
-  },
   typography: {
     fontFamily: SERIF_FONT,
     fontWeightLight,
@@ -53,7 +48,7 @@ const theme = createMuiTheme({
       fontSize: '2.0rem',
     },
     h5: {
-      fontSize: '1.8.0rem',
+      fontSize: '1.8rem',
     },
     h6: {
       fontSize: '1.6rem',
