@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useResizeAware from 'react-resize-aware';
-import withStyles from '@material-ui/styles/withStyles';
+import makeStyles from '@material-ui/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { paperStyle } from '../../styles/common';
 
 const propTypes = {
-  classes: PropTypes.object.isRequired,
   width: PropTypes.number,
   children: PropTypes.element.isRequired,
   title: PropTypes.string,
@@ -24,8 +23,33 @@ const defaultProps = {
   breakPoint: 600,
 };
 
+const useStyles = makeStyles(theme => ({
+  paper: { ...paperStyle(theme), maxWidth: theme.spacing(14), marginLeft: theme.spacing(4) },
+  title: {
+    marginBottom: theme.spacing(1),
+  },
+  titleHorizontal: {
+    textAlign: 'right',
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(1),
+  },
+  horizontalContainer: {
+    display: 'flex',
+  },
+  centeredContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  titleContainer: {
+    flex: 1,
+  },
+  paperContainer: {
+    flex: 3,
+  },
+}));
 const ResponsivePaper = props => {
-  const { classes, width, children, paperClassName, flatClassName, title, breakPoint } = props;
+  const { width, children, paperClassName, flatClassName, title, breakPoint } = props;
+  const classes = useStyles();
   const titleVariant = 'h4';
   if (width >= breakPoint) {
     if (title) {
@@ -62,31 +86,6 @@ ResponsivePaper.propTypes = propTypes;
 
 ResponsivePaper.defaultProps = defaultProps;
 
-const style = theme => ({
-  paper: { ...paperStyle(theme), maxWidth: theme.spacing(14), marginLeft: theme.spacing(4) },
-  title: {
-    marginBottom: theme.spacing(1),
-  },
-  titleHorizontal: {
-    textAlign: 'right',
-    marginBottom: theme.spacing(1),
-    padding: theme.spacing(1),
-  },
-  horizontalContainer: {
-    display: 'flex',
-  },
-  centeredContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  titleContainer: {
-    flex: 1,
-  },
-  paperContainer: {
-    flex: 3,
-  },
-});
-
 function Wrapped(props) {
   const [resizeListener, sizes] = useResizeAware();
   return (
@@ -97,4 +96,4 @@ function Wrapped(props) {
   );
 }
 
-export default withStyles(style)(Wrapped);
+export default Wrapped;

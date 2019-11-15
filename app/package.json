@@ -16,7 +16,9 @@
     "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
     "now:dev": "cd ../serverless && now dev --local-config=development.now.json --port 8080",
-    "icons:generate-undraw": "npx @svgr/cli -d view/components/Undraw ../assets/undraw"
+    "icons:generate-undraw": "npx @svgr/cli -d view/components/Undraw ../assets/undraw",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
@@ -56,9 +58,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@storybook/addon-actions": "^5.2.6",
+    "@storybook/addon-links": "^5.2.6",
+    "@storybook/addons": "^5.2.6",
+    "@storybook/react": "^5.2.6",
     "@types/lodash": "^4.14.134",
     "@types/mocha": "^5.2.7",
     "@types/react": "^16.8.20",
+    "babel-loader": "^8.0.6",
     "babel-plugin-direct-import": "^0.6.0-beta.1",
     "babel-plugin-lodash": "^3.3.4",
     "chai": "^4.2.0",
