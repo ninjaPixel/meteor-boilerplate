@@ -5,7 +5,7 @@ import getPrivateFile from '../getPrivateFile';
 import templateToText from './handlebarsToTXT';
 import templateToHTML from './handlebarsToHTML';
 
-const transporter = (domain) => {
+const transporter = domain => {
   const config = _.get(Meteor.settings, 'private.email.smtp', false);
   if (!config) {
     // todo report error to Matt
@@ -30,18 +30,22 @@ const sendEmail = (options, { resolve, reject }) => {
   });
 };
 
-
 export default ({ text, html, template, css, templateVars, ...rest }) => {
   if (text || html || template) {
     return new Promise((resolve, reject) => {
       const cssFile = getPrivateFile(`emailTemplates/${css}.css`);
       const handlebarVars = { ...templateVars, css: cssFile };
-      sendEmail({
-        ...rest,
-        text: template ? templateToText(getPrivateFile(`emailTemplates/${template}.txt`), (handlebarVars || {})) : text,
-        html: template ? templateToHTML(getPrivateFile(`emailTemplates/${template}.html`), (handlebarVars || {})) : html,
-      }, { resolve, reject });
+      sendEmail(
+        {
+          ...rest,
+          text: template ? templateToText(getPrivateFile(`emailTemplates/${template}.txt`), handlebarVars || {}) : text,
+          html: template
+            ? templateToHTML(getPrivateFile(`emailTemplates/${template}.html`), handlebarVars || {})
+            : html,
+        },
+        { resolve, reject },
+      );
     });
   }
-  throw new Error('Please pass a HTML string, text, or template name to compile for your message\'s body.');
+  throw new Error("Please pass a HTML string, text, or template name to compile for your message's body.");
 };
