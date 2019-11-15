@@ -67,7 +67,7 @@ const Architecture = props => {
           <InlineCode>npm run start:lite</InlineCode>. The only drawback of this approach is that the serverside code
           does not run, therefore you can't subscribe to collections or make method (API) calls. I now see this as a
           blessing in disguise as it's forced me to completely separate all of the Meteor-specific logic out of the UI
-          components.
+          components. When in lite mode, I mock the Meteor API calls (more on this in the Redux-Sagas section).
         </Typography>
 
         <Typography component="div">
