@@ -54,9 +54,6 @@ export function reducer(state = initialState, action) {
         draft.user = {};
         draft.userReady = true;
         break;
-      // case ACCOUNT_LOG_IN_WITH_PASSWORD:
-      //   loginFormHandleLogin({ state, draft });
-      //   break;
       case ACCOUNT_LOGGED_IN:
         loginFormUserLoggedIn({ state, draft, action });
         break;

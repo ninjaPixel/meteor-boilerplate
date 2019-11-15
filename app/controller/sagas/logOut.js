@@ -24,22 +24,6 @@ function* updateFormState(key, value) {
   });
 }
 
-function meteorFetchEmailExists(email) {
-  return eventChannel(emitter => {
-    window.Meteor.call('utility.checkIfEmailAddressExists', email, (error, success) => {
-      if (error) {
-        emitter({ error });
-      } else {
-        emitter({ success });
-      }
-
-      emitter(END);
-    });
-
-    // The subscriber must return an unsubscribe function
-    return () => {};
-  });
-}
 function meteorLogout() {
   return eventChannel(emitter => {
     window.Meteor.logout(error => {

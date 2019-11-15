@@ -144,6 +144,9 @@ const Architecture = props => {
           <InlineCode>app/imports/meteor_startup/client/app.js</InlineCode>, however in lite mode the entry point is{' '}
           <InlineCode>app/client/parcel-index.js</InlineCode>.
         </Typography>
+        <Typography>
+          Sagas are loaded in the file <InlineCode>app/controller/store.js</InlineCode>.
+        </Typography>
       </div>
       <div className={classes.section}>
         <Typography variant="h2">Other...</Typography>

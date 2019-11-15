@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { reducer } from './reducers/reducers';
 import loginFormSagas from './sagas/loginForm';
+import logoutSagas from './sagas/logOut';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,3 +19,4 @@ export const store = createStore(
 );
 
 sagaMiddleware.run(loginFormSagas);
+sagaMiddleware.run(logoutSagas);
