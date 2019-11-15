@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
+import ResponsivePaper from '../../components/ResponsivePaper/ResponsivePaper';
 
 const propTypes = {
   className: PropTypes.string,
@@ -17,10 +18,19 @@ const useStyles = makeStyles(() => ({
 const PasswordReset = props => {
   const { className } = props;
   const classes = useStyles();
+  const [password, setPassword] = useState('');
   const rootClass = className || classes.root;
   return (
     <div className={rootClass}>
-      <Typography>PasswordReset component.</Typography>
+      <ResponsivePaper title="Choose a new password">
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+          }}
+        >
+          TODO
+        </form>
+      </ResponsivePaper>
     </div>
   );
 };

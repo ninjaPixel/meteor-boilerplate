@@ -9,6 +9,7 @@ import {
 } from '../actionTypes';
 import { LOGIN_FORM_KEY } from '../reducers/constants';
 import { dispatchErrorSnack, dispatchSnack } from './helpers';
+import { SNACKBAR_TYPES } from '../../view/components/Snackbar/constants';
 
 const getState = state => state.components[LOGIN_FORM_KEY];
 
@@ -22,17 +23,80 @@ function* updateFormState(key, value) {
   });
 }
 
+function thisLooksLikeAValidEmail(email) {
+  if (!email.includes('@')) {
+    return {
+      valid: false,
+      message: 'The email address does not contain an @.',
+    };
+  }
+  const parts = email.split('@');
+  if (parts.length !== 2) {
+    return {
+      valid: false,
+      message: 'The email address contains multiple @s.',
+    };
+  }
+  const domain = parts[1];
+  if (!domain.includes('.')) {
+    return {
+      valid: false,
+      message: 'The domain does not have a "."',
+    };
+  }
+  return { valid: true };
+}
+
+function meteorSendPasswordReset(email) {
+  return eventChannel(emitter => {
+    window.Meteor.call(
+      'utility.sendPasswordResetEmail',
+      { email, windowLocationOrigin: window.location.origin },
+      (error, success) => {
+        if (error) {
+          emitter({ error });
+        } else {
+          emitter({ success });
+        }
+
+        emitter(END);
+      },
+    );
+
+    // The subscriber must return an unsubscribe function
+    return () => {};
+  });
+}
+
 function* sendPasswordResetEmail() {
   const loginFormState = yield select(getState);
   const { email } = loginFormState;
   const { valid, message } = thisLooksLikeAValidEmail(email);
+  const successSnack = {
+    variant: SNACKBAR_TYPES.success,
+    message: "We've sent you a reset link. Remember to check your spam folder.",
+  };
+
   if (!valid) {
     dispatchErrorSnack({ message });
-  } else {
-    if (window.Meteor) {
-    } else {
-      dispatchSnack({ message: 'Check your email for a link to reset your password' });
+  } else if (window.Meteor) {
+    const channel = yield meteorSendPasswordReset(email);
+    try {
+      while (true) {
+        // take(END) will cause the saga to terminate by jumping to the finally block
+        const { success, error } = yield take(channel);
+        if (error) {
+          yield dispatchErrorSnack(error);
+        } else {
+          yield dispatchSnack(successSnack);
+        }
+      }
+    } finally {
+      yield updateFormState('showPasswordResetModal', false);
     }
+  } else {
+    yield updateFormState('showPasswordResetModal', false);
+    yield dispatchSnack(successSnack);
   }
 }
 
@@ -67,30 +131,6 @@ function meteorLoginWithPassword({ email, password }) {
     // The subscriber must return an unsubscribe function
     return () => {};
   });
-}
-
-function thisLooksLikeAValidEmail(email) {
-  if (!email.includes('@')) {
-    return {
-      valid: false,
-      message: 'The email address does not contain an @.',
-    };
-  }
-  const parts = email.split('@');
-  if (parts.length !== 2) {
-    return {
-      valid: false,
-      message: 'The email address contains multiple @s.',
-    };
-  }
-  const domain = parts[1];
-  if (!domain.contains('.')) {
-    return {
-      valid: false,
-      message: 'The domain does not have a "."',
-    };
-  }
-  return { valid: true };
 }
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
