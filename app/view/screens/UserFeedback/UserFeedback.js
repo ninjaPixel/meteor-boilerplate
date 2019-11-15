@@ -10,6 +10,7 @@ import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/comm
 import InlineCode from '../../components/InlineCode/InlineCode';
 import { actionNotificationAdd, actionSnackAdd } from '../../../controller/actions';
 import Quote from '../../components/Quote/Quote';
+import { SNACKBAR_TYPES } from '../../components/Snackbar/constants';
 
 const propTypes = {
   className: PropTypes.string,
@@ -77,7 +78,7 @@ const UserFeedback = props => {
               actionSnackAdd({
                 dispatch,
                 message: 'This is an info message',
-                variant: 'info',
+                variant: SNACKBAR_TYPES.info,
               });
             }}
           >
@@ -90,7 +91,7 @@ const UserFeedback = props => {
               actionSnackAdd({
                 dispatch,
                 message: 'This is an error message',
-                variant: 'error',
+                variant: SNACKBAR_TYPES.error,
               });
             }}
           >
@@ -103,7 +104,7 @@ const UserFeedback = props => {
               actionSnackAdd({
                 dispatch,
                 message: 'This is a success message',
-                variant: 'success',
+                variant: SNACKBAR_TYPES.success,
               });
             }}
           >
@@ -116,7 +117,7 @@ const UserFeedback = props => {
               actionSnackAdd({
                 dispatch,
                 message: 'And this is a warning message',
-                variant: 'warning',
+                variant: SNACKBAR_TYPES.warning,
               });
             }}
           >

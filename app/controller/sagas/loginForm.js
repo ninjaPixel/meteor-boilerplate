@@ -4,10 +4,11 @@ import {
   ACCOUNT_CHECK_IF_EMAIL_EXISTS,
   ACCOUNT_LOG_IN_WITH_PASSWORD,
   ACCOUNT_LOGGED_IN,
+  ACCOUNT_SEND_PASSWORD_RESET_EMAIL,
   FORM_STATE_UPDATE,
 } from '../actionTypes';
 import { LOGIN_FORM_KEY } from '../reducers/constants';
-import { dispatchErrorSnack } from './helpers';
+import { dispatchErrorSnack, dispatchSnack } from './helpers';
 
 const getState = state => state.components[LOGIN_FORM_KEY];
 
@@ -19,6 +20,20 @@ function* updateFormState(key, value) {
       value,
     },
   });
+}
+
+function* sendPasswordResetEmail() {
+  const loginFormState = yield select(getState);
+  const { email } = loginFormState;
+  const { valid, message } = thisLooksLikeAValidEmail(email);
+  if (!valid) {
+    dispatchErrorSnack({ message });
+  } else {
+    if (window.Meteor) {
+    } else {
+      dispatchSnack({ message: 'Check your email for a link to reset your password' });
+    }
+  }
 }
 
 function meteorFetchEmailExists(email) {
@@ -52,6 +67,30 @@ function meteorLoginWithPassword({ email, password }) {
     // The subscriber must return an unsubscribe function
     return () => {};
   });
+}
+
+function thisLooksLikeAValidEmail(email) {
+  if (!email.includes('@')) {
+    return {
+      valid: false,
+      message: 'The email address does not contain an @.',
+    };
+  }
+  const parts = email.split('@');
+  if (parts.length !== 2) {
+    return {
+      valid: false,
+      message: 'The email address contains multiple @s.',
+    };
+  }
+  const domain = parts[1];
+  if (!domain.contains('.')) {
+    return {
+      valid: false,
+      message: 'The domain does not have a "."',
+    };
+  }
+  return { valid: true };
 }
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
@@ -118,15 +157,18 @@ function* loginWithPassword() {
     if (existingEmail) {
       if (window.Meteor) {
         // do meteor stuff
-        const chan = yield call(meteorLoginWithPassword, { email, password });
+        const channel = yield call(meteorLoginWithPassword, { email, password });
         try {
           while (true) {
             // take(END) will cause the saga to terminate by jumping to the finally block
-            const { success, error } = yield take(chan);
+            const { success, error } = yield take(channel);
             if (error) {
               yield dispatchErrorSnack(error);
             } else {
-              // the subscription to the user collection will update the store
+              /*
+                 the subscription to the user collection will update the store
+                 we don't need to do anything here
+               */
             }
           }
         } finally {
@@ -154,7 +196,6 @@ function* loginWithPassword() {
       }
     } else {
       yield updateFormState('showProfileFields', true);
-      console.log('showProfileFields: ', true);
     }
   } catch (exception) {
     yield dispatchErrorSnack(exception);
@@ -172,6 +213,7 @@ function* loginWithPassword() {
 function* loginFormSagas() {
   yield takeLatest(ACCOUNT_CHECK_IF_EMAIL_EXISTS, checkIfEmailExists);
   yield takeLatest(ACCOUNT_LOG_IN_WITH_PASSWORD, loginWithPassword);
+  yield takeLatest(ACCOUNT_SEND_PASSWORD_RESET_EMAIL, sendPasswordResetEmail);
 }
 
 export default loginFormSagas;

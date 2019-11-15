@@ -1,6 +1,7 @@
 /* eslint no-param-reassign:0 */
 
 import { LOGIN_FORM_KEY } from './constants';
+import { SNACKBAR_TYPES } from '../../view/components/Snackbar/constants';
 
 function getStates({ draft, state }) {
   const draftState = draft.components[LOGIN_FORM_KEY];
@@ -93,7 +94,7 @@ export function loginFormSendPasswordResetEmail({ state, draft }) {
       {
         message: 'Email not sent as we are in lite mode',
         time: Date.now(),
-        variant: 'info',
+        variant: SNACKBAR_TYPES.info,
         open: true,
         _id: Date.now(),
       },

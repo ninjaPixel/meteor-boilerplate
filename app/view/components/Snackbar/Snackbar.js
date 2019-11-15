@@ -14,6 +14,7 @@ import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { actionSnackClose } from '../../../controller/actions';
+import { SNACKBAR_TYPES } from './constants';
 
 const variantIcon = {
   success: CheckCircleIcon,
@@ -101,7 +102,8 @@ MySnackbarContentWrapper.propTypes = {
   className: PropTypes.string,
   message: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
-  variant: PropTypes.oneOf(['error', 'info', 'success', 'warning']).isRequired,
+  variant: PropTypes.oneOf([SNACKBAR_TYPES.error, SNACKBAR_TYPES.info, SNACKBAR_TYPES.warning, SNACKBAR_TYPES.success])
+    .isRequired,
 };
 
 MySnackbarContentWrapper.defaultProps = {

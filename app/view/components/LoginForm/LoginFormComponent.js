@@ -298,7 +298,8 @@ const LoginFormComponent = props => {
         }}
       >
         <form
-          onSubmit={() => {
+          onSubmit={e => {
+            e.preventDefault();
             sendPasswordReset();
           }}
           className={classes.form}
