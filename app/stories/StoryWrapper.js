@@ -5,7 +5,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import makeStyles from '@material-ui/styles/makeStyles';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import theme from '../view/styles/theme';
+import { store } from '../controller/store';
 
 /*
  There are a few things that our components need to be
@@ -32,7 +34,9 @@ const StoryWrapper = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <RouterWrapper>{children}</RouterWrapper>
+      <Provider store={store}>
+        <RouterWrapper>{children}</RouterWrapper>
+      </Provider>
     </ThemeProvider>
   );
 };

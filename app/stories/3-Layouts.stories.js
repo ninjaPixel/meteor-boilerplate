@@ -24,7 +24,9 @@ export const responsivePaper = () => {
         </div>
         <p>Container width = 300px</p>
         <div style={{ width: '300px', border: '1px dotted white', padding: '8px' }}>
-          <ResponsivePaper title="Component title">...contents</ResponsivePaper>
+          <ResponsivePaper title="Component title">
+            <Typography>Here, inside a narrow container, the title and content are stacked.</Typography>
+          </ResponsivePaper>
         </div>
       </StoryWrapper>
     </div>
