@@ -33,10 +33,6 @@ import newRoutes from '../../../imports/modules/routes';
 
 const propTypes = {
   ...commonProps.propTypes,
-  onCreateUser: PropTypes.func.isRequired,
-  onCheckIfEmailExists: PropTypes.func.isRequired,
-  onSendPasswordResetEmail: PropTypes.func.isRequired,
-  onLogin: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
 };
 const minPasswordLength = 5;
