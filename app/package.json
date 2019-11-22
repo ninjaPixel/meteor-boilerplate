@@ -15,7 +15,7 @@
     "test:e2e:dev:ff": "testcafe firefox imports/testCafe/tests/*.js",
     "test:loki:dev": "./node_modules/loki/bin/loki",
     "test:loki": "npm run build-storybook && ./node_modules/loki/bin/loki --reactUri file:./storybook-static",
-    "test:loki:approve": "./node_modules/loki/bin/loki approve",
+    "test:loki:update": "./node_modules/loki/bin/loki update",
     "package-size": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
     "now:dev": "cd ../serverless && now dev --local-config=development.now.json --port 8080",
@@ -77,6 +77,7 @@
     "chai": "^4.2.0",
     "loki": "^0.18.1",
     "parcel-bundler": "^1.12.4",
+    "react-storybook-addon-props-combinations": "^1.1.0",
     "testcafe": "^1.6.1"
   },
   "browserslist": [
