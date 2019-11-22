@@ -13,7 +13,10 @@
     "test:e2e:dev": "testcafe chrome testCafe/tests/*.js --speed 1.0",
     "test:e2e:dev:mob": "testcafe 'chrome:emulation:device=iphone 6' imports/testCafe/tests/*.js",
     "test:e2e:dev:ff": "testcafe firefox imports/testCafe/tests/*.js",
-    "viz": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
+    "test:loki:dev":"./node_modules/loki/bin/loki",
+    "test:loki":"npm run build-storybook && ./node_modules/loki/bin/loki --reactUri file:./storybook-static",
+    "test:loki:approve":"./node_modules/loki/bin/loki approve",
+    "package-size": "meteor --production --settings settings-development.json --extra-packages bundle-visualizer",
     "deploy:staging": "DEPLOY_HOSTNAME=eu-west-1.galaxy-deploy.meteor.com meteor deploy crowd.ninjapixel.io --settings ./settings-staging.json",
     "now:dev": "cd ../serverless && now dev --local-config=development.now.json --port 8080",
     "icons:generate-undraw": "npx @svgr/cli -d view/components/Undraw ../assets/undraw",
@@ -71,11 +74,27 @@
     "babel-plugin-direct-import": "^0.6.0-beta.1",
     "babel-plugin-lodash": "^3.3.4",
     "chai": "^4.2.0",
+    "loki": "^0.18.1",
     "parcel-bundler": "^1.12.4",
     "testcafe": "^1.6.1"
   },
   "browserslist": [
     "> 10%",
     "not dead"
-  ]
+  ],
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.docker",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.docker",
+        "preset": "iPhone 7"
+      }
+    }
+  }
 }

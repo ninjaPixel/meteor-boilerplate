@@ -4,3 +4,4 @@ node_modules
 /.deploy
 /app/dist
 /app/.cache
+/app/storybook-static

@@ -52,6 +52,24 @@ If you just want to work on the UI, then, from the `app` directory, you can run:
 npm run start:lite
 ```
 
+## Storybook
+
+### Visual regression testing with Loki
+
+Loki takes a snapshot of every Story and compares it to a baseline version, to check for visual regressions. 
+To use it, you need to be running Docker.
+Run `npm run test:loki`. This will build a static Storybook site and take a screenshot of everystory (for a desktop resolution and a mobile resolution) and compare each screenshot with the baseline version.
+If you want to run this in devmode, first make sure that you are running Storybook locally with `npm run storybook` and then do `npom run test:loki:dev`.
+
+Ideally, you should have Graphics Magik on your machine (if you don't then Loki should fall back to a Javascript implementation. I haven't tested this. Also, it's meant to be much slower.) `brew install graphicsmagick`
+
+#### Update the reference images
+If you've changed a component for the better and need to update the reference images, so that tests pass, do the following:
+
+```
+npm run loki:approve
+```
+
 ## λ functions
 
 This projects uses Zeit Now to deploy and execute lambda functions.

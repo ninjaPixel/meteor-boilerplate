@@ -1,4 +1,4 @@
-import primary from '@material-ui/core/colors/indigo';
+import primary from '@material-ui/core/colors/yellow';
 import secondary from '@material-ui/core/colors/teal';
 import tertiary from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';

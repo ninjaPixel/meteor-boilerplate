@@ -1,5 +1,6 @@
 import React from 'react';
 import { configure, addParameters, addDecorator } from '@storybook/react';
+import 'loki/configure-react';
 import StoryWrapper from '../stories/StoryWrapper';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
