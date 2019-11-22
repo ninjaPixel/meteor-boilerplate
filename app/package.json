@@ -91,6 +91,10 @@
         "deviceScaleFactor": 1,
         "mobile": false
       },
+      "chrome.iphone5": {
+        "target": "chrome.docker",
+        "preset": "iPhone 5"
+      },
       "chrome.iphone7": {
         "target": "chrome.docker",
         "preset": "iPhone 7"
