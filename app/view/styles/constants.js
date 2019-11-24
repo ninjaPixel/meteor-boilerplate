@@ -5,7 +5,7 @@ export const TYPE_SCALE = {
   LG: { fontSize: 18, lineHeight: 1.5 },
   XL: { fontSize: 20, lineHeight: 1.2 },
   XL2: { fontSize: 24, lineHeight: 1.2 },
-  XL3: { fontSize: 30, lineHeight: 1.2 },
+  XL3: { fontSize: '3rem', lineHeight: 1.2 },
   XL4: { fontSize: 36 },
   XL5: { fontSize: 48 },
   XL6: { fontSize: 60 },

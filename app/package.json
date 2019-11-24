@@ -77,7 +77,6 @@
     "chai": "^4.2.0",
     "loki": "^0.18.1",
     "parcel-bundler": "^1.12.4",
-    "react-storybook-addon-props-combinations": "^1.1.0",
     "testcafe": "^1.6.1"
   },
   "browserslist": [

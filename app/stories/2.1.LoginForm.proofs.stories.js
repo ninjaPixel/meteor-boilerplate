@@ -4,7 +4,7 @@ import ProofSheet from './ProofSheet';
 import LoginForm from '../view/components/LoginForm/LoginForm';
 
 export default {
-  title: 'Login form [contacts]',
+  title: 'Login form [proofs]',
 };
 
 const eventsFromNames = actions(

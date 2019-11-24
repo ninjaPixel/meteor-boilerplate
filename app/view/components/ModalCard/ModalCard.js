@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Loading from '../Loading/Loading';
+import { TYPE_SCALE } from '../../styles/constants';
 
 const propTypes = {
   classes: PropTypes.object.isRequired,
@@ -17,7 +18,6 @@ const propTypes = {
   onRequestOk: PropTypes.func.isRequired,
   okText: PropTypes.string,
   cancelText: PropTypes.string,
-  text: PropTypes.string,
   title: PropTypes.string,
   children: PropTypes.element,
   hideOkButton: PropTypes.bool,
@@ -27,7 +27,6 @@ const propTypes = {
 const defaultProps = {
   okText: 'ok',
   cancelText: 'cancel',
-  text: null,
   title: null,
   children: null,
   processingSubmit: false,
@@ -37,7 +36,6 @@ const defaultProps = {
 class ModalCard extends React.PureComponent {
   constructor(props) {
     super(props);
-    // this.state = { processingSubmit: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCloseRequest = this.handleCloseRequest.bind(this);
   }
@@ -45,6 +43,7 @@ class ModalCard extends React.PureComponent {
   handleSubmit() {
     this.props.onRequestOk();
   }
+
   handleCloseRequest(a, b) {
     if (!this.props.processingSubmit) {
       this.props.onClose(a, b);
@@ -65,12 +64,11 @@ class ModalCard extends React.PureComponent {
       okText,
       cancelText,
       title,
-      text,
       show,
-      children,
       processingSubmit,
       hideOkButton,
       hideCancelButton,
+      children,
     } = this.props;
     return (
       <Modal
@@ -82,16 +80,13 @@ class ModalCard extends React.PureComponent {
         className={classes.backdrop}
       >
         <Card className={classes.modalCard} data-e2e="modal-card">
-          <CardContent className={classes.cardContent}>
-            {title ? (
-              <Typography variant="h5" gutterBottom>
-                {title}
-              </Typography>
-            ) : null}
-            {text ? <Typography>{text}</Typography> : null}
-            {this.renderChildren()}
-          </CardContent>
-          <CardActions>
+          {title ? (
+            <Typography className={classes.title} variant="h1" gutterBottom>
+              {title}
+            </Typography>
+          ) : null}
+          <CardContent className={classes.cardContent}>{children}</CardContent>
+          <CardActions className={classes.cardActions}>
             {hideOkButton ? null : (
               <Button data-e2e="modal-confirm" size="small" onClick={this.handleSubmit} disabled={processingSubmit}>
                 {okText}
@@ -108,7 +103,7 @@ class ModalCard extends React.PureComponent {
               </Button>
             )}
           </CardActions>
-          {processingSubmit ? <Loading linear /> : null}
+          {processingSubmit ? <Loading linear className={classes.loading} /> : null}
         </Card>
       </Modal>
     );
@@ -124,32 +119,38 @@ const style = theme => ({
     display: 'flex',
   },
   modalCard: {
-    // margin: 'auto',
-    maxWidth: '90%',
+    maxWidth: theme.spacing(14),
     minWidth: '40%',
     maxHeight: '90vh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    paddingTop: theme.spacing(3),
   },
-  children: {
-    display: 'flex',
-    maxHeight: '80vh',
-    overflowY: 'scroll',
-    // note
-    // prob need to force scroll bars on osx
-    // eslint-disable-next-line max-len
-    // https://stackoverflow.com/questions/7855590/preventing-scroll-bars-from-being-hidden-for-macos-trackpad-users-in-webkit-blin
+  title: {
+    ...TYPE_SCALE.XL3,
+    marginTop: 0,
+    padding: theme.spacing(0, 3),
   },
   cardContent: {
     display: 'flex',
     flexDirection: 'column',
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    maxHeight: '80%',
+    overflowY: 'scroll',
+    padding: theme.spacing(0, 3),
+  },
+  cardActions: {
+    padding: theme.spacing(1, 3),
   },
   backdrop: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  loading: {
+    // height: theme.spacing(4),
   },
 });
 

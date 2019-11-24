@@ -1,7 +1,6 @@
 import React from 'react';
 import { actions } from '@storybook/addon-actions';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import ProofSheet from './ProofSheet';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import LoginForm from '../view/components/LoginForm/LoginForm';
 
 export default {
