@@ -41,21 +41,15 @@ class ModalCard extends React.PureComponent {
   }
 
   handleSubmit() {
-    this.props.onRequestOk();
+    const { onRequestOk } = this.props;
+    onRequestOk();
   }
 
   handleCloseRequest(a, b) {
-    if (!this.props.processingSubmit) {
-      this.props.onClose(a, b);
+    const { onClose, processingSubmit } = this.props;
+    if (!processingSubmit) {
+      onClose(a, b);
     }
-  }
-
-  renderChildren() {
-    const { classes, children } = this.props;
-    if (!children) {
-      return null;
-    }
-    return <div className={classes.children}>{children}</div>;
   }
 
   render() {
@@ -129,7 +123,7 @@ const style = theme => ({
   },
   title: {
     ...TYPE_SCALE.XL3,
-    marginTop: 0,
+    margin: 0,
     padding: theme.spacing(0, 3),
   },
   cardContent: {
@@ -142,7 +136,7 @@ const style = theme => ({
     padding: theme.spacing(0, 3),
   },
   cardActions: {
-    padding: theme.spacing(1, 3),
+    padding: theme.spacing(3, 3),
   },
   backdrop: {
     display: 'flex',

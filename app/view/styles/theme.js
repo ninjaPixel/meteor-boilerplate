@@ -9,7 +9,8 @@ const SERIF_FONT = ['"Rokkitt"', 'monospace'].join(',');
 const SANS_SERIF_FONT = ['"Titillium Web"', 'sans-serif'].join(',');
 const fontWeightLight = FONT_WEIGHTS.light;
 const fontWeightRegular = FONT_WEIGHTS.regular;
-const fontWeightMedium = FONT_WEIGHTS.bold;
+const fontWeightMedium = FONT_WEIGHTS.medium;
+const fontWeightBold = FONT_WEIGHTS.bold;
 const theme = createMuiTheme({
   /*
     there are 17 units of spacing.
@@ -34,31 +35,40 @@ const theme = createMuiTheme({
     fontWeightLight,
     fontWeightRegular,
     fontWeightMedium,
+    fontWeightBold,
     h1: {
       fontWeight: fontWeightLight,
       fontSize: '5.0rem',
     },
     h2: {
       fontSize: '3.4rem',
+      fontWeight: fontWeightMedium,
     },
     h3: {
       fontSize: '2.4rem',
+      fontWeight: fontWeightRegular,
     },
     h4: {
       fontSize: '2.0rem',
+      fontWeight: fontWeightRegular,
     },
     h5: {
       fontSize: '1.8rem',
+      fontWeight: fontWeightBold,
     },
     h6: {
       fontSize: '1.6rem',
+      fontWeight: fontWeightMedium,
     },
     body1: {
       fontFamily: SANS_SERIF_FONT,
-      fontWeight: fontWeightMedium,
+      fontWeight: fontWeightRegular,
     },
     body2: {
       fontFamily: SANS_SERIF_FONT,
+      fontWeight: fontWeightRegular,
+    },
+    caption: {
       fontWeight: fontWeightRegular,
     },
     fontSize: 16,
@@ -66,6 +76,14 @@ const theme = createMuiTheme({
       Please, never override the browser font size!
       htmlFontSize: 16, // don't set this field!
     */
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        fontWeight: fontWeightBold,
+        letterSpacing: '0.05rem',
+      },
+    },
   },
 });
 
