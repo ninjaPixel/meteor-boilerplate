@@ -30,10 +30,22 @@ const RouterWrapper = ({ children }) => {
   );
 };
 
-const StoryWrapper = ({ children }) => {
+// hmm, the grid won't show if we use CSS Baseline
+// not ideal, as we do use that in the main app.
+const _StoryWrapper = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Provider store={store}>
+        <RouterWrapper>{children}</RouterWrapper>
+      </Provider>
+    </ThemeProvider>
+  );
+};
+
+const StoryWrapper = ({ children }) => {
+  return (
+    <ThemeProvider theme={theme}>
       <Provider store={store}>
         <RouterWrapper>{children}</RouterWrapper>
       </Provider>

@@ -1,4 +1,4 @@
-import primary from '@material-ui/core/colors/yellow';
+import primary from '@material-ui/core/colors/orange';
 import secondary from '@material-ui/core/colors/teal';
 import tertiary from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
@@ -17,8 +17,9 @@ const theme = createMuiTheme({
     '2' is the default 8px.
     '1' (4px) should only be used for icon related stuff.
     Note that the scale is not linear.
+    Quick ref here: https://docs.google.com/spreadsheets/d/1wccwcpPHBB5TDnQ8_pnRsbYLvW5ib8QAcGTBcllQirw/edit?usp=sharing
    */
-  spacing: factor => [0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 769][factor],
+  spacing: factor => [0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768][factor],
   palette: {
     primary,
     secondary,
