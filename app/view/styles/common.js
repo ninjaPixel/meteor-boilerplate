@@ -9,7 +9,7 @@ export const middleOfScreenStyle = theme => ({
 
 export const linkStyle = theme => ({
   cursor: 'pointer',
-  color: theme.palette.secondary.main,
+  color: theme.custom.link.color,
 });
 
 export const buttonStyle = theme => ({

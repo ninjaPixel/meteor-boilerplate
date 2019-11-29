@@ -1,4 +1,4 @@
-import primary from '@material-ui/core/colors/orange';
+import primary from '@material-ui/core/colors/indigo';
 import secondary from '@material-ui/core/colors/teal';
 import tertiary from '@material-ui/core/colors/amber';
 import brown from '@material-ui/core/colors/brown';
@@ -90,6 +90,11 @@ const theme = createMuiTheme({
         paddingTop: 0,
         paddingBottom: 0,
       },
+    },
+  },
+  custom: {
+    link: {
+      color: primary['500'],
     },
   },
 });

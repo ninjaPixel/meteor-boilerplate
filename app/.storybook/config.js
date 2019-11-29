@@ -1,10 +1,12 @@
 import React from 'react';
 import { configure, addParameters, addDecorator } from '@storybook/react';
 import 'loki/configure-react';
-import { themes } from '@storybook/theming';
+import { withA11y } from '@storybook/addon-a11y';
 import StoryWrapper from '../stories/StoryWrapper';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { storyBookTheme } from './theme';
+
+addDecorator(withA11y);
 
 const ReduxAndThemeDecorator = storyFn => <StoryWrapper>{storyFn()}</StoryWrapper>;
 addDecorator(ReduxAndThemeDecorator);

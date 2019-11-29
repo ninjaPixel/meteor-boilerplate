@@ -101,7 +101,7 @@ const useStyles = makeStyles(theme => ({
   link: linkStyle(theme),
   button: buttonStyle(theme),
   forgotPasswordLink: {
-    color: theme.palette.primary.light,
+    color: theme.custom.link.color,
     cursor: 'pointer',
     alignSelf: 'center',
   },

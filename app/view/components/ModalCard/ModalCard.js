@@ -8,8 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Loading from '../Loading/Loading';
-import { TYPE_SCALE } from '../../styles/constants';
-import { paperPadding, sidePaddingUnit } from '../../styles/common';
+import { sidePaddingUnit } from '../../styles/common';
 
 const propTypes = {
   classes: PropTypes.object.isRequired,
