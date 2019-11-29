@@ -26,17 +26,20 @@ export const inputStyle = theme => ({
   width: '100%',
 });
 
-export const stackStyle = theme => ({
+export const stackStyle = (theme, size = 3) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  '& > *': {
+    marginTop: 0,
+    marginBottom: 0,
+  },
   '& > * + *': {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(size),
   },
 });
 
-export const stackStyleLG = theme => ({
-  '& > * + *': {
-    marginTop: theme.spacing(8),
-  },
-});
+export const stackStyleLG = theme => stackStyle(theme, 8);
 
 export const documentLayoutStyle = theme => ({
   flex: 1,
@@ -44,3 +47,5 @@ export const documentLayoutStyle = theme => ({
   ...stackStyle(theme),
   marginTop: theme.spacing(5),
 });
+export const sidePaddingUnit = 5;
+export const paperPadding = theme => theme.spacing(6, sidePaddingUnit);

@@ -89,7 +89,7 @@ export default {
   }),
   login: createRoute({
     title: 'Login',
-    importFunction: (): Promise => import('../../view/components/LoginForm/LoginForm.js'),
+    importFunction: (): Promise => import('../../view/components/LoginForm/Screen.js'),
     exact: true,
     path: '/login',
   }),

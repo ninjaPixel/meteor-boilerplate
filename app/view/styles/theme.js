@@ -29,7 +29,7 @@ const theme = createMuiTheme({
       dark: brown[800],
       contrastText: brown[800],
     },
-    type: 'dark',
+    // type: 'dark',
   },
   typography: {
     fontFamily: SERIF_FONT,
@@ -83,6 +83,12 @@ const theme = createMuiTheme({
       root: {
         fontWeight: fontWeightBold,
         letterSpacing: '0.05rem',
+      },
+    },
+    PrivateSwitchBase: {
+      root: {
+        paddingTop: 0,
+        paddingBottom: 0,
       },
     },
   },

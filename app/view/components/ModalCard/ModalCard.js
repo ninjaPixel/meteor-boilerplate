@@ -9,6 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Loading from '../Loading/Loading';
 import { TYPE_SCALE } from '../../styles/constants';
+import { paperPadding, sidePaddingUnit } from '../../styles/common';
 
 const propTypes = {
   classes: PropTypes.object.isRequired,
@@ -119,12 +120,12 @@ const style = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    paddingTop: theme.spacing(3),
+    paddingTop: theme.spacing(6),
   },
   title: {
-    ...TYPE_SCALE.XL3,
+    ...theme.typography.h3,
     margin: 0,
-    padding: theme.spacing(0, 3),
+    padding: theme.spacing(0, sidePaddingUnit),
   },
   cardContent: {
     display: 'flex',
@@ -133,19 +134,17 @@ const style = theme => ({
     marginBottom: 'auto',
     maxHeight: '80%',
     overflowY: 'scroll',
-    padding: theme.spacing(0, 3),
+    padding: theme.spacing(0, sidePaddingUnit),
   },
   cardActions: {
-    padding: theme.spacing(3, 3),
+    padding: theme.spacing(3, sidePaddingUnit),
   },
   backdrop: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  loading: {
-    // height: theme.spacing(4),
-  },
+  loading: {},
 });
 
 export default withStyles(style)(ModalCard);

@@ -13,20 +13,12 @@ import { store } from '../controller/store';
  There are a few things that our components need to be
  wrapped in, to render
  */
-const useStyles = makeStyles(myTheme => ({
-  root: {
-    padding: myTheme.spacing(3),
-  },
-}));
-const RouterWrapper = ({ children }) => {
-  const classes = useStyles();
 
+const RouterWrapper = ({ children }) => {
   return (
-    <div className={classes.root}>
-      <Router>
-        <Route>{children}</Route>
-      </Router>
-    </div>
+    <Router>
+      <Route>{children}</Route>
+    </Router>
   );
 };
 
