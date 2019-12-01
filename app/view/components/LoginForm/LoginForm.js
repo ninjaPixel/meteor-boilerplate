@@ -189,6 +189,7 @@ const LoginForm = props => {
         className={classes.form}
       >
         <TextField
+          id="login-form-email-input"
           inputProps={{ 'data-e2e': 'login-form-email-input' }}
           label="Email"
           autoFocus={!disableAutoFocus}
@@ -204,6 +205,7 @@ const LoginForm = props => {
           variant="outlined"
         />
         <TextField
+          id="login-form-password-input"
           inputProps={{ 'data-e2e': 'login-form-password-input' }}
           label="Password"
           required
@@ -240,6 +242,7 @@ const LoginForm = props => {
           }}
         >
           <TextField
+            id="login-form-first-name-input"
             inputProps={{ 'data-e2e': 'login-form-first-name-input' }}
             key="autofocusmonkeypatch"
             label="First name"
@@ -253,6 +256,7 @@ const LoginForm = props => {
             variant="outlined"
           />
           <TextField
+            id="login-form-last-name-input"
             inputProps={{ 'data-e2e': 'login-form-last-name-input' }}
             label="Last name"
             required
@@ -268,6 +272,7 @@ const LoginForm = props => {
               classes={{ label: classes.tosCheckbox }}
               control={
                 <Checkbox
+                  id="login-form-tos-checkbox"
                   data-e2e="login-form-tos-checkbox"
                   checked={termsAccepted}
                   onChange={onToggleTermsAccepted}
