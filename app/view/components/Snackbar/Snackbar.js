@@ -6,14 +6,13 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
-import { amber, green, lightBlue, red } from '@material-ui/core/colors';
+import { amber, green, lightBlue, red, brown } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { actionSnackClose } from '../../../controller/actions';
 import { SNACKBAR_TYPES } from './constants';
 
 const variantIcon = {
@@ -36,13 +35,13 @@ const useStyles1 = makeStyles(theme => ({
   },
   info: {
     backgroundColor: lightBlue[50],
-    color: lightBlue[800],
+    color: lightBlue[900],
     border: `2px solid ${lightBlue[900]}`,
   },
   warning: {
-    backgroundColor: amber[50],
-    color: amber[900],
-    border: `2px solid ${amber[900]}`,
+    backgroundColor: amber[100],
+    color: brown[600],
+    border: `2px solid ${brown[600]}`,
   },
   snackContentRoot: {
     flexWrap: 'nowrap',
@@ -111,14 +110,14 @@ MySnackbarContentWrapper.defaultProps = {
 };
 
 function CustomizedSnackbar(props) {
-  const { _id, open, ...other } = props;
+  const { _id, open, onClose, ...other } = props;
   const dispatch = useDispatch();
 
   function handleClose(event, reason) {
     if (reason === 'clickaway') {
       return;
     }
-    actionSnackClose({ dispatch, _id });
+    onClose({ dispatch, _id });
   }
 
   /*
@@ -143,6 +142,15 @@ function CustomizedSnackbar(props) {
 }
 CustomizedSnackbar.propTypes = {
   _id: PropTypes.number.isRequired,
+  className: PropTypes.string,
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
+  variant: PropTypes.oneOf([SNACKBAR_TYPES.error, SNACKBAR_TYPES.info, SNACKBAR_TYPES.warning, SNACKBAR_TYPES.success])
+    .isRequired,
+};
+
+CustomizedSnackbar.defaultProps = {
+  className: undefined,
 };
 export default CustomizedSnackbar;

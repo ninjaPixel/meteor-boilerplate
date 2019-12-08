@@ -21,7 +21,7 @@ const propTypes = {
   ...commonProps.propTypes,
   location: PropTypes.object.isRequired,
 };
-const LoginFormWiredUp = props => {
+const LoginFormConnected = props => {
   const { user, location, disableEmail, disableAutoFocus, loginButtonText, registerButtonText } = props;
 
   const dispatch = useDispatch();
@@ -137,6 +137,6 @@ const LoginFormWiredUp = props => {
   );
 };
 
-LoginFormWiredUp.propTypes = propTypes;
+LoginFormConnected.propTypes = propTypes;
 
-export default withRouter(LoginFormWiredUp);
+export default withRouter(LoginFormConnected);

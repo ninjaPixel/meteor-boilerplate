@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStoreSnacks } from '../../hooks/reduxSelectors';
-import Snackbar from '../Snackbar/Snackbar';
+import SnackbarConnected from '../Snackbar/SnackbarConnected';
 
 const Snacks = () => {
   const snackList = useStoreSnacks();
-  return snackList.map(snack => <Snackbar key={snack._id} {...snack} />);
+  return snackList.map(snack => <SnackbarConnected key={snack._id} {...snack} />);
 };
 
 export default Snacks;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import makeStyles from '@material-ui/styles/makeStyles';
 import Paper from '@material-ui/core/Paper';
-import LoginFormWiredUp from './LoginFormWiredUp';
+import LoginFormWiredUp from './LoginFormConnected';
 import { paperPadding } from '../../styles/common';
 
 const propTypes = {
