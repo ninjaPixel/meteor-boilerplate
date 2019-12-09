@@ -5,6 +5,7 @@ import brown from '@material-ui/core/colors/brown';
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { FONT_WEIGHTS } from './constants';
 
+const SPACING = [0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768];
 const SERIF_FONT = ['"Rokkitt"', 'monospace'].join(',');
 const SANS_SERIF_FONT = ['"Titillium Web"', 'sans-serif'].join(',');
 const fontWeightLight = FONT_WEIGHTS.light;
@@ -19,7 +20,7 @@ const theme = createMuiTheme({
     Note that the scale is not linear.
     Quick ref here: https://docs.google.com/spreadsheets/d/1wccwcpPHBB5TDnQ8_pnRsbYLvW5ib8QAcGTBcllQirw/edit?usp=sharing
    */
-  spacing: factor => [0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768][factor],
+  spacing: factor => SPACING[factor],
   palette: {
     primary,
     secondary,
@@ -86,9 +87,15 @@ const theme = createMuiTheme({
       },
     },
     PrivateSwitchBase: {
+      // The component has unnecessary vertical padding
+      // https://www.dropbox.com/s/5i7m1gdq3y6ti16/PrivateSwitchBase-root.png?dl=0
+      // And unnecessary horizontal padding
+      // https://www.dropbox.com/s/ddpkvt6ybgimk5j/MuiFormControlLabel-root.png?dl=0
       root: {
         paddingTop: 0,
         paddingBottom: 0,
+        paddingLeft: SPACING[2],
+        paddingRight: SPACING[2],
       },
     },
   },
