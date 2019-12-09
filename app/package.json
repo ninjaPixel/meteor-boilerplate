@@ -62,15 +62,15 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@storybook/addon-a11y": "^5.2.6",
-    "@storybook/addon-actions": "^5.2.6",
-    "@storybook/addon-backgrounds": "^5.2.6",
-    "@storybook/addon-knobs": "^5.2.6",
-    "@storybook/addon-links": "^5.2.6",
-    "@storybook/addon-storysource": "^5.2.6",
-    "@storybook/addon-viewport": "^5.2.6",
-    "@storybook/addons": "^5.2.6",
-    "@storybook/react": "^5.2.6",
+    "@storybook/addon-a11y": "^5.3.0-beta.19",
+    "@storybook/addon-actions": "^5.3.0-beta.19",
+    "@storybook/addon-backgrounds": "^5.3.0-beta.19",
+    "@storybook/addon-knobs": "^5.3.0-beta.19",
+    "@storybook/addon-links": "^5.3.0-beta.19",
+    "@storybook/addon-storysource": "^5.3.0-beta.19",
+    "@storybook/addon-viewport": "^5.3.0-beta.19",
+    "@storybook/addons": "^5.3.0-beta.19",
+    "@storybook/react": "^5.3.0-beta.19",
     "@types/lodash": "^4.14.134",
     "@types/mocha": "^5.2.7",
     "@types/react": "^16.8.20",
@@ -81,6 +81,9 @@
     "loki": "^0.18.1",
     "parcel-bundler": "^1.12.4",
     "testcafe": "^1.6.1"
+  },
+  "_storybook_update": {
+    "cmd": "meteor npm i --save-dev @storybook/addon-a11y@next @storybook/addon-actions@next @storybook/addon-backgrounds@next @storybook/addon-knobs@next @storybook/addon-links@next @storybook/addon-storysource@next @storybook/addon-viewport@next @storybook/addons@next @storybook/react@next"
   },
   "browserslist": [
     "> 10%",

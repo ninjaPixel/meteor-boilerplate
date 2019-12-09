@@ -28,6 +28,7 @@ const customViewports = {
   },
 };
 addParameters({
+  grid: { cellSize: 8 },
   options: {
     theme: storyBookTheme,
   },

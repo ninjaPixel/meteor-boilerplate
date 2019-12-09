@@ -20,3 +20,9 @@ export const LinkWithIcon = () => (
   </LinkButton>
 );
 export const ExternalLink = () => <LinkButton to="https://ninjapixel.io">External link</LinkButton>;
+
+// InternalLink.story = {
+//   parameters: {
+//     grid: { cellSize: 8 },
+//   },
+// };
