@@ -5,20 +5,19 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import classNames from 'classnames';
+import { SPACING } from '../../styles/theme';
 
 const propTypes = {
   className: PropTypes.string,
   children: PropTypes.string,
   linear: PropTypes.bool,
   size: PropTypes.number,
-  text: PropTypes.string,
 };
 const defaultProps = {
   className: undefined,
   children: '',
   linear: false,
-  size: 100,
-  text: '',
+  size: SPACING[9], // 96
 };
 
 const useStyles = makeStyles(() => ({

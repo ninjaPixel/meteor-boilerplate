@@ -5,7 +5,7 @@ import brown from '@material-ui/core/colors/brown';
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { FONT_WEIGHTS } from './constants';
 
-const SPACING = [0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768];
+export const SPACING = [0, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 640, 768];
 const SERIF_FONT = ['"Rokkitt"', 'monospace'].join(',');
 const SANS_SERIF_FONT = ['"Titillium Web"', 'sans-serif'].join(',');
 const fontWeightLight = FONT_WEIGHTS.light;
