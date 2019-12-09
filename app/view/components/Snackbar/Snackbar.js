@@ -45,7 +45,6 @@ const useStyles1 = makeStyles(theme => ({
   },
   snackContentRoot: {
     flexWrap: 'nowrap',
-    // alignItems: 'flex-start',
   },
   icon: {
     fontSize: 20,
