@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import makeStyles from '@material-ui/styles/makeStyles';
-import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
+import { defaultContentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
 import InlineCode from '../../components/InlineCode/InlineCode';
 import { actionNotificationAdd, actionSnackAdd } from '../../../controller/actions';
 import Quote from '../../components/Quote/Quote';
@@ -21,7 +21,7 @@ const defaultProps = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    ...documentLayoutStyle(theme),
+    ...defaultContentLayoutStyle(theme),
     ...stackStyleLG(theme),
   },
   section: {

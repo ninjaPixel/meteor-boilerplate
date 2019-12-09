@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
 import LinkComponent from '../../components/Link/Link';
 import InlineCode from '../../components/InlineCode/InlineCode';
-import { documentLayoutStyle } from '../../styles/common';
+import { defaultContentLayoutStyle } from '../../styles/common';
 
 const propTypes = {
   className: PropTypes.string,
@@ -18,7 +18,7 @@ const defaultProps = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    ...documentLayoutStyle(theme),
+    ...defaultContentLayoutStyle(theme),
   },
 }));
 

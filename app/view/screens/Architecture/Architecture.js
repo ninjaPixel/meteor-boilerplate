@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
 import LinkComponent from '../../components/Link/Link';
 import InlineCode from '../../components/InlineCode/InlineCode';
-import { documentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
+import { defaultContentLayoutStyle, stackStyle, stackStyleLG } from '../../styles/common';
 import newRoutes from '../../../imports/modules/routes';
 import Quote from '../../components/Quote/Quote';
 
@@ -19,7 +19,7 @@ const defaultProps = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    ...documentLayoutStyle(theme),
+    ...defaultContentLayoutStyle(theme),
     ...stackStyleLG(theme),
   },
   section: {

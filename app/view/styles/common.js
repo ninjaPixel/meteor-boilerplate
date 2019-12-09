@@ -27,12 +27,14 @@ export const inputStyle = theme => ({
 });
 
 export const stackStyle = (theme, size = 3) => ({
+  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start',
   '& > *': {
     marginTop: 0,
     marginBottom: 0,
+    boxSizing: 'border-box',
   },
   '& > * + *': {
     marginTop: theme.spacing(size),
@@ -41,11 +43,11 @@ export const stackStyle = (theme, size = 3) => ({
 
 export const stackStyleLG = theme => stackStyle(theme, 8);
 
-export const documentLayoutStyle = theme => ({
+export const defaultContentLayoutStyle = theme => ({
   flex: 1,
   maxWidth: theme.spacing(15),
   ...stackStyle(theme),
-  marginTop: theme.spacing(5),
+  paddingTop: theme.spacing(5),
 });
 export const sidePaddingUnit = 5;
 export const paperPadding = theme => theme.spacing(6, sidePaddingUnit);

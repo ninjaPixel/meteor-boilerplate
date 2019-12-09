@@ -6,11 +6,11 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import moment from 'moment';
 import Well from '../../components/Well/Well';
 import InlineCode from '../../components/InlineCode/InlineCode';
-import { documentLayoutStyle } from '../../styles/common';
+import { defaultContentLayoutStyle } from '../../styles/common';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    ...documentLayoutStyle(theme),
+    ...defaultContentLayoutStyle(theme),
   },
 }));
 

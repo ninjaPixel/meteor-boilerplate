@@ -341,6 +341,7 @@ const LoginForm = props => {
             margin="normal"
             className={classes.input}
             autoComplete="email"
+            variant="outlined"
           />
         </form>
       </ModalCard>

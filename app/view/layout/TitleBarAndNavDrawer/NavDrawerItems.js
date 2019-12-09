@@ -23,21 +23,34 @@ import routes from '../../../imports/modules/routes';
 import { useStoreUser } from '../../hooks/reduxSelectors';
 
 const navLinkStyles = makeStyles(theme => ({
-  noDecoration: {
-    textDecoration: 'none',
-    width: 'fit-content',
+  root: {
     color: theme.palette.text.primary,
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    width: 'fit-content',
+  },
+  text: {
+    ...theme.typography.button,
+    color: theme.palette.primary.main,
+  },
+  icon: {
+    color: theme.palette.primary.main,
   },
 }));
-function _NavLink(props) {
+export const NavDrawerItem = props => {
   const classes = navLinkStyles();
   const { badgeContent, onNavClick, to, dataE2E, icon, text } = props;
   const navLink = (
-    <Link to={to} onClick={() => onNavClick()} className={classes.noDecoration}>
+    <Link to={to} onClick={() => onNavClick()} className={classes.root}>
       <ListItem button data-e2e={dataE2E}>
-        <ListItemIcon>{icon}</ListItemIcon>
-
-        <ListItemText primary={<Typography noWrap>{text}</Typography>} />
+        <ListItemIcon className={classes.icon}>{icon}</ListItemIcon>
+        <ListItemText
+          primary={
+            <Typography className={classes.text} noWrap>
+              {text}
+            </Typography>
+          }
+        />
       </ListItem>
     </Link>
   );
@@ -49,9 +62,7 @@ function _NavLink(props) {
     );
   }
   return navLink;
-}
-
-const NavLink = _NavLink;
+};
 
 function ExternalNavLink(props) {
   // eslint-disable-next-line react/prop-types
@@ -66,7 +77,7 @@ function ExternalNavLink(props) {
   );
 }
 
-NavLink.propTypes = {
+NavDrawerItem.propTypes = {
   to: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onNavClick: PropTypes.func, // .isRequired,
@@ -74,27 +85,27 @@ NavLink.propTypes = {
   dataE2E: PropTypes.string,
 };
 
-NavLink.defaultProps = {
+NavDrawerItem.defaultProps = {
   onNavClick: () => {},
 };
 
 // eslint-disable-next-line react/prop-types
 const renderLoginLink = ({ onNavClick }) => (
-  <NavLink to="/login" dataE2E="nav-login" text="Login" onNavClick={onNavClick} icon={<Lock />} />
+  <NavDrawerItem to="/login" dataE2E="nav-login" text="Login" onNavClick={onNavClick} icon={<Lock />} />
 );
 
 const renderClientLinks = props => [
   <ListItem key="user-name">
     <ListItemText className={props.classes.listItemText} secondary={props.user.profile.name.first} key="user-name" />
   </ListItem>,
-  <NavLink
+  <NavDrawerItem
     key="account"
     to={routes.account.getPath(props.user._id)}
     text="My account"
     onNavClick={props.onNavClick}
     icon={<AccountBox />}
   />,
-  <NavLink key="logout-link" to="/logout" text="Logout" onNavClick={props.onNavClick} icon={<ExitToApp />} />,
+  <NavDrawerItem key="logout-link" to="/logout" text="Logout" onNavClick={props.onNavClick} icon={<ExitToApp />} />,
 ];
 const useStyles = makeStyles(theme => ({
   root: {
@@ -165,7 +176,7 @@ const NavDrawerItems = props => {
     <div className={classes.root}>
       <List>
         {links.map(link => (
-          <NavLink {...link} key={link.text} />
+          <NavDrawerItem {...link} key={link.text} />
         ))}
         <Divider />
         {!_.isEmpty(user) ? renderClientLinks({ ...props, classes, user }) : renderLoginLink({ ...props, user })}

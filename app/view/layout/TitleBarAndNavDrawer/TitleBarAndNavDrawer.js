@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,6 +14,7 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Loading from '../../components/Loading/Loading';
 import NotificationBell from '../../components/Notifications/NotificationBell';
 import NavDrawerItems from './NavDrawerItems';
+import ScreenContentWrapper from '../../components/Screen/ScreenContentWrapper';
 
 const propTypes = {
   children: PropTypes.element.isRequired,
@@ -137,13 +137,11 @@ const TitleBarAndNavDrawer = props => {
   return (
     <div className={classes.appFrame}>
       {renderNavigationBar()}
-      <Grid container className={classes.contentContainerGrid} ref={contentContainerRef}>
+      <div className={classes.contentContainer} ref={contentContainerRef}>
         <ErrorBoundary>
-          <Grid item xs={12} className={classes.mainContent} data-e2e="main-content">
-            {children}
-          </Grid>
+          <ScreenContentWrapper>{children}</ScreenContentWrapper>
         </ErrorBoundary>
-      </Grid>
+      </div>
     </div>
   );
 };

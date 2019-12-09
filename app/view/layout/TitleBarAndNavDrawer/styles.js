@@ -14,11 +14,11 @@ const styles = makeStyles(theme => ({
     display: 'flex',
   },
   mainContent: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.spacing(2),
+    // display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // padding: theme.spacing(2),
   },
   fourOhFour: {
     display: 'flex',
@@ -102,7 +102,8 @@ const styles = makeStyles(theme => ({
     },
   },
 
-  contentContainerGrid: {
+  contentContainer: {
+    width: '100%',
     backgroundColor: theme.palette.background.default,
     marginTop: appBarHeightXS,
     [theme.breakpoints.up('sm')]: {
