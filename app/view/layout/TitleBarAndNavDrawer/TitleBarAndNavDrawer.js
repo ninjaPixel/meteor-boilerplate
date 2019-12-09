@@ -8,13 +8,58 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
-
+import Home from '@material-ui/icons/Home';
+import ImportantDevices from '@material-ui/icons/ImportantDevices';
+import Style from '@material-ui/icons/Style';
+import ShortText from '@material-ui/icons/ShortText';
+import UserFeedbackIcon from '@material-ui/icons/Vibration';
+import ArchitectureIcon from '@material-ui/icons/Layers';
 import styles from './styles';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Loading from '../../components/Loading/Loading';
 import NotificationBell from '../../components/Notifications/NotificationBell';
 import NavDrawerItems from './NavDrawerItems';
 import ScreenContentWrapper from '../../components/Screen/ScreenContentWrapper';
+import routes from '../../../imports/modules/routes';
+
+const navDrawerLinks = [
+  { to: '/', text: 'Home', icon: <Home />, dataE2E: 'nav-page-home' },
+  {
+    to: routes.styling.getPath(),
+    text: routes.styling.title,
+
+    icon: <Style />,
+    dataE2E: `nav-page-${routes.styling.title}`,
+  },
+  {
+    to: routes.typography.getPath(),
+    text: routes.typography.title,
+
+    icon: <ShortText />,
+    dataE2E: `nav-page-${routes.typography.title}`,
+  },
+  {
+    to: routes.dynamicImports.getPath(),
+    text: routes.dynamicImports.title,
+
+    icon: <ImportantDevices />,
+    dataE2E: `nav-page-${routes.dynamicImports.title}`,
+  },
+  {
+    to: routes.userFeedback.getPath(),
+    text: routes.userFeedback.title,
+
+    icon: <UserFeedbackIcon />,
+    dataE2E: `nav-page-${routes.userFeedback.title}`,
+  },
+  {
+    to: routes.architecture.getPath(),
+    text: routes.architecture.title,
+
+    icon: <ArchitectureIcon />,
+    dataE2E: `nav-page-${routes.architecture.title}`,
+  },
+];
 
 const propTypes = {
   children: PropTypes.element.isRequired,
@@ -65,7 +110,7 @@ const TitleBarAndNavDrawer = props => {
     const drawer = (
       <div className={classes.drawer}>
         <div className={classes.drawerHeader} />
-        <NavDrawerItems onNavClick={handleDrawerToggle} user={user} />
+        <NavDrawerItems onNavClick={handleDrawerToggle} user={user} links={navDrawerLinks} />
       </div>
     );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import _isEmpty from 'lodash/isEmpty';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -10,31 +10,26 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Home from '@material-ui/icons/Home';
-import ImportantDevices from '@material-ui/icons/ImportantDevices';
+
 import Lock from '@material-ui/icons/Lock';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import AccountBox from '@material-ui/icons/AccountBox';
-import Style from '@material-ui/icons/Style';
-import ShortText from '@material-ui/icons/ShortText';
-import UserFeedbackIcon from '@material-ui/icons/Vibration';
-import ArchitectureIcon from '@material-ui/icons/Layers';
+
 import routes from '../../../imports/modules/routes';
-import { useStoreUser } from '../../hooks/reduxSelectors';
+// import { useStoreUser } from '../../hooks/reduxSelectors';
 
 const navLinkStyles = makeStyles(theme => ({
   root: {
-    color: theme.palette.text.primary,
     textDecoration: 'none',
     textTransform: 'uppercase',
     width: 'fit-content',
   },
   text: {
     ...theme.typography.button,
-    color: theme.palette.primary.main,
+    color: theme.palette.navDrawer.contrastText,
   },
   icon: {
-    color: theme.palette.primary.main,
+    color: theme.palette.navDrawer.contrastText,
   },
 }));
 export const NavDrawerItem = props => {
@@ -64,18 +59,18 @@ export const NavDrawerItem = props => {
   return navLink;
 };
 
-function ExternalNavLink(props) {
-  // eslint-disable-next-line react/prop-types
-  const { to, icon, text } = props;
-  return (
-    <Link target="_blank" to={to} className="Link--no-decoration">
-      <ListItem button>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={text} />
-      </ListItem>
-    </Link>
-  );
-}
+// function ExternalNavLink(props) {
+//   // eslint-disable-next-line react/prop-types
+//   const { to, icon, text } = props;
+//   return (
+//     <Link target="_blank" to={to} className="Link--no-decoration">
+//       <ListItem button>
+//         <ListItemIcon>{icon}</ListItemIcon>
+//         <ListItemText primary={text} />
+//       </ListItem>
+//     </Link>
+//   );
+// }
 
 NavDrawerItem.propTypes = {
   to: PropTypes.string.isRequired,
@@ -111,7 +106,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    background: theme.palette.background.paper,
+    background: theme.palette.navDrawer.main,
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -131,55 +126,15 @@ const useStyles = makeStyles(theme => ({
 }));
 const NavDrawerItems = props => {
   const classes = useStyles();
-  const user = useStoreUser();
-  const { onNavClick } = props;
-  const links = [
-    { to: '/', text: 'Home', onNavClick, icon: <Home />, dataE2E: 'nav-page-home' },
-    {
-      to: routes.styling.getPath(),
-      text: routes.styling.title,
-      onNavClick,
-      icon: <Style />,
-      dataE2E: `nav-page-${routes.styling.title}`,
-    },
-    {
-      to: routes.typography.getPath(),
-      text: routes.typography.title,
-      onNavClick,
-      icon: <ShortText />,
-      dataE2E: `nav-page-${routes.typography.title}`,
-    },
-    {
-      to: routes.dynamicImports.getPath(),
-      text: routes.dynamicImports.title,
-      onNavClick,
-      icon: <ImportantDevices />,
-      dataE2E: `nav-page-${routes.dynamicImports.title}`,
-    },
-    {
-      to: routes.userFeedback.getPath(),
-      text: routes.userFeedback.title,
-      onNavClick,
-      icon: <UserFeedbackIcon />,
-      dataE2E: `nav-page-${routes.userFeedback.title}`,
-    },
-    {
-      to: routes.architecture.getPath(),
-      text: routes.architecture.title,
-      onNavClick,
-      icon: <ArchitectureIcon />,
-      dataE2E: `nav-page-${routes.architecture.title}`,
-    },
-  ];
-
+  const { onNavClick, links, user } = props;
   return (
     <div className={classes.root}>
       <List>
         {links.map(link => (
-          <NavDrawerItem {...link} key={link.text} />
+          <NavDrawerItem {...link} key={link.text} onNavClick={onNavClick} />
         ))}
         <Divider />
-        {!_.isEmpty(user) ? renderClientLinks({ ...props, classes, user }) : renderLoginLink({ ...props, user })}
+        {!_isEmpty(user) ? renderClientLinks({ ...props, classes, user }) : renderLoginLink({ ...props, user })}
       </List>
       {/*<List className={classes.legalSection}>*/}
       {/*  <NavLink icon={<Gavel />} to={routes.legal.getPath()} text="Legal" />*/}
@@ -190,8 +145,19 @@ const NavDrawerItems = props => {
 
 NavDrawerItems.propTypes = {
   onNavClick: PropTypes.func.isRequired,
+  links: PropTypes.arrayOf(
+    PropTypes.shape({
+      dataE2E: PropTypes.string.isRequired,
+      to: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      icon: PropTypes.element.isRequired,
+    }),
+  ).isRequired,
+  user: PropTypes.object,
 };
 
-NavDrawerItems.defaultProps = {};
+NavDrawerItems.defaultProps = {
+  user: undefined,
+};
 
 export default NavDrawerItems;

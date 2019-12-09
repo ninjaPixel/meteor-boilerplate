@@ -1,9 +1,16 @@
 import React from 'react';
-import { withKnobs, text, number, boolean } from '@storybook/addon-knobs';
+import { actions } from '@storybook/addon-actions';
+import { withKnobs, text, number, boolean, object } from '@storybook/addon-knobs';
 import ImportantDevices from '@material-ui/icons/ImportantDevices';
+import Style from '@material-ui/icons/Style';
+import Home from '@material-ui/icons/Home';
+import ShortText from '@material-ui/icons/ShortText';
+import UserFeedbackIcon from '@material-ui/icons/Vibration';
+import ArchitectureIcon from '@material-ui/icons/Layers';
 import ScreenContent from '../view/components/Screen/ScreenContent';
 import ScreenContentWrapper from '../view/components/Screen/ScreenContentWrapper';
-import { NavDrawerItem } from '../view/layout/TitleBarAndNavDrawer/NavDrawerItems';
+import NavDrawerItems, { NavDrawerItem } from '../view/layout/TitleBarAndNavDrawer/NavDrawerItems';
+import routes from '../imports/modules/routes';
 
 export default {
   title: 'Layout',
@@ -45,6 +52,55 @@ export const ContentWrapper = () => (
   </ScreenContentWrapper>
 );
 
-export const NavItem = () => <NavDrawerItem to={'/'} icon={<ImportantDevices />} text={'Nav link'} />;
+export const NavItem = () => <NavDrawerItem to={'/'} icon={<ImportantDevices />} text={text('text', 'Nav link')} />;
 
-export const App = () => {};
+const navDrawerLinks = [
+  { to: '/', text: 'Home', icon: <Home />, dataE2E: 'nav-page-home' },
+  {
+    to: '/',
+    text: 'Style',
+
+    icon: <Style />,
+    dataE2E: `nav-page-${routes.styling.title}`,
+  },
+  {
+    to: '/',
+    text: 'Typography',
+
+    icon: <ShortText />,
+    dataE2E: `nav-page-${routes.typography.title}`,
+  },
+  {
+    to: '/',
+    text: 'Devices',
+
+    icon: <ImportantDevices />,
+    dataE2E: `nav-page-${routes.dynamicImports.title}`,
+  },
+  {
+    to: '/',
+    text: 'Feedback',
+
+    icon: <UserFeedbackIcon />,
+    dataE2E: `nav-page-${routes.userFeedback.title}`,
+  },
+  {
+    to: '/',
+    text: 'Architcture',
+
+    icon: <ArchitectureIcon />,
+    dataE2E: `nav-page-${routes.architecture.title}`,
+  },
+];
+
+const eventsFromNames = actions('onNavClick');
+
+export const NavDrawer = () => <NavDrawerItems {...eventsFromNames} links={navDrawerLinks} />;
+
+export const NavDrawerLoggedIn = () => (
+  <NavDrawerItems
+    {...eventsFromNames}
+    links={navDrawerLinks}
+    user={object('user', { profile: { name: { first: 'Matt', last: 'Michel' } } }, 'user')}
+  />
+);
