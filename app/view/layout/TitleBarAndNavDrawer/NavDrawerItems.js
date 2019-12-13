@@ -36,18 +36,20 @@ export const NavDrawerItem = props => {
   const classes = navLinkStyles();
   const { badgeContent, onNavClick, to, dataE2E, icon, text } = props;
   const navLink = (
-    <Link to={to} onClick={() => onNavClick()} className={classes.root}>
-      <ListItem button data-e2e={dataE2E}>
-        <ListItemIcon className={classes.icon}>{icon}</ListItemIcon>
-        <ListItemText
-          primary={
-            <Typography className={classes.text} noWrap>
-              {text}
-            </Typography>
-          }
-        />
-      </ListItem>
-    </Link>
+    <li>
+      <Link to={to} onClick={() => onNavClick()} className={classes.root}>
+        <ListItem button data-e2e={dataE2E}>
+          <ListItemIcon className={classes.icon}>{icon}</ListItemIcon>
+          <ListItemText
+            primary={
+              <Typography className={classes.text} noWrap>
+                {text}
+              </Typography>
+            }
+          />
+        </ListItem>
+      </Link>
+    </li>
   );
   if (badgeContent) {
     return (
@@ -129,7 +131,7 @@ const NavDrawerItems = props => {
   const { onNavClick, links, user } = props;
   return (
     <div className={classes.root}>
-      <List>
+      <List role="list" aria-label="Main navigation">
         {links.map(link => (
           <NavDrawerItem {...link} key={link.text} onNavClick={onNavClick} />
         ))}

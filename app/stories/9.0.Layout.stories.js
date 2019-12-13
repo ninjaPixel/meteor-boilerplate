@@ -52,7 +52,11 @@ export const ContentWrapper = () => (
   </ScreenContentWrapper>
 );
 
-export const NavItem = () => <NavDrawerItem to={'/'} icon={<ImportantDevices />} text={text('text', 'Nav link')} />;
+export const NavItem = () => (
+  <ul role="list" style={{ listStyleType: 'none' }}>
+    <NavDrawerItem to={'/'} icon={<ImportantDevices />} text={text('text', 'Nav link')} />
+  </ul>
+);
 
 const navDrawerLinks = [
   { to: '/', text: 'Home', icon: <Home />, dataE2E: 'nav-page-home' },
