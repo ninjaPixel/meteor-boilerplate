@@ -45,7 +45,7 @@
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.1.3",
-    "simpl-schema": "^1.5.5"
+    "simpl-schema": "^1.10.2"
   },
   "_comment_alias": {
     "react-dom": "This is used by the HMR to enable React 16.6+ features, when using Parcel. I should review this in 6 months (May 2020) to see if it is still required. https://github.com/gaearon/react-hot-loader/issues/1227#issuecomment-492006017"
