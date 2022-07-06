@@ -31,7 +31,7 @@
     "juice": "^4.3.2",
     "lodash": "^4.17.15",
     "meteor-node-stubs": "^0.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "nodemailer": "^4.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
